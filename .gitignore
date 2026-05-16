@@ -9,6 +9,7 @@ out/
 .turbo/
 .tsbuildinfo
 *.tsbuildinfo
+railpack-plan.json
 
 # --- Expo / React Native ---
 .expo/
