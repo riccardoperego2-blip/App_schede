@@ -55,7 +55,7 @@ const serverEnvSchema = z
         return Number.isFinite(n) ? n : v;
       }, z.number({ invalid_type_error: 'PORT must be a number' }).int().min(1).max(65_535)),
     API_PREFIX: z.string().optional().default(''),
-    DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
+    DATABASE_URL: z.string().min(1, 'DATABASE_URL or SUPABASE_DATABASE_URL is required'),
     SUPABASE_URL: z.string().min(1, 'SUPABASE_URL is required').url('SUPABASE_URL must be a valid URL'),
     SUPABASE_SERVICE_ROLE_KEY: z
       .string()
@@ -123,7 +123,7 @@ export function parseServerEnv(env: NodeJS.ProcessEnv): AppConfig {
     NODE_ENV: env.NODE_ENV,
     PORT: env.PORT,
     API_PREFIX: env.API_PREFIX,
-    DATABASE_URL: env.DATABASE_URL,
+    DATABASE_URL: env.DATABASE_URL ?? env.SUPABASE_DATABASE_URL,
     SUPABASE_URL: env.SUPABASE_URL,
     SUPABASE_SERVICE_ROLE_KEY: env.SUPABASE_SERVICE_ROLE_KEY,
     CORS_ORIGINS: env.CORS_ORIGINS,

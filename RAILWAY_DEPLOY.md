@@ -18,7 +18,8 @@ Il processo ascolta su **`process.env.PORT`** (Railway lo imposta automaticament
 |------|------|
 | `NODE_ENV` | `production` |
 | `PORT` | Opzionale se Railway imposta già `PORT` |
-| `DATABASE_URL` | Connection string Postgres (`postgresql://…`) |
+| `SUPABASE_DATABASE_URL` | Connection string Postgres (`postgresql://...`). **Usare questa su Railway** invece di `DATABASE_URL` per evitare che Railpack interpreti `postgresql` come secret durante la build. |
+| `DATABASE_URL` | Alternativa compatibile per locale/altri provider; il backend legge `DATABASE_URL ?? SUPABASE_DATABASE_URL`. |
 | `SUPABASE_URL` | URL progetto Supabase (es. `https://xxx.supabase.co`) |
 | `SUPABASE_SERVICE_ROLE_KEY` | **Solo server** — JWT `service_role` (non loggare, non esporre al client) |
 | `SUPABASE_ANON_KEY` | Opzionale sul backend se non usata dal codice; utile per riferimento o tool. L’app mobile usa in genere `EXPO_PUBLIC_*`. |

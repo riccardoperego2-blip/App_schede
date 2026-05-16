@@ -21,7 +21,7 @@ Templates:
 |--------|----------------|-----------------------------------|
 | `SUPABASE_SERVICE_ROLE_KEY` | Backend `process.env` only | **Never** — bypasses RLS; server-side token verification only (`SupabaseService`). |
 | `SUPABASE_ANON_KEY` | Mobile `EXPO_PUBLIC_SUPABASE_ANON_KEY` | **Yes** — by design; protected by RLS + Auth. |
-| `DATABASE_URL` | Backend only | **Never** — direct Postgres from Nest. |
+| `DATABASE_URL` / `SUPABASE_DATABASE_URL` | Backend only | **Never** — direct Postgres from Nest. Use `SUPABASE_DATABASE_URL` on Railway. |
 
 The mobile bundle **must not** contain:
 
@@ -41,7 +41,8 @@ Validated by `parseServerEnv()` / `getServerEnv()` in `server-env.ts`.
 
 | Variable | Format | Notes |
 |----------|--------|-------|
-| `DATABASE_URL` | `postgres://` or `postgresql://` | Connection string for `pg` pool. |
+| `DATABASE_URL` | `postgres://` or `postgresql://` | Connection string for `pg` pool. Local/default name. |
+| `SUPABASE_DATABASE_URL` | `postgres://` or `postgresql://` | Railway-friendly alias; backend reads `DATABASE_URL ?? SUPABASE_DATABASE_URL`. |
 | `SUPABASE_URL` | Valid `http:` or `https:` URL | Same project URL as in Supabase dashboard. |
 | `SUPABASE_SERVICE_ROLE_KEY` | JWT string, length ≥ 32 | From Supabase → Project Settings → API → `service_role` **secret**. |
 
@@ -59,7 +60,7 @@ Validated by `parseServerEnv()` / `getServerEnv()` in `server-env.ts`.
 
 When `NODE_ENV=production`:
 
-1. `SUPABASE_URL` and `DATABASE_URL` must not contain obvious placeholders (`YOUR-PROJECT`, `example.com`).
+1. `SUPABASE_URL` and the resolved database URL (`DATABASE_URL ?? SUPABASE_DATABASE_URL`) must not contain obvious placeholders (`YOUR-PROJECT`, `example.com`).
 
 ### Local development
 
@@ -135,7 +136,7 @@ pnpm --filter @schede/mobile start
 
 - Set secrets in **EAS Secrets** or your CI provider; map them to `EXPO_PUBLIC_*`
   at build time for mobile.
-- Backend runs on Node — inject `DATABASE_URL`, `SUPABASE_*`, `CORS_ORIGINS`, `NODE_ENV=production`
+- Backend runs on Node — inject `DATABASE_URL` (or `SUPABASE_DATABASE_URL` on Railway), `SUPABASE_*`, `CORS_ORIGINS`, `NODE_ENV=production`
   via the platform’s secret manager (Fly, Railway, Kubernetes Secrets, etc.).
 
 ---
@@ -144,7 +145,7 @@ pnpm --filter @schede/mobile start
 
 - [ ] `SUPABASE_SERVICE_ROLE_KEY` exists only in the backend runtime environment.
 - [ ] `EXPO_PUBLIC_SUPABASE_SERVICE_ROLE_KEY` is **unset** everywhere (mobile CI, EAS env).
-- [ ] `DATABASE_URL` uses TLS (`sslmode=require`) when connecting to managed Postgres.
+- [ ] `DATABASE_URL` / `SUPABASE_DATABASE_URL` uses TLS (`sslmode=require`) when connecting to managed Postgres.
 - [ ] `CORS_ORIGINS` lists only real browser front-end origins you intend to allow (no `*`); native/mobile traffic does not require `Origin`.
 - [ ] `NODE_ENV=production` on the API.
 - [ ] Smoke: `curl -sS -o /dev/null -w "%{http_code}" https://api.example.com/v1/plans/generate` → `401` (route + auth guard).
@@ -156,7 +157,7 @@ pnpm --filter @schede/mobile start
 ### Backend exits immediately with `EnvValidationError`
 
 Read the printed bullet list — each line maps to one field in `server-env.ts`.
-Most common: missing `DATABASE_URL`, placeholder `SUPABASE_SERVICE_ROLE_KEY`, or
+Most common: missing `DATABASE_URL` / `SUPABASE_DATABASE_URL`, placeholder `SUPABASE_SERVICE_ROLE_KEY`, or
 browser calls blocked by CORS (add the front-end origin to `CORS_ORIGINS`).
 
 ### Mobile red screen: `MobileEnvValidationError`
