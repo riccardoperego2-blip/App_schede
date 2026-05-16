@@ -105,10 +105,9 @@ function applyDevLanFallbackToApiBaseUrl(raw: unknown): unknown {
 function readRawFromProcessAndExtra(): Record<string, unknown> {
   assertNoServiceRoleInClientBundle();
   const extra = (Constants.expoConfig?.extra ?? {}) as Record<string, unknown>;
-  const rawApi =
-    process.env.EXPO_PUBLIC_API_URL ??
-    process.env.EXPO_PUBLIC_API_BASE_URL ??
-    (__DEV__ ? extra.apiBaseUrl : PRODUCTION_API_URL);
+  const rawApi = __DEV__
+    ? (process.env.EXPO_PUBLIC_API_BASE_URL ?? process.env.EXPO_PUBLIC_API_URL ?? extra.apiBaseUrl)
+    : (process.env.EXPO_PUBLIC_API_URL ?? process.env.EXPO_PUBLIC_API_BASE_URL ?? PRODUCTION_API_URL);
   const lanHost = getDevPackagerLanHost();
   const port = readOptionalApiPort() ?? 3000;
   let apiBaseUrl: unknown =

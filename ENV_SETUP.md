@@ -91,7 +91,7 @@ Validated by `mobilePublicEnvSchema` in `apps/mobile/src/lib/env.ts`.
 | Priority | Variable | Notes |
 |----------|----------|-------|
 | 1 | `EXPO_PUBLIC_API_URL` | Canonical name. No trailing slash (trimmed automatically). |
-| 2 | `EXPO_PUBLIC_API_BASE_URL` | Legacy alias — same meaning; prefer `EXPO_PUBLIC_API_URL`. |
+| 2 | `EXPO_PUBLIC_API_BASE_URL` | Legacy alias. In `__DEV__`, this local value is read before `EXPO_PUBLIC_API_URL` to preserve existing `.env` setups. |
 | 3 | `app.json` → `expo.extra.apiBaseUrl` | Development fallback for Expo Go / local LAN. |
 | 4 | production fallback | `https://appschede-production.up.railway.app` outside `__DEV__` when no env is set. |
 
