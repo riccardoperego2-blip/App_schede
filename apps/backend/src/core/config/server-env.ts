@@ -45,6 +45,27 @@ function splitOrigins(value: string | undefined): string[] {
     .filter(Boolean);
 }
 
+function nonEmpty(value: string | undefined): string | undefined {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : undefined;
+}
+
+function resolveDatabaseUrl(env: NodeJS.ProcessEnv): string | undefined {
+  const direct = nonEmpty(env.DATABASE_URL) ?? nonEmpty(env.SUPABASE_DATABASE_URL);
+  if (direct) return direct;
+
+  const host = nonEmpty(env.PGHOST);
+  const user = nonEmpty(env.PGUSER);
+  const password = nonEmpty(env.PGPASSWORD);
+  if (!host || !user || !password) return undefined;
+
+  const port = nonEmpty(env.PGPORT) ?? '5432';
+  const database = nonEmpty(env.PGDATABASE) ?? 'postgres';
+  const sslmode = nonEmpty(env.PGSSLMODE) ?? 'require';
+
+  return `postgresql://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}:${port}/${database}?sslmode=${sslmode}`;
+}
+
 const serverEnvSchema = z
   .object({
     NODE_ENV: z.string().optional(),
@@ -55,7 +76,9 @@ const serverEnvSchema = z
         return Number.isFinite(n) ? n : v;
       }, z.number({ invalid_type_error: 'PORT must be a number' }).int().min(1).max(65_535)),
     API_PREFIX: z.string().optional().default(''),
-    DATABASE_URL: z.string().min(1, 'DATABASE_URL or SUPABASE_DATABASE_URL is required'),
+    DATABASE_URL: z
+      .string({ required_error: 'DATABASE_URL, SUPABASE_DATABASE_URL, or PGHOST/PGUSER/PGPASSWORD is required' })
+      .min(1, 'DATABASE_URL, SUPABASE_DATABASE_URL, or PGHOST/PGUSER/PGPASSWORD is required'),
     SUPABASE_URL: z.string().min(1, 'SUPABASE_URL is required').url('SUPABASE_URL must be a valid URL'),
     SUPABASE_SERVICE_ROLE_KEY: z
       .string()
@@ -123,7 +146,7 @@ export function parseServerEnv(env: NodeJS.ProcessEnv): AppConfig {
     NODE_ENV: env.NODE_ENV,
     PORT: env.PORT,
     API_PREFIX: env.API_PREFIX,
-    DATABASE_URL: env.DATABASE_URL ?? env.SUPABASE_DATABASE_URL,
+    DATABASE_URL: resolveDatabaseUrl(env),
     SUPABASE_URL: env.SUPABASE_URL,
     SUPABASE_SERVICE_ROLE_KEY: env.SUPABASE_SERVICE_ROLE_KEY,
     CORS_ORIGINS: env.CORS_ORIGINS,
