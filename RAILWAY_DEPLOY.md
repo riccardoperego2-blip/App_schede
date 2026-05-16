@@ -12,6 +12,21 @@ Backend NestJS: `apps/backend`. Monorepo **pnpm**; variabili e segreti **non** v
 
 Il processo ascolta su **`process.env.PORT`** (Railway lo imposta automaticamente; non è obbligatorio definire `PORT` nel dashboard se il provider lo fornisce).
 
+## Dockerfile
+
+Il repo contiene un `Dockerfile` nella root per il deploy backend. Se Railway/Railpack fallisce con errori tipo `secret postgresql not found`, configura Railway per usare il **Dockerfile** invece del rilevamento Railpack/Nixpacks.
+
+Il Dockerfile:
+
+- usa Node 22
+- abilita Corepack con `pnpm@9.15.0`
+- esegue `pnpm install --frozen-lockfile`
+- esegue `pnpm run build:backend`
+- espone `3000`
+- avvia con `pnpm run start:backend`
+
+Non committare `.env`: le variabili runtime vanno impostate nel dashboard Railway.
+
 ## Variabili d’ambiente (Railway)
 
 | Nome | Note |
