@@ -90,9 +90,10 @@ Validated by `mobilePublicEnvSchema` in `apps/mobile/src/lib/env.ts`.
 
 | Priority | Variable | Notes |
 |----------|----------|-------|
-| 1 | `EXPO_PUBLIC_API_BASE_URL` | Canonical name. No trailing slash (trimmed automatically). |
-| 2 | `EXPO_PUBLIC_API_URL` | **Legacy alias** — same meaning; prefer `EXPO_PUBLIC_API_BASE_URL`. |
-| 3 | `app.json` → `expo.extra.apiBaseUrl` | Fallback for EAS profiles / OTA without rebuilding env. |
+| 1 | `EXPO_PUBLIC_API_URL` | Canonical name. No trailing slash (trimmed automatically). |
+| 2 | `EXPO_PUBLIC_API_BASE_URL` | Legacy alias — same meaning; prefer `EXPO_PUBLIC_API_URL`. |
+| 3 | `app.json` → `expo.extra.apiBaseUrl` | Development fallback for Expo Go / local LAN. |
+| 4 | production fallback | `https://appschede-production.up.railway.app` outside `__DEV__` when no env is set. |
 
 The HTTP client (`src/lib/api/http-client.ts`) calls `${env.apiBaseUrl}/v1/...`.
 
@@ -100,7 +101,7 @@ The HTTP client (`src/lib/api/http-client.ts`) calls `${env.apiBaseUrl}/v1/...`.
 uses `localhost` or `127.0.0.1`, `apps/mobile/src/lib/env.ts` **replaces the host** with the
 LAN hostname from Expo (`getExpoGoProjectConfig().debuggerHost`) or from
 `NativeModules.SourceCode.scriptURL`, so the phone does not call its own loopback.
-You can still set `EXPO_PUBLIC_API_BASE_URL=http://<PC-LAN-IP>:3000` explicitly.
+You can still set `EXPO_PUBLIC_API_URL=http://<PC-LAN-IP>:3000` explicitly.
 
 Optional:
 
@@ -171,9 +172,9 @@ browser calls blocked by CORS (add the front-end origin to `CORS_ORIGINS`).
 
 - Ensure **anon** key length ≥ 32 and not a placeholder string.
 - Remove any forbidden `EXPO_PUBLIC_*SERVICE*` keys.
-- Set `EXPO_PUBLIC_API_BASE_URL` (or legacy `EXPO_PUBLIC_API_URL`) if `app.json` extras are empty.
+- Set `EXPO_PUBLIC_API_URL` (or legacy `EXPO_PUBLIC_API_BASE_URL`) if `app.json` extras are empty.
 
 ### `401` on every API call from the device
 
-- Confirm the mobile `EXPO_PUBLIC_API_BASE_URL` reaches the machine running Nest.
+- Confirm the mobile `EXPO_PUBLIC_API_URL` reaches the machine running Nest.
 - Confirm Supabase JWT is the **user** access token from `supabase.auth`, not the anon key as Bearer (the app uses Bearer user session — see `http-client.ts`).

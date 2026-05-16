@@ -8,6 +8,8 @@ const FORBIDDEN_CLIENT_ENV_KEYS = [
   'EXPO_PUBLIC_SERVICE_ROLE_KEY',
 ] as const;
 
+const PRODUCTION_API_URL = 'https://appschede-production.up.railway.app';
+
 export interface AppEnv {
   readonly apiBaseUrl: string;
   readonly supabaseUrl: string;
@@ -104,9 +106,9 @@ function readRawFromProcessAndExtra(): Record<string, unknown> {
   assertNoServiceRoleInClientBundle();
   const extra = (Constants.expoConfig?.extra ?? {}) as Record<string, unknown>;
   const rawApi =
-    process.env.EXPO_PUBLIC_API_BASE_URL ??
     process.env.EXPO_PUBLIC_API_URL ??
-    extra.apiBaseUrl;
+    process.env.EXPO_PUBLIC_API_BASE_URL ??
+    (__DEV__ ? extra.apiBaseUrl : PRODUCTION_API_URL);
   const lanHost = getDevPackagerLanHost();
   const port = readOptionalApiPort() ?? 3000;
   let apiBaseUrl: unknown =

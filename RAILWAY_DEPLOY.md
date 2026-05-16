@@ -69,11 +69,11 @@ Su Railway imposta il path health (es. `/v1/health`) sulla URL pubblica del serv
 
 ## Mobile (produzione)
 
-Punta l’API alla URL HTTPS del backend Railway, es.:
+Punta l’API alla URL HTTPS del backend Railway:
 
-- `EXPO_PUBLIC_API_BASE_URL_PROD=https://<tuoprogetto>.up.railway.app`
+- `EXPO_PUBLIC_API_URL=https://appschede-production.up.railway.app`
 
-Allineala con ciò che usi in `apps/mobile` per la base URL in build di release (vedi `.env.example` / env locali; **non** committare segreti).
+L’app usa questa URL come fallback production se non viene impostata nessuna env API. Per sviluppo locale mantieni `EXPO_PUBLIC_API_URL=http://localhost:3000` in `apps/mobile/.env` (file ignorato da Git).
 
 ## Script monorepo (locale / CI)
 
