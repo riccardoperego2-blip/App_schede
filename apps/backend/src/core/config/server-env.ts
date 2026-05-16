@@ -1,11 +1,23 @@
 import { z } from 'zod';
 
 /** Runtime configuration parsed from `process.env` (fail-fast, typed). */
+export type DbEnvSource = 'DATABASE_URL' | 'SUPABASE_DATABASE_URL' | 'PG_PARTS';
+
+export interface DatabaseEnvInfo {
+  readonly source: DbEnvSource;
+  readonly host: string;
+  readonly user: string;
+  readonly database: string;
+  readonly port: string;
+  readonly sslmode: string;
+}
+
 export interface AppConfig {
   readonly nodeEnv: 'development' | 'test' | 'production';
   readonly port: number;
   readonly apiPrefix: string;
   readonly databaseUrl: string;
+  readonly databaseEnv: DatabaseEnvInfo;
   readonly supabaseUrl: string;
   readonly supabaseServiceRoleKey: string;
   readonly corsOrigins: readonly string[];
@@ -50,9 +62,44 @@ function nonEmpty(value: string | undefined): string | undefined {
   return trimmed ? trimmed : undefined;
 }
 
-function resolveDatabaseUrl(env: NodeJS.ProcessEnv): string | undefined {
-  const direct = nonEmpty(env.DATABASE_URL) ?? nonEmpty(env.SUPABASE_DATABASE_URL);
-  if (direct) return direct;
+function maskDatabaseUser(user: string): string {
+  if (user.length <= 8) return user;
+  return `${user.slice(0, 12)}...${user.slice(-3)}`;
+}
+
+function parseDatabaseInfo(source: DbEnvSource, databaseUrl: string): DatabaseEnvInfo {
+  const parsed = new URL(databaseUrl);
+  const database = decodeURIComponent(parsed.pathname.replace(/^\//, '') || 'postgres');
+  return {
+    source,
+    host: parsed.hostname,
+    user: maskDatabaseUser(decodeURIComponent(parsed.username)),
+    database,
+    port: parsed.port || '5432',
+    sslmode: parsed.searchParams.get('sslmode') || 'require',
+  };
+}
+
+function resolveDatabaseConfig(
+  env: NodeJS.ProcessEnv,
+): { readonly url: string; readonly info: DatabaseEnvInfo } | undefined {
+  const forcedSource = nonEmpty(env.DB_ENV_SOURCE);
+  const forcePgParts = forcedSource === 'PG_PARTS';
+
+  if (!forcePgParts) {
+    const databaseUrl = nonEmpty(env.DATABASE_URL);
+    if (databaseUrl) {
+      return { url: databaseUrl, info: parseDatabaseInfo('DATABASE_URL', databaseUrl) };
+    }
+
+    const supabaseDatabaseUrl = nonEmpty(env.SUPABASE_DATABASE_URL);
+    if (supabaseDatabaseUrl) {
+      return {
+        url: supabaseDatabaseUrl,
+        info: parseDatabaseInfo('SUPABASE_DATABASE_URL', supabaseDatabaseUrl),
+      };
+    }
+  }
 
   const host = nonEmpty(env.PGHOST);
   const user = nonEmpty(env.PGUSER);
@@ -63,7 +110,18 @@ function resolveDatabaseUrl(env: NodeJS.ProcessEnv): string | undefined {
   const database = nonEmpty(env.PGDATABASE) ?? 'postgres';
   const sslmode = nonEmpty(env.PGSSLMODE) ?? 'require';
 
-  return `postgresql://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}:${port}/${database}?sslmode=${sslmode}`;
+  const url = `postgresql://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}:${port}/${database}?sslmode=${sslmode}`;
+  return {
+    url,
+    info: {
+      source: 'PG_PARTS',
+      host,
+      user: maskDatabaseUser(user),
+      database,
+      port,
+      sslmode,
+    },
+  };
 }
 
 const serverEnvSchema = z
@@ -130,6 +188,14 @@ const serverEnvSchema = z
       port: data.PORT,
       apiPrefix: (data.API_PREFIX ?? '').trim(),
       databaseUrl: data.DATABASE_URL.trim(),
+      databaseEnv: {
+        source: 'DATABASE_URL',
+        host: '',
+        user: '',
+        database: '',
+        port: '',
+        sslmode: '',
+      },
       supabaseUrl: data.SUPABASE_URL.trim(),
       supabaseServiceRoleKey: data.SUPABASE_SERVICE_ROLE_KEY.trim(),
       corsOrigins,
@@ -142,11 +208,12 @@ const serverEnvSchema = z
  * multi-line, human-readable message on failure.
  */
 export function parseServerEnv(env: NodeJS.ProcessEnv): AppConfig {
+  const databaseConfig = resolveDatabaseConfig(env);
   const parsed = serverEnvSchema.safeParse({
     NODE_ENV: env.NODE_ENV,
     PORT: env.PORT,
     API_PREFIX: env.API_PREFIX,
-    DATABASE_URL: resolveDatabaseUrl(env),
+    DATABASE_URL: databaseConfig?.url,
     SUPABASE_URL: env.SUPABASE_URL,
     SUPABASE_SERVICE_ROLE_KEY: env.SUPABASE_SERVICE_ROLE_KEY,
     CORS_ORIGINS: env.CORS_ORIGINS,
@@ -156,7 +223,10 @@ export function parseServerEnv(env: NodeJS.ProcessEnv): AppConfig {
   if (!parsed.success) {
     throw new EnvValidationError(formatZodError(parsed.error));
   }
-  return parsed.data;
+  return {
+    ...parsed.data,
+    databaseEnv: databaseConfig?.info ?? parsed.data.databaseEnv,
+  };
 }
 
 let cached: AppConfig | undefined;

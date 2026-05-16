@@ -28,6 +28,12 @@ async function bootstrap(): Promise<void> {
   expressInstance.use(logHttpRequests);
 
   const config = app.get(ConfigService).getOrThrow<AppConfig>('app');
+  if (config.nodeEnv === 'production' || config.nodeEnv === 'development') {
+    Logger.log(
+      `DB env source=${config.databaseEnv.source} host=${config.databaseEnv.host} user=${config.databaseEnv.user} database=${config.databaseEnv.database} port=${config.databaseEnv.port} sslmode=${config.databaseEnv.sslmode}`,
+      'Bootstrap',
+    );
+  }
 
   app.use(helmet());
   const corsAllowAll =

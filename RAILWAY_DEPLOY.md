@@ -33,6 +33,7 @@ Non committare `.env`: le variabili runtime vanno impostate nel dashboard Railwa
 |------|------|
 | `NODE_ENV` | `production` |
 | `PORT` | Opzionale se Railway imposta già `PORT` |
+| `DB_ENV_SOURCE` | Su Railway impostare `PG_PARTS` per ignorare eventuali `DATABASE_URL` / `SUPABASE_DATABASE_URL`. |
 | `PGHOST` | **Preferito su Railway**. Host Postgres/Supabase senza protocollo. |
 | `PGUSER` | Utente Postgres/Supabase. |
 | `PGPASSWORD` | Password Postgres/Supabase. |
@@ -52,11 +53,12 @@ Non committare `.env`. Non stampare chiavi nei log.
 
 Il backend risolve la connessione in questo ordine:
 
-1. `DATABASE_URL`
-2. `SUPABASE_DATABASE_URL`
-3. costruzione da `PGHOST`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`, `PGPORT`, `PGSSLMODE`
+1. Se `DB_ENV_SOURCE=PG_PARTS`, costruzione da `PGHOST`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`, `PGPORT`, `PGSSLMODE`
+2. `DATABASE_URL`, se presente e non vuota
+3. `SUPABASE_DATABASE_URL`, se presente e non vuota
+4. costruzione da `PGHOST`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`, `PGPORT`, `PGSSLMODE`
 
-Su Railway usa preferibilmente le variabili `PG*`, così nessuna variabile contiene direttamente un valore che inizia con `postgresql://`.
+Su Railway usa preferibilmente `DB_ENV_SOURCE=PG_PARTS` + variabili `PG*`, così nessuna variabile contiene direttamente un valore che inizia con `postgresql://` e il backend non userà URL iniettate dal provider.
 
 ## Health check
 

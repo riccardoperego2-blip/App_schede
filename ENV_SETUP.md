@@ -43,6 +43,7 @@ Validated by `parseServerEnv()` / `getServerEnv()` in `server-env.ts`.
 |----------|--------|-------|
 | `DATABASE_URL` | `postgres://` or `postgresql://` | Connection string for `pg` pool. Local/default name. |
 | `SUPABASE_DATABASE_URL` | `postgres://` or `postgresql://` | Compatibility alias. Avoid on Railway if Railpack misreads `postgresql://` values. |
+| `DB_ENV_SOURCE` | `PG_PARTS` | Optional override. Set to `PG_PARTS` on Railway to ignore `DATABASE_URL` / `SUPABASE_DATABASE_URL`. |
 | `PGHOST` | Hostname | Railway-friendly preferred DB config. Required if no URL variable is set. |
 | `PGUSER` | Username | Required with `PGHOST` when no URL variable is set. URL-encoded by the backend. |
 | `PGPASSWORD` | Password | Required with `PGHOST` when no URL variable is set. URL-encoded by the backend. |
@@ -142,7 +143,7 @@ pnpm --filter @schede/mobile start
 
 - Set secrets in **EAS Secrets** or your CI provider; map them to `EXPO_PUBLIC_*`
   at build time for mobile.
-- Backend runs on Node — inject `PGHOST`/`PGUSER`/`PGPASSWORD` (preferred on Railway), or a URL variable on other providers, plus `SUPABASE_*`, `CORS_ORIGINS`, `NODE_ENV=production`
+- Backend runs on Node — inject `DB_ENV_SOURCE=PG_PARTS` + `PGHOST`/`PGUSER`/`PGPASSWORD` (preferred on Railway), or a URL variable on other providers, plus `SUPABASE_*`, `CORS_ORIGINS`, `NODE_ENV=production`
   via the platform’s secret manager (Fly, Railway, Kubernetes Secrets, etc.).
 
 ---
