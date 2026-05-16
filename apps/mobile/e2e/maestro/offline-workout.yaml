@@ -1,0 +1,43 @@
+appId: ${APP_ID_IOS}
+tags:
+  - release
+  - reliability
+---
+# Hypothesis: a user can complete and submit a workout fully offline. The
+# session must finish with a "saved offline" confirmation and queue replay
+# must succeed once connectivity is restored.
+
+- launchApp:
+    clearState: true
+- runFlow: helpers/sign-in.yaml
+
+- tapOn: 'Inizia sessione'
+- assertVisible:
+    text: 'set'
+    timeout: 15000
+
+# Cut the network
+- toggleAirplaneMode
+
+- tapOn:
+    text: '✓'
+    index: 0
+- tapOn: 'Skip'
+
+- tapOn: 'Termina sessione'
+- tapOn: 'Conferma e salva'
+
+# Expect the offline confirmation.
+- assertVisible:
+    text: 'Salvato offline'
+    timeout: 10000
+- tapOn: 'OK'
+
+# Restore network and wait for the sync engine to replay the queue.
+- toggleAirplaneMode
+- waitForAnimationToEnd:
+    timeout: 5000
+
+- assertVisible:
+    text: 'CIAO'
+    timeout: 20000

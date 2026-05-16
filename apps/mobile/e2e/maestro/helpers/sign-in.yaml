@@ -1,0 +1,14 @@
+appId: ${APP_ID_IOS}
+---
+- runFlow:
+    when:
+      visible: 'Bentornato'
+    commands:
+      - tapOn: 'tu@email.com'
+      - inputText: ${TEST_EMAIL}
+      - tapOn: '••••••••'
+      - inputText: ${TEST_PASSWORD}
+      - tapOn: 'Accedi'
+      - assertVisible:
+          text: 'CIAO'
+          timeout: 10000

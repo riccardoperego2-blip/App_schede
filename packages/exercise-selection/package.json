@@ -1,0 +1,22 @@
+{
+  "name": "@schede/exercise-selection",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deterministic biomechanical exercise selection engine",
+  "main": "./dist/packages/exercise-selection/src/index.js",
+  "types": "./dist/packages/exercise-selection/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "~5.6.3",
+    "vitest": "~2.1.6"
+  }
+}

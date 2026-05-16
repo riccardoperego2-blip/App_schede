@@ -1,0 +1,37 @@
+{
+  "name": "schede-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.0.0 <23.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "dev": "concurrently -n backend,mobile -c blue,magenta \"pnpm run dev:backend\" \"pnpm run dev:mobile\"",
+    "dev:backend": "pnpm --filter @schede/backend run start:dev",
+    "dev:mobile": "pnpm --filter @schede/mobile run start",
+    "install:all": "pnpm install",
+    "build:packages": "pnpm --filter \"./packages/*\" -r build",
+    "build:backend": "pnpm --filter @schede/backend build",
+    "build": "pnpm run build:packages && pnpm run build:backend",
+    "start:backend": "pnpm --filter @schede/backend run start:prod",
+    "backend": "pnpm run build:packages && pnpm --filter @schede/backend start:dev",
+    "backend:start": "pnpm --filter @schede/backend start",
+    "mobile": "pnpm --filter @schede/mobile start",
+    "mobile:android": "pnpm --filter @schede/mobile android",
+    "mobile:ios": "pnpm --filter @schede/mobile ios",
+    "typecheck": "pnpm -r --parallel typecheck",
+    "test": "pnpm -r --parallel --no-bail test",
+    "test:packages": "pnpm --filter \"./packages/*\" -r test",
+    "test:backend": "pnpm --filter @schede/backend test",
+    "test:mobile": "pnpm --filter @schede/mobile test",
+    "lint": "pnpm -r --parallel lint",
+    "clean": "pnpm -r exec rimraf dist .turbo node_modules/.cache"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "rimraf": "^6.0.1",
+    "typescript": "~5.6.3"
+  }
+}

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "Tester onboarding"
+    url: "https://github.com/schede-app/schede/blob/main/docs/launch/TESTER_ONBOARDING.md"
+    about: "Read this first if you are a new alpha tester."
+  - name: "Severity matrix"
+    url: "https://github.com/schede-app/schede/blob/main/docs/launch/SEVERITY_MATRIX.md"
+    about: "How we triage P1 / P2 / P3 / P4."
+  - name: "Account / privacy / GDPR"
+    url: "mailto:support@schede.app"
+    about: "For anything that should not be public (account deletion, privacy)."

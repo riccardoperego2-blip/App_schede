@@ -1,0 +1,37 @@
+appId: ${APP_ID_IOS}
+tags:
+  - smoke
+---
+# Smoke test: a signed-in user can start a workout, complete a set, and
+# finish the session online. This is the CI gate for every PR.
+
+- launchApp:
+    clearState: true
+- runFlow: helpers/sign-in.yaml
+
+- assertVisible: 'Inizia sessione'
+- tapOn: 'Inizia sessione'
+
+# Wait for the session to render with the first exercise card visible.
+- assertVisible:
+    text: 'set'
+    timeout: 15000
+
+# Complete the first visible set: tap the green check on the first row.
+# The Complete check has `accessibilityRole=button` and is the right-most
+# child of the first SetRow.
+- tapOn:
+    text: '✓'
+    index: 0
+
+# Rest timer should now be visible. Skip to keep the test fast.
+- tapOn: 'Skip'
+
+# Finish the session
+- tapOn: 'Termina sessione'
+- assertVisible: 'Conferma e salva'
+- tapOn: 'Conferma e salva'
+
+- assertVisible:
+    text: 'CIAO'
+    timeout: 20000

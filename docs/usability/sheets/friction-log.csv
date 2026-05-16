@@ -1,0 +1,7 @@
+session_id,tester_id,date,build,device,os,gym_type,workout_day_id,t_offset_s,screen,code,severity,target,note,clip_ref
+A042-2026-05-13,A042,2026-05-13,0.2.1(43),iPhone 12,iOS17.5,commercial,7b1f...,42,workout_session,H,2,weight_input,2.1s eyes on screen pre-tap,A042-2026-05-13-c01
+A042-2026-05-13,A042,2026-05-13,0.2.1(43),iPhone 12,iOS17.5,commercial,7b1f...,65,workout_session,M,3,set_log_button,mis-tap on edit,
+A042-2026-05-13,A042,2026-05-13,0.2.1(43),iPhone 12,iOS17.5,commercial,7b1f...,150,workout_session,R,4,plus_rep,4 taps in 0.8s,A042-2026-05-13-c02
+A042-2026-05-13,A042,2026-05-13,0.2.1(43),iPhone 12,iOS17.5,commercial,7b1f...,175,workout_session,T,3,rest_timer_finished,missed end signal,
+A042-2026-05-13,A042,2026-05-13,0.2.1(43),iPhone 12,iOS17.5,commercial,7b1f...,241,workout_session,N,1,offline_chip,user did not see chip,
+A042-2026-05-13,A042,2026-05-13,0.2.1(43),iPhone 12,iOS17.5,commercial,7b1f...,1830,workout_session,C,4,,session cancelled before completion,A042-2026-05-13-c03

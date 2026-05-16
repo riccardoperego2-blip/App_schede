@@ -1,0 +1,142 @@
+slug	name_it	primary	secondaries	pattern	equipment	is_unilateral	difficulty	fatigue	sfr	stability	skill	force_curve	ex_type	body_region	tags	goals	injury	setup_sec	session_cost	tempo_comp
+barbell_back_squat	Squat bilaterale con bilanciere	quads	glutes,hamstrings,lower_back	squat	barbell	false	intermediate	8	1.05	high	moderate	descending	compound	lower	knee_dominant,axial_load,competition_lift	strength,muscle_gain,general_fitness	moderate	180	high	high
+low_bar_squat	Squat low bar	quads	glutes,hamstrings,lower_back	squat	barbell	false	advanced	8	1.08	high	moderate	descending	compound	lower	powerlifting_specific,hip_dominant	strength,general_fitness	moderate	180	high	high
+front_squat	Squat frontale	quads	glutes,abs,upper_back	squat	barbell	false	advanced	9	1.0	high	high	descending	compound	lower	upright_torso,olympic_carryover	strength,muscle_gain,sport_specific	moderate	200	high	high
+pause_squat	Squat con pausa	quads	glutes,hamstrings	squat	barbell	false	advanced	9	1.12	high	moderate	descending	compound	lower	strength_technique,weak_point	strength,sport_specific	moderate	180	high	high
+tempo_squat	Squat a tempo controllato	quads	glutes,hamstrings	squat	barbell	false	intermediate	8	1.0	high	moderate	descending	compound	lower	hypertrophy_focus,time_under_tension	muscle_gain,general_fitness	moderate	180	high	high
+box_squat	Squat su box	quads	glutes,hamstrings	squat	barbell	false	intermediate	7	1.05	moderate	moderate	descending	compound	lower	box,pause_variant	strength,general_fitness	moderate	240	medium	high
+overhead_squat	Squat overhead	quads	glutes,side_delts,abs,upper_back	squat	barbell	false	elite	9	0.85	very_high	very_high	descending	compound	full	mobility,overhead_stability	sport_specific,general_fitness	high	300	high	medium
+goblet_squat	Squat goblet	quads	glutes,abs	squat	dumbbell	false	beginner	5	1.2	moderate	low	descending	compound	lower	home_gym,teaching_pattern	general_fitness,fat_loss,rehab	low	30	low	high
+dumbbell_squat	Squat con manubri	quads	glutes,hamstrings	squat	dumbbell	false	intermediate	6	1.1	moderate	low	descending	compound	lower	home_gym,neutral_grip	muscle_gain,general_fitness	low	60	medium	high
+bulgarian_split_squat	Bulgarian split squat	quads	glutes,hamstrings	squat	dumbbell	true	intermediate	7	1.15	high	moderate	descending	compound	lower	unilateral,rear_foot_elevated	muscle_gain,strength,general_fitness	moderate	90	medium	high
+walking_lunge	Lunge camminata	quads	glutes,hamstrings	squat	dumbbell	true	intermediate	7	1.05	moderate	moderate	descending	compound	lower	unilateral,dynamic_stability	muscle_gain,general_fitness,sport_specific	moderate	60	medium	high
+reverse_lunge	Lunge inversa	quads	glutes,hamstrings	squat	dumbbell	true	beginner	6	1.1	moderate	low	descending	compound	lower	unilateral,knee_friendly	muscle_gain,general_fitness,rehab	low	45	medium	high
+lateral_lunge	Lunge laterale	quads	glutes,adductors	squat	dumbbell	true	intermediate	6	1.0	high	moderate	descending	compound	lower	unilateral,frontal_plane	muscle_gain,sport_specific	moderate	60	medium	high
+leg_press_45	Leg press 45°	quads	glutes,hamstrings	squat	machine	false	intermediate	6	1.25	low	low	descending	compound	lower	machine_based,volume_friendly	muscle_gain,strength,general_fitness	low	120	medium	high
+hack_squat	Hack squat	quads	glutes	squat	machine	false	intermediate	6	1.2	low	low	descending	compound	lower	sled_pattern,quad_bias	muscle_gain	low	90	medium	high
+pendulum_squat	Pendulum squat	quads	glutes	squat	machine	false	intermediate	6	1.22	low	low	descending	compound	lower	arc_path,quad_focus	muscle_gain	low	90	medium	high
+belt_squat	Squat con belt	quads	glutes,hamstrings	squat	machine	false	intermediate	6	1.18	low	moderate	descending	compound	lower	spinal_unload,volume	strength,muscle_gain	low	180	medium	high
+sissy_squat	Sissy squat	quads	abs	squat	bodyweight	false	advanced	7	0.95	high	high	ascending	isolation	lower	bodyweight_knee_ext,quad_length	muscle_gain,sport_specific	high	0	medium	medium
+pistol_squat	Pistol squat	quads	glutes,abs	squat	bodyweight	true	elite	8	0.9	very_high	very_high	descending	compound	lower	unilateral,mobility	muscle_gain,sport_specific	high	0	high	low
+wall_sit	Wall sit	quads	glutes,abs	other	bodyweight	false	beginner	6	0.7	low	low	flat	isometric	lower	isometric_endurance	endurance,general_fitness,rehab	low	0	low	low
+air_squat	Air squat	quads	glutes,hamstrings	squat	bodyweight	false	beginner	4	1.15	low	low	descending	compound	lower	home_gym,warmup	general_fitness,fat_loss	low	0	low	high
+jump_squat	Squat salto	quads	glutes	squat	bodyweight	false	intermediate	8	0.75	moderate	high	flat	plyometric	lower	power,rate_of_force	sport_specific,general_fitness	moderate	0	high	low
+smith_squat	Squat al multipower	quads	glutes,hamstrings	squat	smith_machine	false	beginner	6	1.05	low	low	descending	compound	lower	guided_bar,solo_safe	muscle_gain,general_fitness	low	120	medium	high
+zercher_squat	Zercher squat	quads	glutes,abs,upper_back	squat	barbell	false	advanced	8	1.0	high	high	descending	compound	lower	front_loaded,strongman_carryover	strength,general_fitness	moderate	200	high	medium
+sumo_deadlift	Stacco sumo	hamstrings	glutes,adductors,traps,forearms	hinge	barbell	false	intermediate	8	1.08	moderate	moderate	ascending	compound	lower	wide_stance,hip_external_rotation	strength,muscle_gain	moderate	180	high	high
+conventional_deadlift	Stacco convenzionale	hamstrings	glutes,lower_back,traps,forearms	hinge	barbell	false	intermediate	9	1.1	high	moderate	ascending	compound	lower	competition_lift,posterior_chain	strength,muscle_gain,general_fitness	moderate	180	high	high
+romanian_deadlift	RDL	hamstrings	glutes,lower_back	hinge	barbell	false	intermediate	6	1.25	moderate	moderate	ascending	compound	lower	hip_hinge,hypertrophy_hinge	muscle_gain,strength,general_fitness	moderate	120	medium	high
+trap_bar_deadlift	Stacco trap bar	quads	glutes,hamstrings,traps	hinge	barbell	false	intermediate	7	1.15	moderate	low	ascending	compound	lower	neutral_grip,quad_bias_deadlift	strength,muscle_gain,general_fitness	moderate	120	medium	high
+rack_pull	Rack pull	traps	lower_back,lats,forearms	hinge	barbell	false	intermediate	6	1.05	low	low	ascending	compound	upper	partial_range,overload_upper_back	strength,muscle_gain	moderate	180	medium	medium
+deficit_deadlift	Stacco da deficit	hamstrings	glutes,lower_back	hinge	barbell	false	advanced	9	1.05	high	high	ascending	compound	lower	weak_off_floor,strength_specific	strength,sport_specific	high	200	high	high
+paused_deadlift	Stacco con pausa	hamstrings	glutes,lower_back	hinge	barbell	false	advanced	9	1.08	high	high	ascending	compound	lower	strength_technique	strength	moderate	180	high	high
+single_leg_rdl	RDL monopodalino	hamstrings	glutes,lower_back	hinge	dumbbell	true	intermediate	6	1.2	high	moderate	ascending	compound	lower	unilateral,hip_stability	muscle_gain,sport_specific,rehab	moderate	60	medium	high
+dumbbell_rdl	RDL con manubri	hamstrings	glutes,lower_back	hinge	dumbbell	false	intermediate	5	1.22	moderate	low	ascending	compound	lower	home_gym,neutral_grip	muscle_gain,general_fitness	low	45	medium	high
+good_morning	Good morning	hamstrings	glutes,lower_back	hinge	barbell	false	advanced	7	1.0	high	moderate	ascending	compound	lower	axial_flexion,strength_accessory	strength	moderate	120	medium	medium
+hip_thrust_belt	Hip thrust macchina	glutes	hamstrings,quads	hinge	machine	false	beginner	5	1.35	low	low	ascending	compound	lower	glute_bias,lockout	muscle_gain,general_fitness	low	90	low	high
+barbell_hip_thrust	Hip thrust bilanciere	glutes	hamstrings	hinge	barbell	false	intermediate	6	1.28	moderate	low	ascending	compound	lower	glute_max_emphasis	muscle_gain,strength	low	150	medium	high
+glute_bridge_puente	Glute bridge corpo libero	glutes	hamstrings,abs	hinge	bodyweight	false	beginner	3	1.3	low	low	ascending	isolation	lower	home_girl,activation	muscle_gain,rehab,general_fitness	low	0	low	high
+single_leg_glute_bridge	Glute bridge monopodalino	glutes	hamstrings	hinge	bodyweight	true	intermediate	4	1.25	moderate	moderate	ascending	isolation	lower	unilateral,activation	muscle_gain,rehab	moderate	0	low	high
+back_extension_45	Back extension 45°	lower_back	glutes,hamstrings	hinge	machine	false	beginner	5	1.1	low	low	ascending	isolation	lower	hyperextension,posterior_chain	endurance,general_fitness,rehab	moderate	60	low	high
+reverse_hyper	Reverse hyper	hamstrings	glutes,lower_back	hinge	machine	false	intermediate	5	1.15	low	low	ascending	isolation	lower	decompression,posterior_chain	strength,rehab	moderate	90	medium	medium
+kettlebell_swing	Kettlebell swing	glutes	hamstrings,abs,forearms	hinge	kettlebell	false	intermediate	7	0.95	moderate	moderate	bell_shaped	plyometric	lower	hip_snap,conditioning	endurance,general_fitness,fat_loss	moderate	30	medium	low
+band_good_morning	Good morning con banda	hamstrings	glutes,lower_back	hinge	band	false	beginner	4	1.05	moderate	low	ascending	compound	lower	home_gym,accommodating_resistance	general_fitness,rehab	low	20	low	medium
+flat_bench_press	Panca piana bilanciere	chest	front_delts,triceps	horizontal_push	barbell	false	intermediate	7	1.12	moderate	moderate	descending	compound	upper	competition_lift,pressing	strength,muscle_gain	moderate	180	medium	high
+incline_bench_press	Panca inclinata bilanciere	chest	front_delts,triceps	horizontal_push	barbell	false	intermediate	7	1.1	moderate	moderate	descending	compound	upper	clavicular_pec_bias	muscle_gain,strength	moderate	180	medium	high
+decline_bench_press	Panca declinata bilanciere	chest	front_delts,triceps	horizontal_push	barbell	false	intermediate	6	1.08	moderate	low	descending	compound	upper	lower_pec_emphasis	muscle_gain	low	180	medium	high
+close_grip_bench	Panca presa stretta	triceps	chest,front_delts	horizontal_push	barbell	false	intermediate	7	1.05	moderate	moderate	descending	compound	upper	triceps_emphasis,lockout	strength,muscle_gain	moderate	180	medium	high
+dumbbell_bench_press	Panca piana manubri	chest	front_delts,triceps	horizontal_push	dumbbell	false	intermediate	6	1.18	moderate	low	descending	compound	upper	rom_independent,home_option	muscle_gain,general_fitness	low	90	medium	high
+incline_db_press	Panca inclinata manubri	chest	front_delts,triceps	horizontal_push	dumbbell	false	intermediate	6	1.15	moderate	low	descending	compound	upper	upper_chest	muscle_gain	low	90	medium	high
+floor_press	Floor press	chest	triceps,front_delts	horizontal_push	barbell	false	intermediate	5	1.1	low	low	descending	compound	upper	partial_rom,triceps_lockout	strength,muscle_gain	low	120	low	high
+cable_bench_fly	Croci ai cavi bassi	chest	front_delts	horizontal_push	cable	false	beginner	4	1.25	low	low	descending	isolation	upper	constant_tension	muscle_gain	low	60	low	high
+pec_deck	Pec deck	chest	front_delts	horizontal_push	machine	false	beginner	4	1.28	low	low	descending	isolation	upper	machine_fly,safe_shoulders	muscle_gain,general_fitness,rehab	low	60	low	high
+push_up	Push-up	chest	front_delts,triceps,abs	horizontal_push	bodyweight	false	beginner	5	1.1	moderate	low	descending	compound	upper	home_gym,calisthenics	muscle_gain,general_fitness,fat_loss	low	0	low	high
+weighted_push_up	Push-up zavorrato	chest	front_delts,triceps	horizontal_push	bodyweight	false	intermediate	6	1.12	moderate	moderate	descending	compound	upper	progressive_load,micro_loading	muscle_gain,strength	low	60	medium	high
+ring_push_up	Push-up agli anelli	chest	front_delts,triceps,abs	horizontal_push	other	false	advanced	7	1.0	high	high	descending	compound	upper	unstable_support,calisthenics	muscle_gain,sport_specific	moderate	120	medium	medium
+dip_parallelo	Dip alle parallele	chest	triceps,front_delts	vertical_push	bodyweight	false	intermediate	7	1.05	moderate	moderate	descending	compound	upper	bodyweight_pressing	muscle_gain,strength,general_fitness	moderate	60	medium	medium
+weighted_dip	Dip zavorrato	chest	triceps,front_delts	vertical_push	bodyweight	false	advanced	8	1.02	moderate	moderate	descending	compound	upper	overload_vertical_press	muscle_gain,strength	moderate	90	high	medium
+overhead_press	Military press bilanciere	front_delts	side_delts,triceps,abs	vertical_push	barbell	false	intermediate	7	1.08	high	moderate	descending	compound	upper	strict_press,overhead_strength	strength,muscle_gain,sport_specific	moderate	120	medium	high
+push_press	Push press	front_delts	side_delts,triceps,glutes	vertical_push	barbell	false	advanced	8	0.95	moderate	high	bell_shaped	compound	upper	leg_drive,power	strength,sport_specific	moderate	120	high	medium
+arnold_press	Arnold press	front_delts	side_delts,triceps	vertical_push	dumbbell	false	intermediate	5	1.15	moderate	moderate	descending	compound	upper	rotation_rom	muscle_gain	low	60	medium	high
+dumbbell_shoulder_press	Press manubri seduto	front_delts	side_delts,triceps	vertical_push	dumbbell	false	intermediate	6	1.12	moderate	low	descending	compound	upper	home_gym	muscle_gain,general_fitness	low	60	medium	high
+landmine_press	Landmine press	front_delts	chest,triceps,abs	vertical_push	barbell	true	intermediate	5	1.1	moderate	moderate	ascending	compound	upper	arcing_path,shoulder_friendly	muscle_gain,general_fitness,rehab	low	90	medium	high
+machine_shoulder_press	Press spalle macchina	front_delts	side_delts,triceps	vertical_push	machine	false	beginner	5	1.2	low	low	descending	compound	upper	guided_rom	muscle_gain,general_fitness	low	60	low	high
+lateral_raise_alzate	Alzate laterali	side_delts	traps,forearms	other	dumbbell	false	beginner	3	1.35	low	low	flat	isolation	upper	side_delts_focus	muscle_gain	low	30	low	high
+cable_lateral_raise	Alzate laterali al cavo	side_delts	traps,forearms	other	cable	false	beginner	3	1.38	low	low	flat	isolation	upper	constant_tension	muscle_gain	low	45	low	high
+rear_delt_fly_manubri	Fly posteriore manubri	rear_delts	traps,upper_back	horizontal_pull	dumbbell	false	beginner	3	1.32	low	low	flat	isolation	upper	rear_delt,posture	muscle_gain,rehab	low	30	low	high
+face_pull	Face pull	rear_delts	traps,upper_back	horizontal_pull	cable	false	beginner	3	1.3	low	low	flat	isolation	upper	external_rotation,shoulder_health	rehab,general_fitness,muscle_gain	low	45	low	high
+pull_up	Trazioni pronazione	lats	biceps,forearms,abs	vertical_pull	bodyweight	false	intermediate	7	1.1	moderate	high	descending	compound	upper	vertical_pulling,calisthenics	strength,muscle_gain,general_fitness	moderate	0	medium	medium
+chin_up	Trazioni supinazione	lats	biceps,forearms	vertical_pull	bodyweight	false	intermediate	6	1.12	moderate	moderate	descending	compound	upper	biceps_emphasis	muscle_gain,strength	low	0	medium	medium
+neutral_grip_pullup	Trazioni presa neutra	lats	biceps,forearms	vertical_pull	bodyweight	false	intermediate	6	1.1	moderate	moderate	descending	compound	upper	shoulder_friendly_grip	muscle_gain,strength	low	0	medium	medium
+lat_pulldown	Lat machine	lats	biceps,forearms	vertical_pull	machine	false	beginner	5	1.22	low	low	descending	compound	upper	volume_friendly	muscle_gain,general_fitness	low	60	low	high
+straight_arm_pulldown	Pulldown braccia tese	lats	abs,forearms	vertical_pull	cable	false	intermediate	4	1.28	low	low	descending	isolation	upper	lat_isolation	muscle_gain	low	45	low	high
+barbell_row	Rematore bilanciere	lats	upper_back,biceps,lower_back	horizontal_pull	barbell	false	intermediate	7	1.1	moderate	moderate	ascending	compound	upper	hip_hinge_row	strength,muscle_gain	moderate	120	medium	high
+pendlay_row	Pendlay row	lats	upper_back,biceps,lower_back	horizontal_pull	barbell	false	advanced	8	1.05	high	moderate	ascending	compound	upper	dead_stop,power_row	strength,sport_specific	moderate	120	high	medium
+one_arm_db_row	Rematore manubrio monobraccio	lats	upper_back,biceps,forearms	horizontal_pull	dumbbell	true	intermediate	5	1.2	moderate	low	ascending	compound	upper	unilateral,lat_focus	muscle_gain,strength	low	45	medium	high
+cable_seated_row	Rematore seduto al cavo	lats	upper_back,biceps	horizontal_pull	cable	false	beginner	5	1.22	low	low	ascending	compound	upper	mid_back_volume	muscle_gain,general_fitness	low	60	low	high
+chest_supported_row	Rematore panca inclinata	lats	upper_back,biceps	horizontal_pull	dumbbell	false	intermediate	5	1.18	low	low	ascending	compound	upper	lower_back_unload	muscle_gain	low	90	medium	high
+t_bar_row	T-bar row	lats	upper_back,biceps	horizontal_pull	barbell	false	intermediate	6	1.15	moderate	low	ascending	compound	upper	neutral_grip	muscle_gain,strength	low	90	medium	high
+inverted_row	Trazioni inverse	upper_back	biceps,lats	horizontal_pull	bodyweight	false	beginner	4	1.15	moderate	low	ascending	compound	upper	bodyweight_row,scalable	muscle_gain,general_fitness	low	60	low	high
+shrug_bilanciere	Shrug bilanciere	traps	forearms	vertical_pull	barbell	false	beginner	4	1.2	low	low	ascending	isolation	upper	trap_emphasis	muscle_gain,strength	low	60	low	medium
+farmer_carry	Farmer walk	traps	forearms,abs,glutes	carry	dumbbell	false	intermediate	7	0.9	high	moderate	flat	carry	full	grip_conditioning,core_bracing	general_fitness,strength,sport_specific	moderate	30	high	low
+suitcase_carry	Suitcase carry	obliques	forearms,glutes	carry	dumbbell	true	intermediate	5	1.05	high	moderate	flat	carry	full	anti_lateral_flexion	core,sport_specific	moderate	20	medium	low
+waiter_carry	Waiter carry	side_delts	forearms,abs,traps	carry	kettlebell	true	intermediate	5	0.95	high	high	flat	carry	upper	overhead_stability	muscle_gain,sport_specific	moderate	30	medium	low
+plank	Plank	abs	glutes,upper_back	core_anti_extension	bodyweight	false	beginner	4	0.85	low	low	flat	isometric	core	anti_extension,endurance	endurance,general_fitness,rehab	low	0	low	low
+dead_bug	Dead bug	abs	hip_flexors	core_anti_extension	bodyweight	false	beginner	2	1.25	low	low	flat	isolation	core	coordination,rehab	rehab,general_fitness	low	0	low	medium
+ab_wheel	Ab wheel rollout	abs	lats,side_delts,upper_back	core_anti_extension	other	false	advanced	7	1.0	high	high	ascending	compound	core	anti_extension_advanced	muscle_gain,sport_specific	high	30	medium	low
+hanging_leg_raise	Sollevamenti gambe sospesi	abs	hip_flexors,forearms	vertical_pull	bodyweight	false	intermediate	6	1.05	moderate	high	descending	isolation	core	flexion_hanging	muscle_gain	low	60	medium	low
+cable_crunch	Crunch al cavo	abs	obliques	core_anti_extension	cable	false	beginner	4	1.22	low	low	descending	isolation	core	spinal_flexion_loaded	muscle_gain	low	45	low	high
+pallof_press	Pallof press	obliques	abs	core_anti_rotation	cable	false	beginner	3	1.2	low	low	flat	isolation	core	anti_rotation,rehab	rehab,general_fitness,sport_specific	low	45	low	medium
+woodchop	Woodchop	obliques	abs,glutes	core_anti_rotation	cable	false	intermediate	5	1.05	moderate	moderate	bell_shaped	compound	core	rotation_power	sport_specific,general_fitness	moderate	45	medium	medium
+russian_twist	Russian twist	obliques	abs	other	bodyweight	false	beginner	3	1.0	low	low	flat	isolation	core	rotation_endurance	general_fitness,fat_loss	low	0	low	low
+bicep_barbell_curl	Curl bilanciere	biceps	forearms	other	barbell	false	beginner	3	1.35	low	low	ascending	isolation	upper	elbow_flexion	muscle_gain	low	60	low	high
+bicep_db_hammer	Curl hammer	forearms	biceps	other	dumbbell	false	beginner	3	1.3	low	low	ascending	isolation	upper	brachialis_emphasis	muscle_gain	low	30	low	high
+preacher_curl	Preacher curl	biceps	forearms	other	barbell	false	intermediate	3	1.28	low	low	ascending	isolation	upper	elbow_supported	muscle_gain	low	90	low	high
+incline_db_curl	Curl manubri panca inclinata	biceps	forearms	other	dumbbell	false	intermediate	3	1.32	low	low	ascending	isolation	upper	long_head_bias	muscle_gain	low	60	low	high
+cable_curl	Curl al cavo	biceps	forearms	other	cable	false	beginner	3	1.34	low	low	ascending	isolation	upper	constant_tension	muscle_gain	low	45	low	high
+tricep_pushdown	Pushdown tricipiti	triceps	forearms	vertical_push	cable	false	beginner	3	1.32	low	low	ascending	isolation	upper	elbow_extension	muscle_gain	low	45	low	high
+skullcrusher	Skull crusher	triceps	forearms	horizontal_push	barbell	false	intermediate	4	1.25	low	moderate	ascending	isolation	upper	long_head_triceps	muscle_gain	moderate	90	low	high
+overhead_tricep_ext	Estensioni tricipiti dietro nuca	triceps	forearms	vertical_push	dumbbell	false	beginner	3	1.28	low	low	ascending	isolation	upper	long_head	muscle_gain	low	30	low	high
+jm_press	JM press	triceps	chest	horizontal_push	barbell	false	advanced	5	1.15	moderate	high	ascending	isolation	upper	powerlifting_accessory	strength,muscle_gain	moderate	120	medium	medium
+leg_curl_seated	Leg curl seduto	hamstrings	calves	hinge	machine	false	beginner	3	1.38	low	low	ascending	isolation	lower	knee_flexion_isolation	muscle_gain,rehab	low	60	low	high
+leg_curl_lying	Leg curl sdraiato	hamstrings	calves	hinge	machine	false	beginner	3	1.36	low	low	ascending	isolation	lower	posterior_knee	muscle_gain	low	60	low	high
+leg_extension	Leg extension	quads		other	machine	false	beginner	4	1.2	low	low	ascending	isolation	lower	quad_isolation,rehab	muscle_gain,rehab	low	60	low	high
+calf_standing_standing	Polpacci in piedi	calves		other	machine	false	beginner	3	1.15	low	low	ascending	isolation	lower	gastrocnemius	muscle_gain	low	45	low	high
+calf_seated	Polpacci seduti	calves		other	machine	false	beginner	3	1.15	low	low	ascending	isolation	lower	soleus_bias	muscle_gain	low	45	low	high
+tibialis_raise	Tibialis raise	tibialis_anterior	calves	other	bodyweight	false	beginner	2	1.2	low	low	ascending	isolation	lower	ankle_health,rehab	rehab,sport_specific	low	0	low	medium
+box_jump	Salto su box	quads	glutes,calves	other	bodyweight	false	intermediate	8	0.7	moderate	high	flat	plyometric	lower	power,landing_skill	sport_specific,general_fitness	high	120	high	low
+burpee	Burpee	quads	chest,abs,triceps	other	bodyweight	false	intermediate	9	0.55	high	high	flat	plyometric	full	conditioning_metcon	fat_loss,endurance,general_fitness	moderate	0	high	low
+battle_ropes	Battle ropes	side_delts	forearms,abs,traps	other	other	false	intermediate	8	0.65	moderate	low	flat	conditioning	upper	anaerobic_endurance	endurance,fat_loss	low	30	high	low
+sled_push	Sled push	quads	glutes,calves	other	other	false	intermediate	9	0.75	moderate	moderate	flat	conditioning	lower	hip_extension_conditioning	sport_specific,endurance	moderate	120	high	low
+assault_bike	Assault bike	quads	hamstrings,triceps,forearms	other	other	false	intermediate	8	0.6	low	low	flat	conditioning	full	interval_cardio	fat_loss,endurance	low	30	high	low
+copenhagen_plank	Copenhagen plank	adductors	obliques,abs	other	bodyweight	true	intermediate	5	1.1	high	moderate	flat	isometric	lower	groin_strength,rehab	rehab,sport_specific	moderate	0	medium	low
+cable_pull_through	Pull-through cavo	glutes	hamstrings	hinge	cable	false	beginner	4	1.22	low	low	ascending	compound	lower	hip_hinge_cue	muscle_gain,general_fitness	low	45	low	high
+machine_row_low	Low row macchina	lats	upper_back,biceps	horizontal_pull	machine	false	beginner	5	1.2	low	low	ascending	compound	upper	seated_row_path	muscle_gain	low	60	low	high
+smith_incline_press	Panca inclinata multipower	chest	front_delts,triceps	horizontal_push	smith_machine	false	beginner	6	1.08	low	low	descending	compound	upper	guided_incline	muscle_gain	low	90	medium	high
+viking_press	Viking press	front_delts	triceps	vertical_push	other	false	advanced	7	1.0	moderate	high	descending	compound	upper	strongman,overhead	strength,sport_specific	moderate	180	medium	medium
+zottman_curl	Zottman curl	biceps	forearms	other	dumbbell	false	intermediate	4	1.2	low	moderate	ascending	isolation	upper	supination_pronation	muscle_gain	low	30	low	high
+dragon_flag	Dragon flag	abs	lats	core_anti_extension	bodyweight	false	elite	9	0.85	very_high	very_high	flat	isometric	core	advanced_core	muscle_gain,sport_specific	high	0	high	low
+muscle_up	Muscle-up	lats	chest,biceps,triceps	vertical_pull	bodyweight	false	elite	9	0.8	very_high	very_high	bell_shaped	compound	upper	calisthenics_skill	sport_specific,muscle_gain	high	0	high	low
+handstand_push_up	Handstand push-up	front_delts	triceps,abs	vertical_push	bodyweight	false	elite	9	0.88	very_high	very_high	descending	compound	upper	inverted_press	calisthenics,strength	high	0	high	low
+pike_push_up	Pike push-up	front_delts	triceps	vertical_push	bodyweight	false	intermediate	5	1.1	moderate	moderate	descending	compound	upper	hspu_regression	calisthenics,muscle_gain	moderate	0	medium	medium
+l_sit	L-sit	abs	hip_flexors,triceps	other	bodyweight	false	advanced	6	0.95	high	high	flat	isometric	core	compression_skill	calisthenics,sport_specific	moderate	0	medium	low
+kettlebell_goblet_cossack	Cossack squat goblet	quads	adductors,glutes	squat	kettlebell	false	intermediate	6	1.05	high	moderate	descending	compound	lower	mobility_strength	muscle_gain,sport_specific	moderate	45	medium	high
+band_pull_apart	Pull-apart banda	rear_delts	upper_back	horizontal_pull	band	false	beginner	2	1.35	low	low	flat	isolation	upper	warmup_activation	rehab,general_fitness	low	10	low	medium
+y_raise_manubri	Y-raise manubri	rear_delts	traps	horizontal_pull	dumbbell	false	beginner	2	1.3	low	low	flat	isolation	upper	scapular_upward	shoulder_health,rehab	low	30	low	medium
+cable_crossover	Crossover alti-bassi	chest	front_delts	horizontal_push	cable	false	intermediate	5	1.22	low	low	descending	isolation	upper	cable_fly_angle	muscle_gain	low	60	low	high
+single_leg_leg_press	Leg press monopodalio	quads	glutes	squat	machine	true	intermediate	6	1.18	moderate	low	descending	compound	lower	unilateral_machine	muscle_gain,sport_specific,rehab	moderate	120	medium	high
+spoto_press	Spoto press	chest	triceps,front_delts	horizontal_push	barbell	false	advanced	8	1.06	moderate	high	descending	compound	upper	pause_on_chest,strength	strength,muscle_gain	moderate	180	high	high
+pin_squat	Pin squat	quads	glutes	squat	barbell	false	advanced	8	1.04	high	moderate	descending	compound	lower	pins_weak_range	strength	moderate	240	high	high
+snatch_grip_deadlift	Stacco presa snatch	hamstrings	traps,lats,glutes	hinge	barbell	false	advanced	9	1.02	high	moderate	ascending	compound	upper	upper_back_emphasis	strength,sport_specific	moderate	180	high	high
+deficit_push_up	Push-up da deficit	chest	front_delts,triceps	horizontal_push	bodyweight	false	intermediate	5	1.12	moderate	moderate	descending	compound	upper	depth_rom	muscle_gain	low	30	low	high
+feet_elevated_push_up	Push-up piedi rialzati	chest	front_delts,triceps	horizontal_push	bodyweight	false	intermediate	5	1.1	moderate	moderate	descending	compound	upper	decline_bodyweight	muscle_gain	low	30	low	high
+diamond_push_up	Push-up rombo	triceps	chest,front_delts	horizontal_push	bodyweight	false	intermediate	5	1.08	moderate	moderate	descending	compound	upper	triceps_emphasis	muscle_gain	low	0	low	high
+trx_row	Rematore TRX	lats	biceps,abs	horizontal_pull	other	false	beginner	4	1.18	moderate	moderate	ascending	compound	upper	suspension,scalable	muscle_gain,general_fitness	low	60	low	high
+trx_push_up	Push-up TRX	chest	front_delts,triceps,abs	horizontal_push	other	false	intermediate	5	1.08	high	moderate	descending	compound	upper	unstable	muscle_gain,sport_specific	moderate	60	medium	medium
+kettlebell_tgu	Turkish get-up	glutes	quads,side_delts,upper_back,abs	other	kettlebell	false	advanced	8	0.92	high	very_high	bell_shaped	compound	full	multiplanar_skill	strength,sport_specific	moderate	90	high	low
+kettlebell_clean	Clean kettlebell	quads	glutes,traps,forearms	hinge	kettlebell	false	advanced	8	0.88	moderate	high	bell_shaped	compound	full	olympic_variant_conditioning	sport_specific,strength	moderate	60	high	low
+banded_deadlift	Stacco con bande	hamstrings	glutes	hinge	barbell	false	advanced	9	1.06	moderate	moderate	ascending	compound	lower	accommodating_lockout	strength	moderate	200	high	high
+paused_bench	Panca con pausa	chest	triceps,front_delts	horizontal_push	barbell	false	advanced	8	1.07	moderate	high	descending	compound	upper	strength_off_chest	strength	moderate	180	high	high
+spider_curl	Spider curl	biceps	forearms	other	dumbbell	false	intermediate	3	1.3	low	low	ascending	isolation	upper	elbow_flex_short	muscle_gain	low	60	low	high
+machine_chest_press	Press pettorali macchina	chest	front_delts,triceps	horizontal_push	machine	false	beginner	5	1.2	low	low	descending	compound	upper	guided_press	muscle_gain,general_fitness	low	60	low	high
+hip_abduction_machine	Abduzione anca macchina	glutes	upper_back,abs	other	machine	false	beginner	3	1.15	low	low	flat	isolation	lower	hip_abduction,glute_med	rehab,muscle_gain	low	45	low	high

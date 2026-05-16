@@ -1,0 +1,4703 @@
+[
+  {
+    "id": "85e5440e-5595-56b0-b48d-fa4f103a2a9d",
+    "slug": "barbell_back_squat",
+    "name": "Squat bilaterale con bilanciere",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings",
+      "lower_back"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "knee_dominant",
+      "axial_load",
+      "competition_lift"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "3c96d167-c600-5039-ab93-57bcc5e30e36",
+    "slug": "low_bar_squat",
+    "name": "Squat low bar",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings",
+      "lower_back"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 1.08,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "powerlifting_specific",
+      "hip_dominant"
+    ],
+    "compatible_goals": [
+      "strength",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "b74a6302-691b-50f9-8c2e-5c5e7462b208",
+    "slug": "front_squat",
+    "name": "Squat frontale",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "abs",
+      "upper_back"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 1.0,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "high",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "upright_torso",
+      "olympic_carryover"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 200,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "7d51e0b0-a2c1-515b-8863-c827c42c6585",
+    "slug": "pause_squat",
+    "name": "Squat con pausa",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 1.12,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "strength_technique",
+      "weak_point"
+    ],
+    "compatible_goals": [
+      "strength",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "109ecfda-1236-5273-bf0a-7b46b5e7106b",
+    "slug": "tempo_squat",
+    "name": "Squat a tempo controllato",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 1.0,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "hypertrophy_focus",
+      "time_under_tension"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "5686ca28-c7be-5343-9350-dc98ed0579c8",
+    "slug": "box_squat",
+    "name": "Squat su box",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "box",
+      "pause_variant"
+    ],
+    "compatible_goals": [
+      "strength",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 240,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "53ddd06a-85fc-55b9-b919-d99d3ac567be",
+    "slug": "overhead_squat",
+    "name": "Squat overhead",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "side_delts",
+      "abs",
+      "upper_back"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "barbell",
+    "difficulty": "elite",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 0.85,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "very_high",
+    "skill_requirement": "very_high",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "full",
+    "tags": [
+      "mobility",
+      "overhead_stability"
+    ],
+    "compatible_goals": [
+      "sport_specific",
+      "general_fitness"
+    ],
+    "injury_risk": "high",
+    "estimated_setup_time_sec": 300,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "584326e5-4f62-5bcd-b48d-498b84ea289a",
+    "slug": "goblet_squat",
+    "name": "Squat goblet",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "abs"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "dumbbell",
+    "difficulty": "beginner",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.2,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "home_gym",
+      "teaching_pattern"
+    ],
+    "compatible_goals": [
+      "general_fitness",
+      "fat_loss",
+      "rehab"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "2763eb32-1273-5379-8845-b694d7320de9",
+    "slug": "dumbbell_squat",
+    "name": "Squat con manubri",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "home_gym",
+      "neutral_grip"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "c9d764a5-ff2b-55c9-a750-f89bb33ad4d1",
+    "slug": "bulgarian_split_squat",
+    "name": "Bulgarian split squat",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.15,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "unilateral",
+      "rear_foot_elevated"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "31607fe6-f843-5ed4-bd47-7f9f3c8f1db3",
+    "slug": "walking_lunge",
+    "name": "Lunge camminata",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "unilateral",
+      "dynamic_stability"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "44abca69-dedd-595c-8017-f7ea575dd1d0",
+    "slug": "reverse_lunge",
+    "name": "Lunge inversa",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "dumbbell",
+    "difficulty": "beginner",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "unilateral",
+      "knee_friendly"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness",
+      "rehab"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "b2bd145b-3898-5a74-82b1-881922d7b216",
+    "slug": "lateral_lunge",
+    "name": "Lunge laterale",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "adductors"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.0,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "unilateral",
+      "frontal_plane"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "6aa6e45e-7224-5fae-9707-af29a5154c4d",
+    "slug": "leg_press_45",
+    "name": "Leg press 45°",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "machine",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.25,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "machine_based",
+      "volume_friendly"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "19d3e5e0-1538-5eaa-ac22-93ae67f157e3",
+    "slug": "hack_squat",
+    "name": "Hack squat",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "machine",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.2,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "sled_pattern",
+      "quad_bias"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "174e34e4-c69e-52fe-b5c8-c910a002ce46",
+    "slug": "pendulum_squat",
+    "name": "Pendulum squat",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "machine",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.22,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "arc_path",
+      "quad_focus"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "2ad9f4cb-4da1-5a79-bbb8-5441e185253b",
+    "slug": "belt_squat",
+    "name": "Squat con belt",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "machine",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.18,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "spinal_unload",
+      "volume"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "d0f67b1b-d8a5-59ff-bcf8-7922a85441b3",
+    "slug": "sissy_squat",
+    "name": "Sissy squat",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "abs"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "bodyweight",
+    "difficulty": "advanced",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 0.95,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "high",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "lower",
+    "tags": [
+      "bodyweight_knee_ext",
+      "quad_length"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "sport_specific"
+    ],
+    "injury_risk": "high",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "94f53b4b-c203-5da6-b4ab-9934eb1b3106",
+    "slug": "pistol_squat",
+    "name": "Pistol squat",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "abs"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "bodyweight",
+    "difficulty": "elite",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 0.9,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "very_high",
+    "skill_requirement": "very_high",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "unilateral",
+      "mobility"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "sport_specific"
+    ],
+    "injury_risk": "high",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "869afc1b-f271-5013-a0b1-8d45d1742bcf",
+    "slug": "wall_sit",
+    "name": "Wall sit",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "abs"
+    ],
+    "movement_pattern": "other",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 0.7,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "isometric",
+    "body_region": "lower",
+    "tags": [
+      "isometric_endurance"
+    ],
+    "compatible_goals": [
+      "endurance",
+      "general_fitness",
+      "rehab"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "a7bae76d-e50b-5e33-9688-2360bfa74e70",
+    "slug": "air_squat",
+    "name": "Air squat",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.15,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "home_gym",
+      "warmup"
+    ],
+    "compatible_goals": [
+      "general_fitness",
+      "fat_loss"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "a48aa0c8-7fef-5da8-8c02-a261f6df5dd1",
+    "slug": "jump_squat",
+    "name": "Squat salto",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 0.75,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "high",
+    "force_curve": "flat",
+    "exercise_type": "plyometric",
+    "body_region": "lower",
+    "tags": [
+      "power",
+      "rate_of_force"
+    ],
+    "compatible_goals": [
+      "sport_specific",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "5e0eed90-e84f-5795-8b73-ba9642a240fa",
+    "slug": "smith_squat",
+    "name": "Squat al multipower",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "smith_machine",
+    "difficulty": "beginner",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "guided_bar",
+      "solo_safe"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "dd8896fa-0e9a-5eb1-8ffc-d532af3f7bb8",
+    "slug": "zercher_squat",
+    "name": "Zercher squat",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "abs",
+      "upper_back"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 1.0,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "high",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "front_loaded",
+      "strongman_carryover"
+    ],
+    "compatible_goals": [
+      "strength",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 200,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "0a1936a3-9bf3-5e82-8be5-5ef5fecd9ba5",
+    "slug": "sumo_deadlift",
+    "name": "Stacco sumo",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "glutes",
+      "adductors",
+      "traps",
+      "forearms"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 1.08,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "wide_stance",
+      "hip_external_rotation"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "73264d3a-9033-5628-a735-83386c0ccd44",
+    "slug": "conventional_deadlift",
+    "name": "Stacco convenzionale",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "glutes",
+      "lower_back",
+      "traps",
+      "forearms"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "competition_lift",
+      "posterior_chain"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "0cf37576-1d59-5387-b4d6-7aba12b3c07d",
+    "slug": "romanian_deadlift",
+    "name": "RDL",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "glutes",
+      "lower_back"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.25,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "hip_hinge",
+      "hypertrophy_hinge"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "bf1b3a93-c48e-5006-8d93-2a7bff8b0022",
+    "slug": "trap_bar_deadlift",
+    "name": "Stacco trap bar",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings",
+      "traps"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.15,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "neutral_grip",
+      "quad_bias_deadlift"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "f562ba57-3e3d-5ecc-940e-2b3df6a6c3b8",
+    "slug": "rack_pull",
+    "name": "Rack pull",
+    "primary_muscle": "traps",
+    "secondary_muscles": [
+      "lower_back",
+      "lats",
+      "forearms"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "partial_range",
+      "overload_upper_back"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "371f285e-10cc-5b60-b825-b781f22d2873",
+    "slug": "deficit_deadlift",
+    "name": "Stacco da deficit",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "glutes",
+      "lower_back"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "high",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "weak_off_floor",
+      "strength_specific"
+    ],
+    "compatible_goals": [
+      "strength",
+      "sport_specific"
+    ],
+    "injury_risk": "high",
+    "estimated_setup_time_sec": 200,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "e9783d07-dd6c-5791-af31-1a2d384d3d87",
+    "slug": "paused_deadlift",
+    "name": "Stacco con pausa",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "glutes",
+      "lower_back"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 1.08,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "high",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "strength_technique"
+    ],
+    "compatible_goals": [
+      "strength"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "4788cbe9-aadf-5194-a6c7-a978f80bb54a",
+    "slug": "single_leg_rdl",
+    "name": "RDL monopodalino",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "glutes",
+      "lower_back"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.2,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "unilateral",
+      "hip_stability"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "sport_specific",
+      "rehab"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "749f381f-9ff3-5e9a-b3b9-bf22fead5f87",
+    "slug": "dumbbell_rdl",
+    "name": "RDL con manubri",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "glutes",
+      "lower_back"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.22,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "home_gym",
+      "neutral_grip"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "52dfc141-c81e-522b-9251-ed7f058fb840",
+    "slug": "good_morning",
+    "name": "Good morning",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "glutes",
+      "lower_back"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.0,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "axial_flexion",
+      "strength_accessory"
+    ],
+    "compatible_goals": [
+      "strength"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "647ae0c2-bf6d-5686-a549-0671db0a0d29",
+    "slug": "hip_thrust_belt",
+    "name": "Hip thrust macchina",
+    "primary_muscle": "glutes",
+    "secondary_muscles": [
+      "hamstrings",
+      "quads"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.35,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "glute_bias",
+      "lockout"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "7506db4d-1b33-5be8-855e-fe9fabf3897e",
+    "slug": "barbell_hip_thrust",
+    "name": "Hip thrust bilanciere",
+    "primary_muscle": "glutes",
+    "secondary_muscles": [
+      "hamstrings"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.28,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "glute_max_emphasis"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 150,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "7b3cbb6c-5287-5342-9a48-3a4d9210c641",
+    "slug": "glute_bridge_puente",
+    "name": "Glute bridge corpo libero",
+    "primary_muscle": "glutes",
+    "secondary_muscles": [
+      "hamstrings",
+      "abs"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.3,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "lower",
+    "tags": [
+      "home_girl",
+      "activation"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "rehab",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "5ac9ca90-b007-5500-a273-676a9d4ec557",
+    "slug": "single_leg_glute_bridge",
+    "name": "Glute bridge monopodalino",
+    "primary_muscle": "glutes",
+    "secondary_muscles": [
+      "hamstrings"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.25,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "lower",
+    "tags": [
+      "unilateral",
+      "activation"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "rehab"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "7683c752-8d9f-5a09-bde2-00f8f5afc4e2",
+    "slug": "back_extension_45",
+    "name": "Back extension 45°",
+    "primary_muscle": "lower_back",
+    "secondary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "lower",
+    "tags": [
+      "hyperextension",
+      "posterior_chain"
+    ],
+    "compatible_goals": [
+      "endurance",
+      "general_fitness",
+      "rehab"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "798a6442-3bac-5c5b-9462-78a1b80c0121",
+    "slug": "reverse_hyper",
+    "name": "Reverse hyper",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "glutes",
+      "lower_back"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "machine",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.15,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "lower",
+    "tags": [
+      "decompression",
+      "posterior_chain"
+    ],
+    "compatible_goals": [
+      "strength",
+      "rehab"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "73ae1a7a-870c-5e9f-86b8-bfe511e34e75",
+    "slug": "kettlebell_swing",
+    "name": "Kettlebell swing",
+    "primary_muscle": "glutes",
+    "secondary_muscles": [
+      "hamstrings",
+      "abs",
+      "forearms"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "kettlebell",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 0.95,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "bell_shaped",
+    "exercise_type": "plyometric",
+    "body_region": "lower",
+    "tags": [
+      "hip_snap",
+      "conditioning"
+    ],
+    "compatible_goals": [
+      "endurance",
+      "general_fitness",
+      "fat_loss"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "5312e86c-6b60-5bd5-9d57-68df5828f053",
+    "slug": "band_good_morning",
+    "name": "Good morning con banda",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "glutes",
+      "lower_back"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "band",
+    "difficulty": "beginner",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "home_gym",
+      "accommodating_resistance"
+    ],
+    "compatible_goals": [
+      "general_fitness",
+      "rehab"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 20,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "6e95a26d-87c1-57b6-aad0-4ae852c04f52",
+    "slug": "flat_bench_press",
+    "name": "Panca piana bilanciere",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.12,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "competition_lift",
+      "pressing"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "aee22cc3-ccf5-5071-a385-f6132ddd5268",
+    "slug": "incline_bench_press",
+    "name": "Panca inclinata bilanciere",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "clavicular_pec_bias"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "e17b4d9d-81d0-5751-a5b6-c068477aca30",
+    "slug": "decline_bench_press",
+    "name": "Panca declinata bilanciere",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.08,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "lower_pec_emphasis"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "15f1c396-4178-5af5-997a-a6abc4913ff5",
+    "slug": "close_grip_bench",
+    "name": "Panca presa stretta",
+    "primary_muscle": "triceps",
+    "secondary_muscles": [
+      "chest",
+      "front_delts"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "triceps_emphasis",
+      "lockout"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "e7b1ef23-ea68-5326-9f37-671b69778762",
+    "slug": "dumbbell_bench_press",
+    "name": "Panca piana manubri",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.18,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "rom_independent",
+      "home_option"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "409e23d7-1849-5047-bcbc-15c1307c0d1f",
+    "slug": "incline_db_press",
+    "name": "Panca inclinata manubri",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.15,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "upper_chest"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "f1989823-df2b-5b52-9b04-dba80e97ef1e",
+    "slug": "floor_press",
+    "name": "Floor press",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "triceps",
+      "front_delts"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "partial_rom",
+      "triceps_lockout"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "2b85d3e5-3c44-5962-a1a9-1d7d2cdec704",
+    "slug": "cable_bench_fly",
+    "name": "Croci ai cavi bassi",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "cable",
+    "difficulty": "beginner",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.25,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "constant_tension"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "7fb103d4-b6a4-599a-acf0-8bffee69e037",
+    "slug": "pec_deck",
+    "name": "Pec deck",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.28,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "machine_fly",
+      "safe_shoulders"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness",
+      "rehab"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "8a299561-9a1c-57bc-962e-fa166646a760",
+    "slug": "push_up",
+    "name": "Push-up",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps",
+      "abs"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "home_gym",
+      "calisthenics"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness",
+      "fat_loss"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "85962a8f-d6b6-5a1f-b4d3-6dc1ebe29c99",
+    "slug": "weighted_push_up",
+    "name": "Push-up zavorrato",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.12,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "progressive_load",
+      "micro_loading"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "86ebf303-7889-5c9a-8e04-4a37db627033",
+    "slug": "ring_push_up",
+    "name": "Push-up agli anelli",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps",
+      "abs"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "other",
+    "difficulty": "advanced",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.0,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "high",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "unstable_support",
+      "calisthenics"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "88ff7e4f-351e-5004-9001-278339a5485e",
+    "slug": "dip_parallelo",
+    "name": "Dip alle parallele",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "triceps",
+      "front_delts"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "bodyweight_pressing"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "5bfbbf04-6cdd-5a31-a690-4b1c3f1c1439",
+    "slug": "weighted_dip",
+    "name": "Dip zavorrato",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "triceps",
+      "front_delts"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "bodyweight",
+    "difficulty": "advanced",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 1.02,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "overload_vertical_press"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "9a37b890-ff73-5cd6-9e1d-5b051a1131cd",
+    "slug": "overhead_press",
+    "name": "Military press bilanciere",
+    "primary_muscle": "front_delts",
+    "secondary_muscles": [
+      "side_delts",
+      "triceps",
+      "abs"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.08,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "strict_press",
+      "overhead_strength"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "3e1f82e9-86b6-5586-b9fd-54431d523851",
+    "slug": "push_press",
+    "name": "Push press",
+    "primary_muscle": "front_delts",
+    "secondary_muscles": [
+      "side_delts",
+      "triceps",
+      "glutes"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 0.95,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "high",
+    "force_curve": "bell_shaped",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "leg_drive",
+      "power"
+    ],
+    "compatible_goals": [
+      "strength",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "e8d35229-e981-5e4d-9dc1-26eaf11ba9f5",
+    "slug": "arnold_press",
+    "name": "Arnold press",
+    "primary_muscle": "front_delts",
+    "secondary_muscles": [
+      "side_delts",
+      "triceps"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.15,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "rotation_rom"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "4d1675cb-3ddc-5ef9-88ca-ef2e7baacc2d",
+    "slug": "dumbbell_shoulder_press",
+    "name": "Press manubri seduto",
+    "primary_muscle": "front_delts",
+    "secondary_muscles": [
+      "side_delts",
+      "triceps"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.12,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "home_gym"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "85c49b09-2fd2-517e-adc1-b92fe46e72ed",
+    "slug": "landmine_press",
+    "name": "Landmine press",
+    "primary_muscle": "front_delts",
+    "secondary_muscles": [
+      "chest",
+      "triceps",
+      "abs"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "arcing_path",
+      "shoulder_friendly"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness",
+      "rehab"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "71183f8e-4d40-5f81-83ec-3b380cbd4649",
+    "slug": "machine_shoulder_press",
+    "name": "Press spalle macchina",
+    "primary_muscle": "front_delts",
+    "secondary_muscles": [
+      "side_delts",
+      "triceps"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.2,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "guided_rom"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "c2daa491-5860-50b0-bddf-9cf7a8e36946",
+    "slug": "lateral_raise_alzate",
+    "name": "Alzate laterali",
+    "primary_muscle": "side_delts",
+    "secondary_muscles": [
+      "traps",
+      "forearms"
+    ],
+    "movement_pattern": "other",
+    "equipment": "dumbbell",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.35,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "side_delts_focus"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "67df6598-286a-5c48-b9da-fc4eefaed3da",
+    "slug": "cable_lateral_raise",
+    "name": "Alzate laterali al cavo",
+    "primary_muscle": "side_delts",
+    "secondary_muscles": [
+      "traps",
+      "forearms"
+    ],
+    "movement_pattern": "other",
+    "equipment": "cable",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.38,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "constant_tension"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "27db199a-4ea4-5d82-977b-a957e8a10816",
+    "slug": "rear_delt_fly_manubri",
+    "name": "Fly posteriore manubri",
+    "primary_muscle": "rear_delts",
+    "secondary_muscles": [
+      "traps",
+      "upper_back"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "dumbbell",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.32,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "rear_delt",
+      "posture"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "rehab"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "75617ad7-1109-5748-857c-63f56388e053",
+    "slug": "face_pull",
+    "name": "Face pull",
+    "primary_muscle": "rear_delts",
+    "secondary_muscles": [
+      "traps",
+      "upper_back"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "cable",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.3,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "external_rotation",
+      "shoulder_health"
+    ],
+    "compatible_goals": [
+      "rehab",
+      "general_fitness",
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "8377c42e-b9cc-58d4-a401-23b9a81d27a8",
+    "slug": "pull_up",
+    "name": "Trazioni pronazione",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "biceps",
+      "forearms",
+      "abs"
+    ],
+    "movement_pattern": "vertical_pull",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "high",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "vertical_pulling",
+      "calisthenics"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "5c34bf0e-274c-5640-94ba-8958efec5527",
+    "slug": "chin_up",
+    "name": "Trazioni supinazione",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "biceps",
+      "forearms"
+    ],
+    "movement_pattern": "vertical_pull",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.12,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "biceps_emphasis"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "04bf4c99-5f51-5244-9da4-ecfd4540a2a8",
+    "slug": "neutral_grip_pullup",
+    "name": "Trazioni presa neutra",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "biceps",
+      "forearms"
+    ],
+    "movement_pattern": "vertical_pull",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "shoulder_friendly_grip"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "80dc81ba-62d4-58ca-ae2e-1c0b130d54ea",
+    "slug": "lat_pulldown",
+    "name": "Lat machine",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "biceps",
+      "forearms"
+    ],
+    "movement_pattern": "vertical_pull",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.22,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "volume_friendly"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "672ab94f-5892-568b-b977-aa2f33a5e0ee",
+    "slug": "straight_arm_pulldown",
+    "name": "Pulldown braccia tese",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "abs",
+      "forearms"
+    ],
+    "movement_pattern": "vertical_pull",
+    "equipment": "cable",
+    "difficulty": "intermediate",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.28,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "lat_isolation"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "17643500-a119-50d6-9e91-a81e98f3a9a0",
+    "slug": "barbell_row",
+    "name": "Rematore bilanciere",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "upper_back",
+      "biceps",
+      "lower_back"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "hip_hinge_row"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "87d88e2a-fb55-5ed8-a695-8e7361e05082",
+    "slug": "pendlay_row",
+    "name": "Pendlay row",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "upper_back",
+      "biceps",
+      "lower_back"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "dead_stop",
+      "power_row"
+    ],
+    "compatible_goals": [
+      "strength",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "977939a3-9f09-5549-ad2d-b70874881060",
+    "slug": "one_arm_db_row",
+    "name": "Rematore manubrio monobraccio",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "upper_back",
+      "biceps",
+      "forearms"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.2,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "unilateral",
+      "lat_focus"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "8d753085-21a0-5dcb-9b73-d23958099953",
+    "slug": "cable_seated_row",
+    "name": "Rematore seduto al cavo",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "upper_back",
+      "biceps"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "cable",
+    "difficulty": "beginner",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.22,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "mid_back_volume"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "873114b7-f31e-5f87-9ec8-db512e6504bf",
+    "slug": "chest_supported_row",
+    "name": "Rematore panca inclinata",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "upper_back",
+      "biceps"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.18,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "lower_back_unload"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "f4aef138-b012-5f8a-af04-ace145760283",
+    "slug": "t_bar_row",
+    "name": "T-bar row",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "upper_back",
+      "biceps"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.15,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "neutral_grip"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "0dda4033-a589-51d3-b96b-e7a8f2630df6",
+    "slug": "inverted_row",
+    "name": "Trazioni inverse",
+    "primary_muscle": "upper_back",
+    "secondary_muscles": [
+      "biceps",
+      "lats"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.15,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "bodyweight_row",
+      "scalable"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "ddf7a503-1bfe-503b-8a18-155372bc18bf",
+    "slug": "shrug_bilanciere",
+    "name": "Shrug bilanciere",
+    "primary_muscle": "traps",
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "movement_pattern": "vertical_pull",
+    "equipment": "barbell",
+    "difficulty": "beginner",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.2,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "trap_emphasis"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "strength"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "644c03a9-dbd0-5c31-820c-90414ae03fbf",
+    "slug": "farmer_carry",
+    "name": "Farmer walk",
+    "primary_muscle": "traps",
+    "secondary_muscles": [
+      "forearms",
+      "abs",
+      "glutes"
+    ],
+    "movement_pattern": "carry",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 0.9,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "flat",
+    "exercise_type": "carry",
+    "body_region": "full",
+    "tags": [
+      "grip_conditioning",
+      "core_bracing"
+    ],
+    "compatible_goals": [
+      "general_fitness",
+      "strength",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "6febc773-2ba4-512b-bb7c-1356c191acac",
+    "slug": "suitcase_carry",
+    "name": "Suitcase carry",
+    "primary_muscle": "obliques",
+    "secondary_muscles": [
+      "forearms",
+      "glutes"
+    ],
+    "movement_pattern": "carry",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "flat",
+    "exercise_type": "carry",
+    "body_region": "full",
+    "tags": [
+      "anti_lateral_flexion"
+    ],
+    "compatible_goals": [
+      "core",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 20,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "9613e5dc-8a62-5cca-a824-54be5bc33f95",
+    "slug": "waiter_carry",
+    "name": "Waiter carry",
+    "primary_muscle": "side_delts",
+    "secondary_muscles": [
+      "forearms",
+      "abs",
+      "traps"
+    ],
+    "movement_pattern": "carry",
+    "equipment": "kettlebell",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 0.95,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "high",
+    "skill_requirement": "high",
+    "force_curve": "flat",
+    "exercise_type": "carry",
+    "body_region": "upper",
+    "tags": [
+      "overhead_stability"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "f23190df-04bc-530d-99b4-aa8d3009c727",
+    "slug": "plank",
+    "name": "Plank",
+    "primary_muscle": "abs",
+    "secondary_muscles": [
+      "glutes",
+      "upper_back"
+    ],
+    "movement_pattern": "core_anti_extension",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 0.85,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "isometric",
+    "body_region": "core",
+    "tags": [
+      "anti_extension",
+      "endurance"
+    ],
+    "compatible_goals": [
+      "endurance",
+      "general_fitness",
+      "rehab"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "6c34417f-e7c1-5078-9766-d7eeebe31501",
+    "slug": "dead_bug",
+    "name": "Dead bug",
+    "primary_muscle": "abs",
+    "secondary_muscles": [
+      "hip_flexors"
+    ],
+    "movement_pattern": "core_anti_extension",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "fatigue_score": 2,
+    "stimulus_to_fatigue_ratio": 1.25,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "isolation",
+    "body_region": "core",
+    "tags": [
+      "coordination",
+      "rehab"
+    ],
+    "compatible_goals": [
+      "rehab",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "5dff6ace-13bf-56e0-af56-c81818d5968e",
+    "slug": "ab_wheel",
+    "name": "Ab wheel rollout",
+    "primary_muscle": "abs",
+    "secondary_muscles": [
+      "lats",
+      "side_delts",
+      "upper_back"
+    ],
+    "movement_pattern": "core_anti_extension",
+    "equipment": "other",
+    "difficulty": "advanced",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.0,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "high",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "core",
+    "tags": [
+      "anti_extension_advanced"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "sport_specific"
+    ],
+    "injury_risk": "high",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "050048d6-f707-51a2-8382-a90f07b56d7e",
+    "slug": "hanging_leg_raise",
+    "name": "Sollevamenti gambe sospesi",
+    "primary_muscle": "abs",
+    "secondary_muscles": [
+      "hip_flexors",
+      "forearms"
+    ],
+    "movement_pattern": "vertical_pull",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "high",
+    "force_curve": "descending",
+    "exercise_type": "isolation",
+    "body_region": "core",
+    "tags": [
+      "flexion_hanging"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "ac8b1291-d1a9-50ff-aec4-1a502b5e3106",
+    "slug": "cable_crunch",
+    "name": "Crunch al cavo",
+    "primary_muscle": "abs",
+    "secondary_muscles": [
+      "obliques"
+    ],
+    "movement_pattern": "core_anti_extension",
+    "equipment": "cable",
+    "difficulty": "beginner",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.22,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "isolation",
+    "body_region": "core",
+    "tags": [
+      "spinal_flexion_loaded"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "a807a21c-8c8b-5e6d-8ff3-7db771cf2c63",
+    "slug": "pallof_press",
+    "name": "Pallof press",
+    "primary_muscle": "obliques",
+    "secondary_muscles": [
+      "abs"
+    ],
+    "movement_pattern": "core_anti_rotation",
+    "equipment": "cable",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.2,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "isolation",
+    "body_region": "core",
+    "tags": [
+      "anti_rotation",
+      "rehab"
+    ],
+    "compatible_goals": [
+      "rehab",
+      "general_fitness",
+      "sport_specific"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "512233c0-6832-5ff6-96f2-8b130cd78c74",
+    "slug": "woodchop",
+    "name": "Woodchop",
+    "primary_muscle": "obliques",
+    "secondary_muscles": [
+      "abs",
+      "glutes"
+    ],
+    "movement_pattern": "core_anti_rotation",
+    "equipment": "cable",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "bell_shaped",
+    "exercise_type": "compound",
+    "body_region": "core",
+    "tags": [
+      "rotation_power"
+    ],
+    "compatible_goals": [
+      "sport_specific",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "5f8376be-9eeb-557c-bef0-f822e5a69cb4",
+    "slug": "russian_twist",
+    "name": "Russian twist",
+    "primary_muscle": "obliques",
+    "secondary_muscles": [
+      "abs"
+    ],
+    "movement_pattern": "other",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.0,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "isolation",
+    "body_region": "core",
+    "tags": [
+      "rotation_endurance"
+    ],
+    "compatible_goals": [
+      "general_fitness",
+      "fat_loss"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "67f7a483-d063-5bb4-bde7-45361faeab40",
+    "slug": "bicep_barbell_curl",
+    "name": "Curl bilanciere",
+    "primary_muscle": "biceps",
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "movement_pattern": "other",
+    "equipment": "barbell",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.35,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "elbow_flexion"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "9a3a938c-0d5d-571f-a4a1-c876ec0a53e9",
+    "slug": "bicep_db_hammer",
+    "name": "Curl hammer",
+    "primary_muscle": "forearms",
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "movement_pattern": "other",
+    "equipment": "dumbbell",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.3,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "brachialis_emphasis"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "b9e73458-ae62-5f93-b5cb-fdaf1f702526",
+    "slug": "preacher_curl",
+    "name": "Preacher curl",
+    "primary_muscle": "biceps",
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "movement_pattern": "other",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.28,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "elbow_supported"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "07a003de-398a-55bf-a972-40aee32e6ed9",
+    "slug": "incline_db_curl",
+    "name": "Curl manubri panca inclinata",
+    "primary_muscle": "biceps",
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "movement_pattern": "other",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.32,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "long_head_bias"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "643b3f1e-b0c6-5c10-8d04-7315a0fc8c50",
+    "slug": "cable_curl",
+    "name": "Curl al cavo",
+    "primary_muscle": "biceps",
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "movement_pattern": "other",
+    "equipment": "cable",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.34,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "constant_tension"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "b27ac7b8-af5f-582d-972e-98c84bb8ca06",
+    "slug": "tricep_pushdown",
+    "name": "Pushdown tricipiti",
+    "primary_muscle": "triceps",
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "cable",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.32,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "elbow_extension"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "9fc2b878-f03f-5f88-bcb8-0bc164efb524",
+    "slug": "skullcrusher",
+    "name": "Skull crusher",
+    "primary_muscle": "triceps",
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "barbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.25,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "long_head_triceps"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "9a33f552-4518-5506-b136-57a06ca3bd16",
+    "slug": "overhead_tricep_ext",
+    "name": "Estensioni tricipiti dietro nuca",
+    "primary_muscle": "triceps",
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "dumbbell",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.28,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "long_head"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "3859dc3d-70b8-5838-b75e-718e9b55cfee",
+    "slug": "jm_press",
+    "name": "JM press",
+    "primary_muscle": "triceps",
+    "secondary_muscles": [
+      "chest"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.15,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "high",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "powerlifting_accessory"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "8ed3313b-87ee-57f6-893a-44f43d78221b",
+    "slug": "leg_curl_seated",
+    "name": "Leg curl seduto",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "calves"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.38,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "lower",
+    "tags": [
+      "knee_flexion_isolation"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "rehab"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "38021d93-bb1c-538a-b4ed-de2ec2efc55c",
+    "slug": "leg_curl_lying",
+    "name": "Leg curl sdraiato",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "calves"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.36,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "lower",
+    "tags": [
+      "posterior_knee"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "051d89e5-ad57-51fb-ae2e-1504af812931",
+    "slug": "leg_extension",
+    "name": "Leg extension",
+    "primary_muscle": "quads",
+    "secondary_muscles": [],
+    "movement_pattern": "other",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.2,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "lower",
+    "tags": [
+      "quad_isolation",
+      "rehab"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "rehab"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "820f8ed2-37d8-5092-ab9b-fbce45e4cb74",
+    "slug": "calf_standing_standing",
+    "name": "Polpacci in piedi",
+    "primary_muscle": "calves",
+    "secondary_muscles": [],
+    "movement_pattern": "other",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.15,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "lower",
+    "tags": [
+      "gastrocnemius"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "7486227c-0342-58fa-b7b9-724c82f04eeb",
+    "slug": "calf_seated",
+    "name": "Polpacci seduti",
+    "primary_muscle": "calves",
+    "secondary_muscles": [],
+    "movement_pattern": "other",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.15,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "lower",
+    "tags": [
+      "soleus_bias"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "8e7d8c9a-9775-5163-8912-09b94293af58",
+    "slug": "tibialis_raise",
+    "name": "Tibialis raise",
+    "primary_muscle": "tibialis_anterior",
+    "secondary_muscles": [
+      "calves"
+    ],
+    "movement_pattern": "other",
+    "equipment": "bodyweight",
+    "difficulty": "beginner",
+    "fatigue_score": 2,
+    "stimulus_to_fatigue_ratio": 1.2,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "lower",
+    "tags": [
+      "ankle_health",
+      "rehab"
+    ],
+    "compatible_goals": [
+      "rehab",
+      "sport_specific"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "ad5c0507-25ad-5d93-927e-34742bf0b564",
+    "slug": "box_jump",
+    "name": "Salto su box",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "calves"
+    ],
+    "movement_pattern": "other",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 0.7,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "high",
+    "force_curve": "flat",
+    "exercise_type": "plyometric",
+    "body_region": "lower",
+    "tags": [
+      "power",
+      "landing_skill"
+    ],
+    "compatible_goals": [
+      "sport_specific",
+      "general_fitness"
+    ],
+    "injury_risk": "high",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "d1f387b4-5a81-5ded-87b6-22f7c24df805",
+    "slug": "burpee",
+    "name": "Burpee",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "chest",
+      "abs",
+      "triceps"
+    ],
+    "movement_pattern": "other",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 0.55,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "high",
+    "force_curve": "flat",
+    "exercise_type": "plyometric",
+    "body_region": "full",
+    "tags": [
+      "conditioning_metcon"
+    ],
+    "compatible_goals": [
+      "fat_loss",
+      "endurance",
+      "general_fitness"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "bd8a72b3-d8e4-5c5f-8f59-0a6d9eaa8181",
+    "slug": "battle_ropes",
+    "name": "Battle ropes",
+    "primary_muscle": "side_delts",
+    "secondary_muscles": [
+      "forearms",
+      "abs",
+      "traps"
+    ],
+    "movement_pattern": "other",
+    "equipment": "other",
+    "difficulty": "intermediate",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 0.65,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "conditioning",
+    "body_region": "upper",
+    "tags": [
+      "anaerobic_endurance"
+    ],
+    "compatible_goals": [
+      "endurance",
+      "fat_loss"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "eb85bbad-6569-5adb-a646-1009ff713c82",
+    "slug": "sled_push",
+    "name": "Sled push",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "calves"
+    ],
+    "movement_pattern": "other",
+    "equipment": "other",
+    "difficulty": "intermediate",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 0.75,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "flat",
+    "exercise_type": "conditioning",
+    "body_region": "lower",
+    "tags": [
+      "hip_extension_conditioning"
+    ],
+    "compatible_goals": [
+      "sport_specific",
+      "endurance"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "8ab043d3-e1de-5cf7-9c13-20000181c79e",
+    "slug": "assault_bike",
+    "name": "Assault bike",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "hamstrings",
+      "triceps",
+      "forearms"
+    ],
+    "movement_pattern": "other",
+    "equipment": "other",
+    "difficulty": "intermediate",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 0.6,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "conditioning",
+    "body_region": "full",
+    "tags": [
+      "interval_cardio"
+    ],
+    "compatible_goals": [
+      "fat_loss",
+      "endurance"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "4de5014d-2ca5-5a71-91d4-c33151da6df8",
+    "slug": "copenhagen_plank",
+    "name": "Copenhagen plank",
+    "primary_muscle": "adductors",
+    "secondary_muscles": [
+      "obliques",
+      "abs"
+    ],
+    "movement_pattern": "other",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "flat",
+    "exercise_type": "isometric",
+    "body_region": "lower",
+    "tags": [
+      "groin_strength",
+      "rehab"
+    ],
+    "compatible_goals": [
+      "rehab",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "3c05c942-8c66-5d55-82e4-aafbd3eb267e",
+    "slug": "cable_pull_through",
+    "name": "Pull-through cavo",
+    "primary_muscle": "glutes",
+    "secondary_muscles": [
+      "hamstrings"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "cable",
+    "difficulty": "beginner",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.22,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "hip_hinge_cue"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "51676f46-ca3c-5ca2-8dc1-fe974e9515f2",
+    "slug": "machine_row_low",
+    "name": "Low row macchina",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "upper_back",
+      "biceps"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.2,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "seated_row_path"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "d3564477-8d4a-502e-94a7-43c76bf8a196",
+    "slug": "smith_incline_press",
+    "name": "Panca inclinata multipower",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "smith_machine",
+    "difficulty": "beginner",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.08,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "guided_incline"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "3add9f87-9751-5020-86db-52d012f121df",
+    "slug": "viking_press",
+    "name": "Viking press",
+    "primary_muscle": "front_delts",
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "other",
+    "difficulty": "advanced",
+    "fatigue_score": 7,
+    "stimulus_to_fatigue_ratio": 1.0,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "high",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "strongman",
+      "overhead"
+    ],
+    "compatible_goals": [
+      "strength",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "1b7a39ed-2592-546e-ba47-869511868004",
+    "slug": "zottman_curl",
+    "name": "Zottman curl",
+    "primary_muscle": "biceps",
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "movement_pattern": "other",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.2,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "supination_pronation"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "f97a6ccc-c8f4-5a0c-a8af-f264e621e70e",
+    "slug": "dragon_flag",
+    "name": "Dragon flag",
+    "primary_muscle": "abs",
+    "secondary_muscles": [
+      "lats"
+    ],
+    "movement_pattern": "core_anti_extension",
+    "equipment": "bodyweight",
+    "difficulty": "elite",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 0.85,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "very_high",
+    "skill_requirement": "very_high",
+    "force_curve": "flat",
+    "exercise_type": "isometric",
+    "body_region": "core",
+    "tags": [
+      "advanced_core"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "sport_specific"
+    ],
+    "injury_risk": "high",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "a1693a4b-1f49-5951-8ab8-cf4af28eb898",
+    "slug": "muscle_up",
+    "name": "Muscle-up",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "chest",
+      "biceps",
+      "triceps"
+    ],
+    "movement_pattern": "vertical_pull",
+    "equipment": "bodyweight",
+    "difficulty": "elite",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 0.8,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "very_high",
+    "skill_requirement": "very_high",
+    "force_curve": "bell_shaped",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "calisthenics_skill"
+    ],
+    "compatible_goals": [
+      "sport_specific",
+      "muscle_gain"
+    ],
+    "injury_risk": "high",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "357193c9-b8c3-5aa9-a3f8-ccf3b399dd55",
+    "slug": "handstand_push_up",
+    "name": "Handstand push-up",
+    "primary_muscle": "front_delts",
+    "secondary_muscles": [
+      "triceps",
+      "abs"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "bodyweight",
+    "difficulty": "elite",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 0.88,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "very_high",
+    "skill_requirement": "very_high",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "inverted_press"
+    ],
+    "compatible_goals": [
+      "calisthenics",
+      "strength"
+    ],
+    "injury_risk": "high",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "adaae1d3-b001-5b16-a500-62b94a3f04d7",
+    "slug": "pike_push_up",
+    "name": "Pike push-up",
+    "primary_muscle": "front_delts",
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "movement_pattern": "vertical_push",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "hspu_regression"
+    ],
+    "compatible_goals": [
+      "calisthenics",
+      "muscle_gain"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "af78d57a-af8e-5ba0-bc84-ac4286fdb7db",
+    "slug": "l_sit",
+    "name": "L-sit",
+    "primary_muscle": "abs",
+    "secondary_muscles": [
+      "hip_flexors",
+      "triceps"
+    ],
+    "movement_pattern": "other",
+    "equipment": "bodyweight",
+    "difficulty": "advanced",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 0.95,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "high",
+    "force_curve": "flat",
+    "exercise_type": "isometric",
+    "body_region": "core",
+    "tags": [
+      "compression_skill"
+    ],
+    "compatible_goals": [
+      "calisthenics",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "7e941b0b-2ef3-5973-bc88-0150eee05224",
+    "slug": "kettlebell_goblet_cossack",
+    "name": "Cossack squat goblet",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "adductors",
+      "glutes"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "kettlebell",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.05,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "mobility_strength"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "c9a0ba39-342c-54a4-a476-fba538221109",
+    "slug": "band_pull_apart",
+    "name": "Pull-apart banda",
+    "primary_muscle": "rear_delts",
+    "secondary_muscles": [
+      "upper_back"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "band",
+    "difficulty": "beginner",
+    "fatigue_score": 2,
+    "stimulus_to_fatigue_ratio": 1.35,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "warmup_activation"
+    ],
+    "compatible_goals": [
+      "rehab",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 10,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "4dcbe676-0de8-56e8-b8a8-e3dae6346789",
+    "slug": "y_raise_manubri",
+    "name": "Y-raise manubri",
+    "primary_muscle": "rear_delts",
+    "secondary_muscles": [
+      "traps"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "dumbbell",
+    "difficulty": "beginner",
+    "fatigue_score": 2,
+    "stimulus_to_fatigue_ratio": 1.3,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "scapular_upward"
+    ],
+    "compatible_goals": [
+      "shoulder_health",
+      "rehab"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "23974aca-1fae-5565-87b8-e145e9a53c4d",
+    "slug": "cable_crossover",
+    "name": "Crossover alti-bassi",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "cable",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.22,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "cable_fly_angle"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "424972ff-930a-53ff-bc6f-0f1194047c87",
+    "slug": "single_leg_leg_press",
+    "name": "Leg press monopodalio",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "machine",
+    "difficulty": "intermediate",
+    "fatigue_score": 6,
+    "stimulus_to_fatigue_ratio": 1.18,
+    "unilateral": true,
+    "bilateral": false,
+    "stability_requirement": "moderate",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "unilateral_machine"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "sport_specific",
+      "rehab"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 120,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "94ca0300-04a9-5673-9263-3d5ad126884a",
+    "slug": "spoto_press",
+    "name": "Spoto press",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "triceps",
+      "front_delts"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 1.06,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "high",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "pause_on_chest",
+      "strength"
+    ],
+    "compatible_goals": [
+      "strength",
+      "muscle_gain"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "24495898-680d-58a2-9b8c-e03b965d197b",
+    "slug": "pin_squat",
+    "name": "Pin squat",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes"
+    ],
+    "movement_pattern": "squat",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 1.04,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "pins_weak_range"
+    ],
+    "compatible_goals": [
+      "strength"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 240,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "b9b01ecd-6e64-596b-a724-c4ceccaae7bf",
+    "slug": "snatch_grip_deadlift",
+    "name": "Stacco presa snatch",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "traps",
+      "lats",
+      "glutes"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 1.02,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "upper_back_emphasis"
+    ],
+    "compatible_goals": [
+      "strength",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "f2b1f15f-6abe-5bb7-95f8-d91dcd8fd3da",
+    "slug": "deficit_push_up",
+    "name": "Push-up da deficit",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.12,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "depth_rom"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "a33e4430-35c9-5c89-8d30-823ab0f3246b",
+    "slug": "feet_elevated_push_up",
+    "name": "Push-up piedi rialzati",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.1,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "decline_bodyweight"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 30,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "0c9ed48c-fd1c-50b8-a51f-c63f41315cc9",
+    "slug": "diamond_push_up",
+    "name": "Push-up rombo",
+    "primary_muscle": "triceps",
+    "secondary_muscles": [
+      "chest",
+      "front_delts"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "bodyweight",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.08,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "triceps_emphasis"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 0,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "e9fed37d-04bb-5d92-9808-1bb583acbf73",
+    "slug": "trx_row",
+    "name": "Rematore TRX",
+    "primary_muscle": "lats",
+    "secondary_muscles": [
+      "biceps",
+      "abs"
+    ],
+    "movement_pattern": "horizontal_pull",
+    "equipment": "other",
+    "difficulty": "beginner",
+    "fatigue_score": 4,
+    "stimulus_to_fatigue_ratio": 1.18,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "suspension",
+      "scalable"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "7a2aad54-f2c0-58d6-a7d1-a088b277609a",
+    "slug": "trx_push_up",
+    "name": "Push-up TRX",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps",
+      "abs"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "other",
+    "difficulty": "intermediate",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.08,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "moderate",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "unstable"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "medium",
+    "tempo_compatibility": "medium"
+  },
+  {
+    "id": "811beaee-01aa-5a6a-8583-a970ca4431dd",
+    "slug": "kettlebell_tgu",
+    "name": "Turkish get-up",
+    "primary_muscle": "glutes",
+    "secondary_muscles": [
+      "quads",
+      "side_delts",
+      "upper_back",
+      "abs"
+    ],
+    "movement_pattern": "other",
+    "equipment": "kettlebell",
+    "difficulty": "advanced",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 0.92,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "high",
+    "skill_requirement": "very_high",
+    "force_curve": "bell_shaped",
+    "exercise_type": "compound",
+    "body_region": "full",
+    "tags": [
+      "multiplanar_skill"
+    ],
+    "compatible_goals": [
+      "strength",
+      "sport_specific"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 90,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "57175ce6-8d65-59f2-9fc9-b5eae9406370",
+    "slug": "kettlebell_clean",
+    "name": "Clean kettlebell",
+    "primary_muscle": "quads",
+    "secondary_muscles": [
+      "glutes",
+      "traps",
+      "forearms"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "kettlebell",
+    "difficulty": "advanced",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 0.88,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "high",
+    "force_curve": "bell_shaped",
+    "exercise_type": "compound",
+    "body_region": "full",
+    "tags": [
+      "olympic_variant_conditioning"
+    ],
+    "compatible_goals": [
+      "sport_specific",
+      "strength"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "low"
+  },
+  {
+    "id": "f3deb84d-dc9d-52a7-8451-0392bc786253",
+    "slug": "banded_deadlift",
+    "name": "Stacco con bande",
+    "primary_muscle": "hamstrings",
+    "secondary_muscles": [
+      "glutes"
+    ],
+    "movement_pattern": "hinge",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 9,
+    "stimulus_to_fatigue_ratio": 1.06,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "moderate",
+    "force_curve": "ascending",
+    "exercise_type": "compound",
+    "body_region": "lower",
+    "tags": [
+      "accommodating_lockout"
+    ],
+    "compatible_goals": [
+      "strength"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 200,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "b701bd4e-6cbb-5262-8a3a-f25669308a94",
+    "slug": "paused_bench",
+    "name": "Panca con pausa",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "triceps",
+      "front_delts"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "barbell",
+    "difficulty": "advanced",
+    "fatigue_score": 8,
+    "stimulus_to_fatigue_ratio": 1.07,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "moderate",
+    "skill_requirement": "high",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "strength_off_chest"
+    ],
+    "compatible_goals": [
+      "strength"
+    ],
+    "injury_risk": "moderate",
+    "estimated_setup_time_sec": 180,
+    "estimated_session_cost": "high",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "9efd7857-14fe-5423-a070-dc7c0886c95a",
+    "slug": "spider_curl",
+    "name": "Spider curl",
+    "primary_muscle": "biceps",
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "movement_pattern": "other",
+    "equipment": "dumbbell",
+    "difficulty": "intermediate",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.3,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "ascending",
+    "exercise_type": "isolation",
+    "body_region": "upper",
+    "tags": [
+      "elbow_flex_short"
+    ],
+    "compatible_goals": [
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "a2221f6a-4610-5317-8174-b56d5b1c7f20",
+    "slug": "machine_chest_press",
+    "name": "Press pettorali macchina",
+    "primary_muscle": "chest",
+    "secondary_muscles": [
+      "front_delts",
+      "triceps"
+    ],
+    "movement_pattern": "horizontal_push",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 5,
+    "stimulus_to_fatigue_ratio": 1.2,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "descending",
+    "exercise_type": "compound",
+    "body_region": "upper",
+    "tags": [
+      "guided_press"
+    ],
+    "compatible_goals": [
+      "muscle_gain",
+      "general_fitness"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 60,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  },
+  {
+    "id": "61766e5d-da20-5b17-b612-1d247f4f1f79",
+    "slug": "hip_abduction_machine",
+    "name": "Abduzione anca macchina",
+    "primary_muscle": "glutes",
+    "secondary_muscles": [
+      "upper_back",
+      "abs"
+    ],
+    "movement_pattern": "other",
+    "equipment": "machine",
+    "difficulty": "beginner",
+    "fatigue_score": 3,
+    "stimulus_to_fatigue_ratio": 1.15,
+    "unilateral": false,
+    "bilateral": true,
+    "stability_requirement": "low",
+    "skill_requirement": "low",
+    "force_curve": "flat",
+    "exercise_type": "isolation",
+    "body_region": "lower",
+    "tags": [
+      "hip_abduction",
+      "glute_med"
+    ],
+    "compatible_goals": [
+      "rehab",
+      "muscle_gain"
+    ],
+    "injury_risk": "low",
+    "estimated_setup_time_sec": 45,
+    "estimated_session_cost": "low",
+    "tempo_compatibility": "high"
+  }
+]

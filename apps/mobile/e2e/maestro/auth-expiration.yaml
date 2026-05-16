@@ -1,0 +1,28 @@
+appId: ${APP_ID_IOS}
+tags:
+  - nightly
+  - reliability
+---
+# Hypothesis: when the access token expires mid-flow, the HTTP client
+# refreshes silently and the user does not see an error. We simulate this
+# by setting the device date forward beyond the JWT expiry window.
+
+- launchApp:
+    clearState: true
+- runFlow: helpers/sign-in.yaml
+
+# Advance device clock (requires Maestro Cloud / privileged simulator).
+- runFlow:
+    when:
+      platform: ios
+    commands:
+      - runScript: ../scripts/advance-ios-clock.sh
+
+- tapOn: 'Inizia sessione'
+
+- assertVisible:
+    text: 'set'
+    timeout: 20000
+
+# No "Accedi" screen — auth survived the refresh.
+- assertNotVisible: 'Accedi'

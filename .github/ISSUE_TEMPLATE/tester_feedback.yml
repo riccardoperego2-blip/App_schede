@@ -1,0 +1,79 @@
+name: "Tester feedback (alpha)"
+description: "Qualitative feedback on workouts, onboarding, or UX. Not a bug report."
+title: "[FB] <short summary>"
+labels: ["alpha", "feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for non-bug feedback: workout quality, onboarding,
+        UX friction, or anything else qualitative. If you found a bug, use
+        the **Bug report (alpha)** template instead.
+
+        We do not collect feature requests during alpha — please hold those
+        for beta.
+
+  - type: input
+    id: tester_id
+    attributes:
+      label: Tester id
+      placeholder: "A042"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: topic
+    attributes:
+      label: Topic
+      options:
+        - "Workout — too hard / too easy / boring"
+        - "Workout — duration"
+        - "Workout — exercise selection felt wrong"
+        - "Onboarding — confusing or too long"
+        - "Workout screen — interaction in the gym"
+        - "Dashboard — clarity"
+        - "Sync / offline — felt unreliable"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: "When and where did this happen? What were you doing?"
+      placeholder: |
+        Wednesday morning at the gym, mid-workout, third exercise.
+    validations:
+      required: true
+
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Your feedback
+      description: "One short paragraph. Be specific. Examples beat generalities."
+      placeholder: |
+        The prescribed weight for incline DB press felt 30% too heavy. I had
+        to drop to 18 kg instead of 26 kg and barely hit 6 reps on the first set.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Did this affect your workout?
+      options:
+        - "No — just feedback"
+        - "Yes — I adjusted on my own"
+        - "Yes — I skipped part of the workout"
+        - "Yes — I stopped the workout"
+    validations:
+      required: true
+
+  - type: input
+    id: app_version
+    attributes:
+      label: App version + build
+      placeholder: "0.2.0 (42)"
+    validations:
+      required: true

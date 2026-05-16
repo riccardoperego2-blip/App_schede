@@ -1,0 +1,133 @@
+name: "Bug report (alpha)"
+description: "Report a bug found during the internal alpha."
+title: "[BUG] <short summary>"
+labels: ["alpha", "bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please answer all required
+        fields — they let us triage in minutes instead of hours.
+
+  - type: input
+    id: tester_id
+    attributes:
+      label: Tester id
+      description: "Your alpha tester id (e.g. A042). Leave empty if you are internal."
+      placeholder: "A042"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: How bad is it?
+      description: "Our severity matrix is in docs/launch/SEVERITY_MATRIX.md"
+      options:
+        - "P1 — app unusable / data loss / crash on launch"
+        - "P2 — core flow broken for me"
+        - "P3 — annoying but I have a workaround"
+        - "P4 — cosmetic / copy"
+      default: 2
+    validations:
+      required: true
+
+  - type: input
+    id: app_version
+    attributes:
+      label: App version + build
+      description: "Profile → About in the app, or TestFlight build number."
+      placeholder: "0.2.0 (42)"
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Device + OS
+      placeholder: "iPhone 12, iOS 17.5 / Pixel 6, Android 14"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: connectivity
+    attributes:
+      label: Connectivity at the time
+      options:
+        - "Wi-Fi"
+        - "Mobile data — good signal"
+        - "Mobile data — bad signal"
+        - "Offline (airplane mode / no signal)"
+        - "Switched between networks"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened?
+      description: "Describe what you saw. One paragraph is fine."
+      placeholder: |
+        I tapped 'Complete set' on the second set of bench press and the set
+        appeared logged. After I went back to the dashboard the workout still
+        showed 1/3 sets done.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      placeholder: "The dashboard to show 2/3 sets done."
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: "Even if you cannot reproduce, list what you did."
+      placeholder: |
+        1. Sign in as ...
+        2. Open today's workout
+        3. ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: repro_rate
+    attributes:
+      label: How often does it happen?
+      options:
+        - "Every time I try"
+        - "Sometimes (less than half the time)"
+        - "Only once so far"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / screen recording
+      description: "Drag a screenshot/video here, or paste a link."
+    validations:
+      required: false
+
+  - type: input
+    id: client_session_id
+    attributes:
+      label: "(Optional) client_session_id"
+      description: "If you have diagnostics enabled, paste the value from Profile → About → Diagnostics."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmations
+      options:
+        - label: "I checked there is no existing issue for the same problem."
+          required: true
+        - label: "I am running the latest TestFlight / Play Internal build."
+          required: true

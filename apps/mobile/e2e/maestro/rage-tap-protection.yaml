@@ -1,0 +1,31 @@
+appId: ${APP_ID_IOS}
+tags:
+  - release
+  - reliability
+---
+# Hypothesis: rapidly tapping the Complete Set button never submits the same
+# set twice. The store enforces idempotency on `completeSet`.
+
+- launchApp:
+    clearState: true
+- runFlow: helpers/sign-in.yaml
+
+- tapOn: 'Inizia sessione'
+- assertVisible:
+    text: 'set'
+    timeout: 15000
+
+# Five quick taps on the same target. The store should only accept the first.
+- repeat:
+    times: 5
+    commands:
+      - tapOn:
+          text: '✓'
+          index: 0
+          waitToSettleTimeoutMs: 0
+
+# Skip rest and verify only one set is in the completed state.
+- tapOn: 'Skip'
+
+- assertVisible:
+    text: '1/'   # appears in the "1/N set" exercise header

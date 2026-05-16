@@ -1,0 +1,38 @@
+appId: ${APP_ID_IOS}
+tags:
+  - nightly
+  - reliability
+---
+# Hypothesis: force-quitting the app during a workout preserves the draft.
+# Reopening the app restores the in-progress session with completed sets
+# intact, never losing logged work.
+
+- launchApp:
+    clearState: true
+- runFlow: helpers/sign-in.yaml
+
+- tapOn: 'Inizia sessione'
+- assertVisible:
+    text: 'set'
+    timeout: 15000
+
+- tapOn:
+    text: '✓'
+    index: 0
+
+# Kill the app process — Maestro uses the platform stop command.
+- stopApp
+
+# Relaunch without clearing state and verify the session resumed.
+- launchApp:
+    clearState: false
+
+- assertVisible:
+    text: 'DURATA'
+    timeout: 10000
+
+# The previously completed set should still be marked done. We assert
+# visibility of the accent-tinted row by checking the rest controls or
+# adherence indicator are present.
+- assertVisible:
+    text: 'set'

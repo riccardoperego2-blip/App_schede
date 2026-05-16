@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Schede",
+    "slug": "schede-fitness",
+    "scheme": "schede",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0B0F14"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "fitness.schede.app",
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsLocalNetworking": true
+        }
+      }
+    },
+    "android": {
+      "package": "fitness.schede.app",
+      "usesCleartextTraffic": true,
+      "adaptiveIcon": {
+        "backgroundColor": "#0B0F14"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "apiBaseUrl": "http://192.168.1.11:3000",
+      "flags": {
+        "analytics_enabled": true,
+        "realtime_enabled": true,
+        "offline_queue_enabled": true,
+        "circuit_breaker_enabled": true,
+        "keep_awake_default": true
+      }
+    }
+  }
+}
