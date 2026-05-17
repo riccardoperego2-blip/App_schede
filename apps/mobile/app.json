@@ -7,7 +7,9 @@
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "icon": "./assets/icon.png",
     "splash": {
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#0B0F14"
     },
@@ -24,6 +26,7 @@
       "package": "fitness.schede.app",
       "usesCleartextTraffic": true,
       "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0B0F14"
       }
     },
@@ -42,7 +45,12 @@
         "offline_queue_enabled": true,
         "circuit_breaker_enabled": true,
         "keep_awake_default": true
+      },
+      "router": {},
+      "eas": {
+        "projectId": "e3ea8f96-4191-49f2-8f0b-52dce096e728"
       }
-    }
+    },
+    "owner": "pernyngual01"
   }
 }

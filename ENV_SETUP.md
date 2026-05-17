@@ -144,6 +144,10 @@ pnpm --filter @schede/mobile start
 
 - Set secrets in **EAS Secrets** or your CI provider; map them to `EXPO_PUBLIC_*`
   at build time for mobile.
+- Mobile EAS profiles live in `apps/mobile/eas.json`; they set
+  `EXPO_PUBLIC_API_URL=https://appschede-production.up.railway.app`.
+- Set `EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPABASE_ANON_KEY` in EAS
+  Environment Variables for `development`, `preview`, and `production`.
 - Backend runs on Node — inject `DB_ENV_SOURCE=PG_PARTS` + `PGHOST`/`PGUSER`/`PGPASSWORD` (preferred on Railway), or a URL variable on other providers, plus `SUPABASE_*`, `CORS_ORIGINS`, `NODE_ENV=production`
   via the platform’s secret manager (Fly, Railway, Kubernetes Secrets, etc.).
 
