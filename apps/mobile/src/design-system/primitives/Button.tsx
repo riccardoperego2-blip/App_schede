@@ -8,8 +8,8 @@ type Size = 'sm' | 'md' | 'lg';
 
 const variantClass: Record<Variant, string> = {
   primary: 'bg-accent active:bg-accent-strong',
-  secondary: 'bg-bg-elevated active:bg-bg-surface border border-bg-elevated',
-  ghost: 'bg-transparent active:bg-bg-elevated',
+  secondary: 'bg-bg-glass active:bg-bg-elevated border border-border-soft',
+  ghost: 'bg-transparent active:bg-bg-elevated border border-transparent',
   danger: 'bg-danger/15 active:bg-danger/25 border border-danger/40',
 };
 
@@ -21,9 +21,9 @@ const variantText: Record<Variant, 'inverse' | 'primary' | 'danger'> = {
 };
 
 const sizeClass: Record<Size, string> = {
-  sm: 'h-10 px-3',
-  md: 'h-12 px-4',
-  lg: 'h-14 px-5',
+  sm: 'h-11 px-4',
+  md: 'h-13 min-h-[52px] px-5',
+  lg: 'h-15 min-h-[60px] px-6',
 };
 
 export interface ButtonProps extends Omit<PressableProps, 'children'> {

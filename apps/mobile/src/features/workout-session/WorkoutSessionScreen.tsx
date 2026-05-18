@@ -378,7 +378,7 @@ export function WorkoutSessionScreen() {
 
     <Screen>
 
-      <View className="flex-row items-center justify-between pb-3">
+      <Card elevated accent className="flex-row items-center justify-between">
 
         <View>
 
@@ -402,7 +402,7 @@ export function WorkoutSessionScreen() {
 
             onPress={() => (session.status === 'paused' ? session.resume() : session.pause())}
 
-            className="rounded-pill bg-bg-elevated px-4 py-2"
+            className="rounded-pill border border-border-soft bg-bg-glass px-4 py-2"
 
           >
 
@@ -438,7 +438,7 @@ export function WorkoutSessionScreen() {
 
             }
 
-            className="rounded-pill bg-bg-elevated px-4 py-2"
+            className="rounded-pill border border-border-soft bg-bg-glass px-4 py-2"
 
           >
 
@@ -452,7 +452,7 @@ export function WorkoutSessionScreen() {
 
         </View>
 
-      </View>
+      </Card>
 
 
 
@@ -480,7 +480,7 @@ export function WorkoutSessionScreen() {
 
         showsVerticalScrollIndicator={false}
 
-        contentContainerStyle={{ paddingTop: 12, paddingBottom: 120, gap: 12 }}
+        contentContainerStyle={{ paddingTop: 16, paddingBottom: 120, gap: 14 }}
 
       >
 

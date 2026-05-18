@@ -217,10 +217,13 @@ export function ProfileScreen() {
       }}
     >
       <View className="gap-6 pb-12">
-        <View>
+        <Card elevated accent className="gap-2">
+          <Text variant="caption" tone="muted">
+            ACCOUNT
+          </Text>
           <Text variant="display">Profilo</Text>
-          <Text tone="muted">{user?.email}</Text>
-        </View>
+          <Text tone="secondary">{user?.email}</Text>
+        </Card>
 
         <Card elevated className="gap-4">
           <Text variant="subtitle">Allenamento</Text>

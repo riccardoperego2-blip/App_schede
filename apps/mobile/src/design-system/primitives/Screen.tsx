@@ -23,7 +23,7 @@ export function Screen({
       <StatusBar style="light" />
       {scroll ? (
         <ScrollView
-          contentContainerClassName={`p-5 ${contentClassName}`}
+          contentContainerClassName={`px-5 py-6 ${contentClassName}`}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
           {...scrollProps}
@@ -31,7 +31,7 @@ export function Screen({
           {children}
         </ScrollView>
       ) : (
-        <View className={`flex-1 p-5 ${contentClassName}`}>{children}</View>
+        <View className={`flex-1 px-5 py-6 ${contentClassName}`}>{children}</View>
       )}
     </SafeAreaView>
   );

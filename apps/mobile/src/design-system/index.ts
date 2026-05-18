@@ -4,5 +4,7 @@ export { Text } from './primitives/Text';
 export { Screen } from './primitives/Screen';
 export { Button } from './primitives/Button';
 export { Card } from './primitives/Card';
+export { Chip } from './primitives/Chip';
+export { MetricCard } from './primitives/MetricCard';
 export { Stepper } from './primitives/Stepper';
 export { Section } from './primitives/Section';

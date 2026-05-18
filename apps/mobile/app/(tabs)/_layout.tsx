@@ -5,7 +5,11 @@ import { Text } from '../../src/design-system';
 
 function TabIcon({ label, focused }: { label: string; focused: boolean }) {
   return (
-    <Text variant="tiny" tone={focused ? 'accent' : 'secondary'}>
+    <Text
+      variant="tiny"
+      tone={focused ? 'accent' : 'muted'}
+      className={focused ? 'rounded-pill bg-accent-subtle px-3 py-1' : 'px-3 py-1'}
+    >
       {label.toUpperCase()}
     </Text>
   );
@@ -23,7 +27,8 @@ export default function TabsLayout() {
         tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor: '#10161D',
-          borderTopWidth: 0,
+          borderTopWidth: 1,
+          borderTopColor: '#223040',
           height: tabBarHeight,
           paddingTop: 8,
           paddingBottom: bottomPadding,

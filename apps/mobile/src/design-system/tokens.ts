@@ -14,9 +14,9 @@ export const spacing = {
 } as const;
 
 export const typography = {
-  display: { fontSize: 32, lineHeight: 38, letterSpacing: -0.5, fontWeight: '700' as const },
-  title: { fontSize: 24, lineHeight: 30, letterSpacing: -0.3, fontWeight: '700' as const },
-  subtitle: { fontSize: 18, lineHeight: 24, fontWeight: '600' as const },
+  display: { fontSize: 36, lineHeight: 42, letterSpacing: -1, fontWeight: '800' as const },
+  title: { fontSize: 25, lineHeight: 31, letterSpacing: -0.5, fontWeight: '800' as const },
+  subtitle: { fontSize: 18, lineHeight: 24, letterSpacing: -0.15, fontWeight: '700' as const },
   body: { fontSize: 15, lineHeight: 22, fontWeight: '500' as const },
   caption: { fontSize: 13, lineHeight: 18, fontWeight: '500' as const },
   tiny: { fontSize: 11, lineHeight: 14, fontWeight: '600' as const, letterSpacing: 0.8 },

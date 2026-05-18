@@ -57,7 +57,7 @@ export function PlanDayDetailScreen() {
           <Text tone="accent">← Indietro</Text>
         </Pressable>
 
-        <View>
+        <Card elevated accent className="gap-2">
           <Text variant="caption" tone="muted">
             SETTIMANA {data.weekNumber}
             {data.isDeload ? ' · DELOAD' : ''}
@@ -66,10 +66,10 @@ export function PlanDayDetailScreen() {
           <Text tone="muted">
             {data.exercises.length} {data.exercises.length === 1 ? 'esercizio' : 'esercizi'}
           </Text>
-        </View>
+        </Card>
 
         {data.exercises.map((exercise) => (
-          <Card key={exercise.id} elevated className="gap-2">
+          <Card key={exercise.id} elevated className="gap-3">
             <Text variant="subtitle">{exercise.name}</Text>
             <Text tone="muted" variant="caption">
               {exercise.primaryMuscle} · rest {exercise.restSeconds}s
@@ -84,7 +84,7 @@ export function PlanDayDetailScreen() {
               return (
                 <View
                   key={set.setIndex}
-                  className="flex-row items-center justify-between rounded-card bg-bg-surface p-3"
+                  className="flex-row items-center justify-between rounded-card border border-border-soft bg-bg-surface p-3"
                 >
                   <Text variant="caption">Serie {set.setIndex}</Text>
                   <Text tone="muted">

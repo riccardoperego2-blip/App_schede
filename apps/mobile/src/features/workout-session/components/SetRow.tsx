@@ -20,12 +20,12 @@ function SetRowImpl({ set, onUpdate, onComplete }: SetRowProps) {
 
   return (
     <View
-      className={`gap-2 rounded-card p-3 ${
-        set.completed ? 'bg-accent/10' : 'bg-bg-surface'
+      className={`gap-2 rounded-card border p-3 ${
+        set.completed ? 'border-accent/30 bg-accent/10' : 'border-border-soft bg-bg-surface'
       }`}
     >
       <View className="flex-row items-center gap-3">
-        <View className="h-8 w-8 items-center justify-center rounded-full bg-bg-elevated">
+        <View className="h-8 w-8 items-center justify-center rounded-full bg-bg-glass">
           <Text variant="caption">{set.setIndex}</Text>
         </View>
         <View className="flex-1 flex-row items-center gap-2">
@@ -43,7 +43,7 @@ function SetRowImpl({ set, onUpdate, onComplete }: SetRowProps) {
               placeholder={set.targetLoadKg ? String(set.targetLoadKg) : '—'}
               placeholderTextColor="#6B7585"
               editable={!set.completed}
-              className="h-10 rounded-md bg-bg-elevated px-3 text-text-primary"
+              className="h-10 rounded-xl border border-border-soft bg-bg-glass px-3 text-text-primary"
             />
           </View>
           <View className="flex-1">
@@ -60,7 +60,7 @@ function SetRowImpl({ set, onUpdate, onComplete }: SetRowProps) {
               placeholder={target}
               placeholderTextColor="#6B7585"
               editable={!set.completed}
-              className="h-10 rounded-md bg-bg-elevated px-3 text-text-primary"
+              className="h-10 rounded-xl border border-border-soft bg-bg-glass px-3 text-text-primary"
             />
           </View>
         </View>
@@ -68,7 +68,7 @@ function SetRowImpl({ set, onUpdate, onComplete }: SetRowProps) {
           onPress={onComplete}
           disabled={set.completed}
           className={`h-10 w-10 items-center justify-center rounded-full ${
-            set.completed ? 'bg-accent' : 'bg-bg-elevated active:bg-accent/40'
+            set.completed ? 'bg-accent' : 'bg-bg-glass active:bg-accent/40'
           }`}
         >
           <Text tone={set.completed ? 'inverse' : 'primary'} variant="subtitle">
@@ -95,7 +95,7 @@ function SetRowImpl({ set, onUpdate, onComplete }: SetRowProps) {
               placeholder={String(set.targetRpe)}
               placeholderTextColor="#6B7585"
               editable={!set.completed}
-              className="h-9 rounded-md bg-bg-elevated px-3 text-text-primary"
+              className="h-9 rounded-xl border border-border-soft bg-bg-glass px-3 text-text-primary"
             />
           </View>
         ) : null}

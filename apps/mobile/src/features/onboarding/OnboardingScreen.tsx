@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { View, Pressable } from 'react-native';
+import { View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Screen, Text, Button, Card, Stepper } from '../../design-system';
+import { Screen, Text, Button, Card, Stepper, Chip } from '../../design-system';
 import { useOnboardingStore } from './onboarding.store';
 import { useAuthStore } from '../../stores/auth.store';
 import { api } from '../../lib/api/sdk';
@@ -25,16 +25,7 @@ function StepIndicator({ current }: { current: number }) {
 
 function GoalChip({ label, value, current, onPress }: { label: string; value: string; current: string; onPress: () => void }) {
   const active = value === current;
-  return (
-    <Pressable
-      onPress={onPress}
-      className={`flex-1 rounded-card p-4 ${active ? 'bg-accent' : 'bg-bg-elevated'}`}
-    >
-      <Text tone={active ? 'inverse' : 'primary'} variant="body" className="text-center font-semibold">
-        {label}
-      </Text>
-    </Pressable>
-  );
+  return <Chip label={label} active={active} onPress={onPress} className="flex-1 rounded-card py-4" />;
 }
 
 export function OnboardingScreen() {
@@ -84,14 +75,14 @@ export function OnboardingScreen() {
     switch (state.stepIndex) {
       case 0:
         return (
-          <Card className="gap-4">
+          <Card elevated accent className="gap-4">
             <Text variant="title">Come ti chiami?</Text>
             <Text tone="muted">Personalizziamo la tua esperienza.</Text>
           </Card>
         );
       case 1:
         return (
-          <Card className="gap-4">
+          <Card elevated className="gap-4">
             <Text variant="title">Qual è il tuo obiettivo?</Text>
             <View className="gap-2">
               <View className="flex-row gap-2">
@@ -127,7 +118,7 @@ export function OnboardingScreen() {
         );
       case 2:
         return (
-          <Card className="gap-4">
+          <Card elevated className="gap-4">
             <Text variant="title">Esperienza</Text>
             <View className="flex-row gap-2">
               {(['beginner', 'intermediate', 'advanced'] as const).map((lvl) => (
@@ -144,7 +135,7 @@ export function OnboardingScreen() {
         );
       case 3:
         return (
-          <Card className="gap-6">
+          <Card elevated className="gap-6">
             <View className="gap-2">
               <Text variant="title">Giorni a settimana</Text>
               <Stepper
@@ -170,14 +161,14 @@ export function OnboardingScreen() {
         );
       case 4:
         return (
-          <Card className="gap-3">
+          <Card elevated className="gap-3">
             <Text variant="title">Attrezzatura disponibile</Text>
             <Text tone="muted">Selezione predefinita per palestra completa. Personalizza più tardi.</Text>
           </Card>
         );
       case 5:
         return (
-          <Card className="gap-3">
+          <Card elevated accent className="gap-3">
             <Text variant="title">Pronto</Text>
             <Text tone="muted">
               Generiamo il tuo programma {state.trainingDaysPerWeek}× a settimana, {state.sessionDurationMin}{'\''} ciascuna.

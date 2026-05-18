@@ -4,14 +4,14 @@
  */
 export const theme = {
   dark: {
-    background: '#0B0F14',
-    surface: '#10161D',
-    elevated: '#171F28',
-    border: '#1F2832',
-    accent: '#5BE3A1',
-    accentMuted: '#143C2A',
-    text: '#F4F6F8',
-    textSecondary: '#A4ADBA',
+    background: '#070B10',
+    surface: '#0E151D',
+    elevated: '#151F2A',
+    border: '#223040',
+    accent: '#22C55E',
+    accentMuted: '#102E20',
+    text: '#F7FAFC',
+    textSecondary: '#B4C0CD',
     danger: '#F26C6C',
     warning: '#F5B642',
   },

@@ -25,13 +25,13 @@ export function Stepper({ value, min = 0, max = 999, step = 1, onChange, suffix 
       <Pressable
         hitSlop={hitSlop}
         onPress={() => updateValue(-step)}
-        className="h-12 w-12 items-center justify-center rounded-full bg-bg-elevated active:bg-bg-surface"
+        className="h-12 w-12 items-center justify-center rounded-full border border-border-soft bg-bg-glass active:bg-bg-elevated"
       >
         <Text variant="subtitle" tone="primary">
           −
         </Text>
       </Pressable>
-      <View className="min-w-[80px] items-center">
+      <View className="min-w-[86px] items-center rounded-pill border border-border-soft bg-bg-surface px-3 py-2">
         <Text variant="title" tone="primary">
           {value}
           {suffix ? <Text variant="caption" tone="muted">{` ${suffix}`}</Text> : null}

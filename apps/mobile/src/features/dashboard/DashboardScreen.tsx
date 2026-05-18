@@ -1,6 +1,6 @@
 import { View, RefreshControl, ScrollView } from 'react-native';
 import { type Href, useRouter } from 'expo-router';
-import { Screen, Text, Button, Card, Section } from '../../design-system';
+import { Screen, Text, Button, Card, Section, MetricCard } from '../../design-system';
 import { useDashboard, useTodaysWorkout } from '../../hooks/use-dashboard';
 import { useAuthStore } from '../../stores/auth.store';
 import { useRealtimeNotifications } from '../../hooks/use-realtime-notifications';
@@ -58,16 +58,21 @@ export function DashboardScreen() {
           />
         }
       >
-        <View className="gap-6 pb-12">
-          <View className="flex-row items-center justify-between">
-            <View>
+        <View className="gap-7 pb-12">
+          <Card elevated accent className="gap-5 overflow-hidden">
+            <View className="absolute right-[-40px] top-[-70px] h-48 w-48 rounded-full bg-accent/20" />
+            <View className="absolute bottom-[-80px] left-[-50px] h-44 w-44 rounded-full bg-accent-neon/10" />
+            <View className="flex-row items-start justify-between">
+              <View className="flex-1 pr-4">
               <Text variant="caption" tone="muted">
-                CIAO
+                SCHEDE FITNESS
               </Text>
-              <Text variant="display">{summary?.user.displayName ?? '—'}</Text>
+                <Text variant="display">{summary?.user.displayName ?? '—'}</Text>
+                <Text tone="secondary">Il tuo coach AI per allenarti meglio oggi.</Text>
+              </View>
+              {summary ? <ReadinessPill band={summary.readinessHint} /> : null}
             </View>
-            {summary ? <ReadinessPill band={summary.readinessHint} /> : null}
-          </View>
+          </Card>
 
           {!isOnline ? (
             <Card className="border border-warning/30 bg-warning/10">
@@ -78,8 +83,8 @@ export function DashboardScreen() {
             </Card>
           ) : null}
 
-          <Section title="Oggi" subtitle={today ? `Settimana ${today.weekNumber}` : undefined}>
-            <Card elevated className="gap-3">
+          <Section title="Oggi" subtitle={today ? `Settimana ${today.weekNumber}` : 'Sessione del giorno'}>
+            <Card elevated className="gap-4">
               {today ? (
                 <>
                   <View className="flex-row items-center justify-between">
@@ -99,6 +104,7 @@ export function DashboardScreen() {
                   </View>
                   <Button
                     label="Inizia sessione"
+                    size="lg"
                     onPress={() => router.push('/workout/session')}
                   />
                 </>
@@ -126,19 +132,16 @@ export function DashboardScreen() {
             </Card>
           </Section>
 
-          <Section title="Settimana" subtitle="Volume completato">
-            <Card>
-              <View className="flex-row items-end justify-between">
-                <Text variant="display">
-                  {summary ? `${summary.weeklyVolume.completed}` : '—'}
-                  <Text tone="muted" variant="body">
-                    {' '}
-                    / {summary?.weeklyVolume.planned ?? 0} set
-                  </Text>
-                </Text>
-                <Text tone="muted">Streak {summary?.streakDays ?? 0}🔥</Text>
-              </View>
-            </Card>
+          <Section title="Settimana" subtitle="Focus e consistenza">
+            <View className="flex-row gap-3">
+              <MetricCard
+                accent
+                label="Volume"
+                value={summary ? `${summary.weeklyVolume.completed}/${summary.weeklyVolume.planned}` : '—'}
+                helper="set completati"
+              />
+              <MetricCard label="Streak" value={`${summary?.streakDays ?? 0}`} helper="giorni attivi" />
+            </View>
           </Section>
         </View>
       </ScrollView>

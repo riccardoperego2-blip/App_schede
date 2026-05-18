@@ -10,11 +10,11 @@ interface SectionProps {
 
 export function Section({ title, subtitle, trailing, children }: SectionProps) {
   return (
-    <View className="gap-3">
+    <View className="gap-4">
       <View className="flex-row items-end justify-between">
-        <View>
+        <View className="flex-1 pr-4">
           <Text variant="title">{title}</Text>
-          {subtitle ? <Text tone="muted">{subtitle}</Text> : null}
+          {subtitle ? <Text tone="muted" variant="caption">{subtitle}</Text> : null}
         </View>
         {trailing}
       </View>

@@ -17,7 +17,7 @@ export function RestTimer({ restEndsAt, onAdd, onSkip }: RestTimerProps) {
   const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
   return (
-    <View className="rounded-card bg-accent/10 p-4">
+    <View className="rounded-card border border-accent/30 bg-accent-subtle/60 p-5">
       <View className="flex-row items-center justify-between">
         <View>
           <Text variant="caption" tone="accent">
@@ -30,11 +30,11 @@ export function RestTimer({ restEndsAt, onAdd, onSkip }: RestTimerProps) {
         <View className="flex-row gap-2">
           <Pressable
             onPress={() => onAdd(15)}
-            className="rounded-pill bg-bg-elevated px-3 py-2"
+            className="rounded-pill border border-border-soft bg-bg-glass px-3 py-2"
           >
             <Text variant="caption">+15s</Text>
           </Pressable>
-          <Pressable onPress={onSkip} className="rounded-pill bg-bg-elevated px-3 py-2">
+          <Pressable onPress={onSkip} className="rounded-pill border border-border-soft bg-bg-glass px-3 py-2">
             <Text variant="caption">Skip</Text>
           </Pressable>
         </View>

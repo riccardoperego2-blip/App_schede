@@ -68,10 +68,13 @@ export function PlanOverviewScreen() {
           <Text tone="accent">← Indietro</Text>
         </Pressable>
 
-        <View>
+        <Card elevated accent className="gap-2">
+          <Text variant="caption" tone="muted">
+            COACH AI
+          </Text>
           <Text variant="display">Il tuo piano</Text>
-          <Text tone="muted">{data.name}</Text>
-        </View>
+          <Text tone="secondary">{data.name}</Text>
+        </Card>
 
         {data.weeks.map((week) => (
           <View key={week.weekNumber} className="gap-3">
@@ -90,8 +93,11 @@ export function PlanOverviewScreen() {
 
             {week.days.map((day) => (
               <Pressable key={day.workoutDayId} onPress={() => openDay(day.workoutDayId)}>
-                <Card elevated className="gap-1">
-                  <Text variant="subtitle">{day.dayLabel}</Text>
+                <Card elevated className="gap-2">
+                  <View className="flex-row items-center justify-between">
+                    <Text variant="subtitle">{day.dayLabel}</Text>
+                    <Text tone="accent">Apri</Text>
+                  </View>
                   <Text tone="muted">
                     {day.exerciseCount} {day.exerciseCount === 1 ? 'esercizio' : 'esercizi'} · ~
                     {day.estimatedDurationMin}&apos;
