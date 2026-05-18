@@ -169,11 +169,35 @@ export interface HistoryListResponse {
 export interface AnalyticsOverview {
   readonly weeklyVolumeSeries: Array<{ weekStart: string; volumeKg: number }>;
   readonly muscleDistribution: Array<{ muscleGroup: string; sets: number }>;
+  readonly personalRecords: Array<{
+    readonly exerciseSlug: string;
+    readonly exerciseName: string;
+    readonly bestWeightKg: number | null;
+    readonly bestVolumeKg: number | null;
+    readonly bestReps: number | null;
+  }>;
+  readonly topExercisesByVolume: Array<{
+    readonly exerciseSlug: string;
+    readonly exerciseName: string;
+    readonly volumeKg: number;
+    readonly sets: number;
+    readonly bestWeightKg: number | null;
+    readonly bestReps: number | null;
+  }>;
+  readonly mostTrainedExercises: Array<{
+    readonly exerciseSlug: string;
+    readonly exerciseName: string;
+    readonly sets: number;
+    readonly sessions: number;
+  }>;
   readonly readinessTrend: Array<{ date: string; score: number; band: 'green' | 'yellow' | 'red' }>;
   /** Ratio 0.0–1.0 (not 0–100). Multiply by 100 only in UI formatters. */
   readonly adherencePct: number;
   readonly completedSessions: number;
+  readonly totalSessions: number;
   readonly totalVolumeKg: number | null;
+  readonly allTimeVolumeKg: number | null;
+  readonly last4WeeksVolumeKg: number | null;
   readonly streakDays: number;
   readonly sessionsThisWeek: number;
 }

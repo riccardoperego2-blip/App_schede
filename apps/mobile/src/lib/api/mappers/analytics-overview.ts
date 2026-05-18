@@ -71,13 +71,61 @@ export function mapAnalyticsOverview(raw: AnalyticsOverview | Record<string, unk
       })
     : [];
 
+  const personalRecordsRaw = readField(o, 'personalRecords', 'personal_records');
+  const personalRecords = Array.isArray(personalRecordsRaw)
+    ? personalRecordsRaw.map((entry) => {
+        const row = (entry && typeof entry === 'object' ? entry : {}) as Record<string, unknown>;
+        return {
+          exerciseSlug: String(readField(row, 'exerciseSlug', 'exercise_slug') ?? ''),
+          exerciseName: String(readField(row, 'exerciseName', 'exercise_name') ?? ''),
+          bestWeightKg: parseVolume(readField(row, 'bestWeightKg', 'best_weight_kg')),
+          bestVolumeKg: parseVolume(readField(row, 'bestVolumeKg', 'best_volume_kg')),
+          bestReps: parseVolume(readField(row, 'bestReps', 'best_reps')),
+        };
+      })
+    : [];
+
+  const topVolumeRaw = readField(o, 'topExercisesByVolume', 'top_exercises_by_volume');
+  const topExercisesByVolume = Array.isArray(topVolumeRaw)
+    ? topVolumeRaw.map((entry) => {
+        const row = (entry && typeof entry === 'object' ? entry : {}) as Record<string, unknown>;
+        return {
+          exerciseSlug: String(readField(row, 'exerciseSlug', 'exercise_slug') ?? ''),
+          exerciseName: String(readField(row, 'exerciseName', 'exercise_name') ?? ''),
+          volumeKg: parseNumber(readField(row, 'volumeKg', 'volume_kg'), 0),
+          sets: parseNumber(readField(row, 'sets'), 0),
+          bestWeightKg: parseVolume(readField(row, 'bestWeightKg', 'best_weight_kg')),
+          bestReps: parseVolume(readField(row, 'bestReps', 'best_reps')),
+        };
+      })
+    : [];
+
+  const mostTrainedRaw = readField(o, 'mostTrainedExercises', 'most_trained_exercises');
+  const mostTrainedExercises = Array.isArray(mostTrainedRaw)
+    ? mostTrainedRaw.map((entry) => {
+        const row = (entry && typeof entry === 'object' ? entry : {}) as Record<string, unknown>;
+        return {
+          exerciseSlug: String(readField(row, 'exerciseSlug', 'exercise_slug') ?? ''),
+          exerciseName: String(readField(row, 'exerciseName', 'exercise_name') ?? ''),
+          sets: parseNumber(readField(row, 'sets'), 0),
+          sessions: parseNumber(readField(row, 'sessions'), 0),
+        };
+      })
+    : [];
+
   return {
     weeklyVolumeSeries,
     muscleDistribution,
+    personalRecords,
+    topExercisesByVolume,
+    mostTrainedExercises,
     readinessTrend,
     adherencePct: normalizeAdherencePct(readField(o, 'adherencePct', 'adherence_pct')),
     completedSessions: parseNumber(readField(o, 'completedSessions', 'completed_sessions'), 0),
+    totalSessions: parseNumber(readField(o, 'totalSessions', 'total_sessions'), 0),
     totalVolumeKg: parseVolume(readField(o, 'totalVolumeKg', 'total_volume_kg')),
+    allTimeVolumeKg: parseVolume(readField(o, 'allTimeVolumeKg', 'all_time_volume_kg')),
+    last4WeeksVolumeKg: parseVolume(readField(o, 'last4WeeksVolumeKg', 'last_4_weeks_volume_kg')),
     streakDays: parseNumber(readField(o, 'streakDays', 'streak_days'), 0),
     sessionsThisWeek: parseNumber(readField(o, 'sessionsThisWeek', 'sessions_this_week'), 0),
   };
