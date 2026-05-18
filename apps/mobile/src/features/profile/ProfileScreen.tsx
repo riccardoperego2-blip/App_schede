@@ -8,6 +8,7 @@ import { useSettingsStore } from '../../stores/settings.store';
 import { useOnboardingStore } from '../onboarding/onboarding.store';
 import { offlineQueue } from '../../lib/offline/queue';
 import { api } from '../../lib/api/sdk';
+import { cancelWorkoutReminder, scheduleDailyWorkoutReminder } from '../../lib/notifications/workout-reminders';
 import { invalidateWorkoutDataCaches, useProfile, useUpdateProfile } from '../../hooks/use-profile';
 import type { ExperienceLevel, TrainingGoal, UserProfile } from '../../lib/api/contracts';
 import {
@@ -38,6 +39,10 @@ function profileToPatch(form: UserProfile): Partial<UserProfile> {
   };
 }
 
+function formatReminderTime(hour: number, minute: number): string {
+  return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+}
+
 export function ProfileScreen() {
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -49,6 +54,7 @@ export function ProfileScreen() {
   const [form, setForm] = useState<UserProfile | null>(null);
   const [pendingCount, setPendingCount] = useState(offlineQueue.list().length);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  const [reminderBusy, setReminderBusy] = useState(false);
 
   useEffect(() => offlineQueue.subscribe((q) => setPendingCount(q.length)), []);
 
@@ -99,6 +105,82 @@ export function ProfileScreen() {
     },
     onError: (err) => Alert.alert('Errore', (err as Error).message),
   });
+
+  const toggleWorkoutReminder = useCallback(
+    async (enabled: boolean) => {
+      setReminderBusy(true);
+      try {
+        if (!enabled) {
+          await cancelWorkoutReminder(settings.workoutReminderNotificationId);
+          settings.setWorkoutReminder({
+            workoutReminderEnabled: false,
+            workoutReminderNotificationId: null,
+          });
+          return;
+        }
+
+        const result = await scheduleDailyWorkoutReminder({
+          hour: settings.workoutReminderHour,
+          minute: settings.workoutReminderMinute,
+          previousNotificationId: settings.workoutReminderNotificationId,
+        });
+        if (!result.granted) {
+          settings.setWorkoutReminder({
+            workoutReminderEnabled: false,
+            workoutReminderNotificationId: null,
+          });
+          Alert.alert(
+            'Permesso notifiche richiesto',
+            'Abilita le notifiche dalle impostazioni del telefono per ricevere il promemoria.',
+          );
+          return;
+        }
+
+        settings.setWorkoutReminder({
+          workoutReminderEnabled: true,
+          workoutReminderNotificationId: result.notificationId,
+        });
+      } catch (err) {
+        Alert.alert('Errore notifiche', (err as Error).message);
+      } finally {
+        setReminderBusy(false);
+      }
+    },
+    [settings],
+  );
+
+  const updateWorkoutReminderTime = useCallback(
+    async (patch: { hour?: number; minute?: number }) => {
+      const hour = patch.hour ?? settings.workoutReminderHour;
+      const minute = patch.minute ?? settings.workoutReminderMinute;
+      settings.setWorkoutReminder({ workoutReminderHour: hour, workoutReminderMinute: minute });
+
+      if (!settings.workoutReminderEnabled) return;
+
+      setReminderBusy(true);
+      try {
+        const result = await scheduleDailyWorkoutReminder({
+          hour,
+          minute,
+          previousNotificationId: settings.workoutReminderNotificationId,
+        });
+        if (!result.granted) {
+          settings.setWorkoutReminder({
+            workoutReminderEnabled: false,
+            workoutReminderNotificationId: null,
+          });
+          Alert.alert('Permesso notifiche richiesto', 'Il promemoria è stato disattivato.');
+          return;
+        }
+        settings.setWorkoutReminder({ workoutReminderNotificationId: result.notificationId });
+      } catch (err) {
+        Alert.alert('Errore notifiche', (err as Error).message);
+      } finally {
+        setReminderBusy(false);
+      }
+    },
+    [settings],
+  );
 
   if (isLoading && !form) {
     return (
@@ -309,6 +391,48 @@ export function ProfileScreen() {
               onValueChange={settings.setNotificationsEnabled}
             />
           </View>
+        </Card>
+
+        <Card elevated className="gap-4">
+          <View className="flex-row items-center justify-between">
+            <View className="flex-1 pr-4">
+              <Text variant="subtitle">Promemoria allenamento</Text>
+              <Text tone="muted" variant="caption">
+                Ricevi un promemoria locale ogni giorno alle{' '}
+                {formatReminderTime(settings.workoutReminderHour, settings.workoutReminderMinute)}.
+              </Text>
+            </View>
+            <Switch
+              disabled={reminderBusy}
+              value={settings.workoutReminderEnabled}
+              onValueChange={(enabled) => void toggleWorkoutReminder(enabled)}
+            />
+          </View>
+
+          <View className="flex-row items-center justify-between">
+            <Text>Ora</Text>
+            <Stepper
+              value={settings.workoutReminderHour}
+              min={0}
+              max={23}
+              suffix="h"
+              onChange={(hour) => void updateWorkoutReminderTime({ hour })}
+            />
+          </View>
+
+          <View className="flex-row items-center justify-between">
+            <Text>Minuti</Text>
+            <Stepper
+              value={settings.workoutReminderMinute}
+              min={0}
+              max={55}
+              step={5}
+              suffix="min"
+              onChange={(minute) => void updateWorkoutReminderTime({ minute })}
+            />
+          </View>
+
+          {reminderBusy ? <Text tone="muted" variant="caption">Aggiornamento promemoria…</Text> : null}
         </Card>
 
         <Card>

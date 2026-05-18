@@ -25,6 +25,9 @@
     "android": {
       "package": "fitness.schede.app",
       "usesCleartextTraffic": true,
+      "permissions": [
+        "POST_NOTIFICATIONS"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0B0F14"
