@@ -23,13 +23,15 @@ function TabIcon({ route, focused }: { route: keyof typeof TAB_META; focused: bo
         variant="subtitle"
         tone={focused ? 'accent' : 'muted'}
         className="leading-5"
+        style={{ fontSize: 24, lineHeight: 26, fontWeight: '600' }}
       >
         {meta.icon}
       </Text>
       <Text
         variant="tiny"
         tone={focused ? 'accent' : 'secondary'}
-        className="mt-0.5 text-center font-bold"
+        className="mt-0.5 text-center font-semibold"
+        style={{ fontSize: 11.5, lineHeight: 14, fontWeight: '600' }}
       >
         {meta.label}
       </Text>
@@ -40,7 +42,7 @@ function TabIcon({ route, focused }: { route: keyof typeof TAB_META; focused: bo
 export default function TabsLayout() {
   const insets = useSafeAreaInsets();
   const bottomPadding = Platform.OS === 'android' ? Math.max(insets.bottom, 20) : insets.bottom;
-  const tabBarHeight = Platform.OS === 'android' ? 76 + bottomPadding : 70 + bottomPadding;
+  const tabBarHeight = Platform.OS === 'android' ? 80 + bottomPadding : 74 + bottomPadding;
 
   return (
     <Tabs
@@ -64,7 +66,7 @@ export default function TabsLayout() {
         },
         tabBarItemStyle: {
           minHeight: 56,
-          paddingTop: 6,
+          paddingTop: 8,
         },
       }}
     >
