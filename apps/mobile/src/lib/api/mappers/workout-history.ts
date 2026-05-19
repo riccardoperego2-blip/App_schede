@@ -113,3 +113,99 @@ export function formatHistoryVolume(volumeKg: number | null | undefined): string
   if (volumeKg == null || !Number.isFinite(volumeKg) || volumeKg <= 0) return '—';
   return `${Math.round(volumeKg)} kg`;
 }
+
+export function formatHistoryDuration(minutes: number | null | undefined): string {
+  if (minutes == null || !Number.isFinite(minutes) || minutes <= 0) return '—';
+  if (minutes < 60) return `${minutes} min`;
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  return m > 0 ? `${h}h ${m}m` : `${h}h`;
+}
+
+export interface HistorySummaryStats {
+  readonly workoutCount: number;
+  readonly totalVolumeKg: number;
+  readonly lastSessionLabel: string | null;
+  readonly streakDays: number | null;
+}
+
+function dayKeyFromDate(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
+function dayKeyFromIso(iso: string): string | null {
+  const d = new Date(iso);
+  if (!Number.isFinite(d.getTime())) return null;
+  return dayKeyFromDate(d);
+}
+
+function startOfLocalDay(date: Date): Date {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+export function formatRelativeSessionDate(iso: string | null): string | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (!Number.isFinite(d.getTime())) return null;
+  const diffDays = Math.floor(
+    (startOfLocalDay(new Date()).getTime() - startOfLocalDay(d).getTime()) / 86_400_000,
+  );
+  if (diffDays === 0) return 'Oggi';
+  if (diffDays === 1) return 'Ieri';
+  if (diffDays > 1 && diffDays < 7) return `${diffDays} giorni fa`;
+  return formatHistoryDate(iso);
+}
+
+function computeStreakDays(items: HistorySessionItem[]): number | null {
+  const days = new Set<string>();
+  for (const item of items) {
+    const key = item.completedAt ? dayKeyFromIso(item.completedAt) : null;
+    if (key) days.add(key);
+  }
+  if (days.size === 0) return null;
+
+  const todayKey = dayKeyFromIso(new Date().toISOString());
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayKey = dayKeyFromIso(yesterday.toISOString());
+
+  let cursor: Date | null = null;
+  if (todayKey && days.has(todayKey)) {
+    cursor = startOfLocalDay(new Date());
+  } else if (yesterdayKey && days.has(yesterdayKey)) {
+    cursor = startOfLocalDay(yesterday);
+  } else {
+    const sorted = [...days].sort().reverse();
+    const latest = sorted[0];
+    if (!latest) return null;
+    cursor = new Date(`${latest}T12:00:00`);
+  }
+
+  let streak = 0;
+  const probe = new Date(cursor);
+  while (true) {
+    const key = dayKeyFromIso(probe.toISOString());
+    if (!key || !days.has(key)) break;
+    streak += 1;
+    probe.setDate(probe.getDate() - 1);
+  }
+  return streak > 0 ? streak : null;
+}
+
+export function computeHistorySummary(items: HistorySessionItem[]): HistorySummaryStats {
+  const workoutCount = items.length;
+  const totalVolumeKg = items.reduce((sum, item) => sum + (item.volumeKg ?? 0), 0);
+  const latest = [...items]
+    .filter((item) => item.completedAt)
+    .sort((a, b) => new Date(b.completedAt!).getTime() - new Date(a.completedAt!).getTime())[0];
+
+  return {
+    workoutCount,
+    totalVolumeKg,
+    lastSessionLabel: latest?.completedAt ? formatRelativeSessionDate(latest.completedAt) : null,
+    streakDays: computeStreakDays(items),
+  };
+}
