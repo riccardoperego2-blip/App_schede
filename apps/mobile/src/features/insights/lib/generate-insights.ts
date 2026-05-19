@@ -14,6 +14,7 @@ export interface SmartInsight {
   readonly type: InsightType;
   readonly title: string;
   readonly subtitle?: string;
+  readonly compactTitle?: string;
   readonly accentColor?: string;
   readonly icon?: string;
 }
@@ -118,6 +119,7 @@ function buildVolumeTrendInsight(series: AnalyticsOverview['weeklyVolumeSeries']
     type: 'volume_trend',
     icon: pct > 0 ? '🔥' : '📉',
     title: `Volume ${sign}${pct}% vs settimana scorsa`,
+    compactTitle: `Volume ${sign}${pct}%`,
     subtitle: `${Math.round(curr.volumeKg)} kg questa settimana · ${direction}`,
     accentColor: pct > 0 ? ACCENT.fire : ACCENT.chart,
   };
@@ -135,6 +137,7 @@ function buildPrInsight(records: AnalyticsOverview['personalRecords']): SmartIns
       records.length === 1
         ? `PR su ${name}`
         : `${records.length} PR nel periodo`,
+    compactTitle: records.length === 1 ? 'Nuovo PR' : `${records.length} PR`,
     subtitle:
       records.length === 1
         ? 'Record personale registrato'
@@ -153,6 +156,7 @@ function buildWeeklyWorkoutsInsight(count: number): SmartInsight | null {
       count === 1
         ? '1 workout completato questa settimana'
         : `${count} workout completati questa settimana`,
+    compactTitle: count === 1 ? '1 workout sett.' : `${count} workout sett.`,
     subtitle: count >= 3 ? 'Ritmo solido, continua così.' : 'Ogni sessione conta.',
     accentColor: ACCENT.chart,
   };
@@ -165,6 +169,7 @@ function buildStreakInsight(days: number): SmartInsight | null {
     type: 'streak',
     icon: '⚡',
     title: `Streak attiva da ${days} giorni`,
+    compactTitle: `Streak ${days} giorni`,
     subtitle: days >= 7 ? 'Consistenza sopra la media.' : 'Mantieni il ritmo quotidiano.',
     accentColor: ACCENT.bolt,
   };
@@ -220,4 +225,25 @@ export function generateInsights(ctx: InsightsContext): SmartInsight[] {
   return candidates
     .sort((a, b) => PRIORITY[a.type] - PRIORITY[b.type])
     .slice(0, MAX_INSIGHTS);
+}
+
+const COMPACT_PRIORITY: InsightType[] = ['pr', 'streak', 'volume_trend', 'weekly_workouts'];
+const COMPACT_LIMIT = 2;
+
+export function pickCompactInsights(insights: readonly SmartInsight[], limit = COMPACT_LIMIT): SmartInsight[] {
+  const byType = new Map(insights.map((insight) => [insight.type, insight]));
+  const picked: SmartInsight[] = [];
+
+  for (const type of COMPACT_PRIORITY) {
+    const insight = byType.get(type);
+    if (!insight) continue;
+    picked.push({
+      ...insight,
+      title: insight.compactTitle ?? insight.title,
+      subtitle: undefined,
+    });
+    if (picked.length >= limit) break;
+  }
+
+  return picked;
 }

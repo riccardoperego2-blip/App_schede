@@ -17,6 +17,7 @@ import { useRealtimeNotifications } from '../../hooks/use-realtime-notifications
 import { useQueryClient } from '@tanstack/react-query';
 import { qk } from '../../lib/api/query-keys';
 import { useOnlineStatus } from '../../hooks/use-online-status';
+import { CompactSmartInsightsBar, useCompactSmartInsights } from '../insights';
 
 function ReadinessPill({ band }: { band: 'ready' | 'caution' | 'rest' }) {
   const colors = {
@@ -92,6 +93,7 @@ export function DashboardScreen() {
   const weeklyCompleted = summary?.weeklyVolume.completed ?? 0;
   const weeklyPlanned = summary?.weeklyVolume.planned ?? 0;
   const weeklyPct = weeklyPlanned > 0 ? Math.round((weeklyCompleted / weeklyPlanned) * 100) : 0;
+  const compactInsights = useCompactSmartInsights('4w');
 
   return (
     <Screen>
@@ -104,6 +106,8 @@ export function DashboardScreen() {
             onRefresh={() => {
               void dashboard.refetch();
               void todays.refetch();
+              void queryClient.invalidateQueries({ queryKey: qk.analytics.overview('4w') });
+              void queryClient.invalidateQueries({ queryKey: qk.workouts.history() });
             }}
           />
         }
@@ -155,6 +159,8 @@ export function DashboardScreen() {
             </View>
           </PremiumCard>
           </FadeInSection>
+
+          <CompactSmartInsightsBar insights={compactInsights} delay={50} />
 
           {!isOnline ? (
             <FadeInSection delay={40}>

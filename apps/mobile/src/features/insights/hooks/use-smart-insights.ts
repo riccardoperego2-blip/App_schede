@@ -1,9 +1,14 @@
 import { useMemo } from 'react';
 import { useAnalyticsOverview } from '../../../hooks/use-analytics';
 import { useWorkoutHistory } from '../../../hooks/use-history';
-import { generateInsights, type SmartInsight } from '../lib/generate-insights';
+import {
+  generateInsights,
+  pickCompactInsights,
+  type InsightsContext,
+  type SmartInsight,
+} from '../lib/generate-insights';
 
-export function useSmartInsights(range: '4w' | '12w' | '6m' = '4w'): readonly SmartInsight[] {
+function useInsightsContext(range: '4w' | '12w' | '6m'): InsightsContext {
   const { data: analytics } = useAnalyticsOverview(range);
   const { data: historyData } = useWorkoutHistory();
 
@@ -13,11 +18,20 @@ export function useSmartInsights(range: '4w' | '12w' | '6m' = '4w'): readonly Sm
   );
 
   return useMemo(
-    () =>
-      generateInsights({
-        analytics: analytics ?? null,
-        historyItems,
-      }),
+    () => ({
+      analytics: analytics ?? null,
+      historyItems,
+    }),
     [analytics, historyItems],
   );
+}
+
+export function useSmartInsights(range: '4w' | '12w' | '6m' = '4w'): readonly SmartInsight[] {
+  const ctx = useInsightsContext(range);
+  return useMemo(() => generateInsights(ctx), [ctx]);
+}
+
+export function useCompactSmartInsights(range: '4w' | '12w' | '6m' = '4w'): readonly SmartInsight[] {
+  const ctx = useInsightsContext(range);
+  return useMemo(() => pickCompactInsights(generateInsights(ctx)), [ctx]);
 }
