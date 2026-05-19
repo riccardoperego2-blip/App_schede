@@ -23,11 +23,29 @@ import { useSettingsStore } from '../../stores/settings.store';
 import { useOnboardingStore } from '../onboarding/onboarding.store';
 import { ExerciseCard } from './components/ExerciseCard';
 import { RestTimer } from './components/RestTimer';
-import { FinishSheet } from './components/FinishSheet';
+import { FinishSheet, type FinishSheetStats } from './components/FinishSheet';
+import {
+  WorkoutCompletionSummary,
+  type WorkoutCompletionStats,
+} from './components/WorkoutCompletionSummary';
 import { SessionHeader } from './components/SessionHeader';
 import { useSessionElapsed } from './hooks/use-session-elapsed';
 import { useCompleteWorkout } from '../../hooks/use-complete-workout';
 import type { CompleteWorkoutPayload, ProgressionModel } from '../../lib/api/contracts';
+
+type SessionSnapshot = ReturnType<typeof useWorkoutSessionStore.getState>;
+
+function buildSessionStats(state: SessionSnapshot, elapsedSec: number): FinishSheetStats & { adherencePct: number } {
+  return {
+    durationMinutes: Math.max(1, Math.round(elapsedSec / 60)),
+    volumeKg: workoutSelectors.totalVolumeKg(state),
+    completedSets: workoutSelectors.completedSetCount(state),
+    plannedSets: workoutSelectors.plannedSetCount(state),
+    completedExercises: state.exercises.filter((exercise) => exercise.sets.some((set) => set.completed)).length,
+    totalExercises: state.exercises.length,
+    adherencePct: workoutSelectors.adherenceScore(state),
+  };
+}
 
 function progressionForGoal(goal: CompleteWorkoutPayload['trainingGoal']): ProgressionModel {
   switch (goal) {
@@ -57,6 +75,7 @@ export function WorkoutSessionScreen() {
   const trainingGoal = useOnboardingStore((s) => s.trainingGoal);
   const experienceLevel = useOnboardingStore((s) => s.experienceLevel);
   const [confirming, setConfirming] = useState(false);
+  const [completionStats, setCompletionStats] = useState<WorkoutCompletionStats | null>(null);
 
   const completedSets = useMemo(
     () => workoutSelectors.completedSetCount(useWorkoutSessionStore.getState()),
@@ -120,24 +139,26 @@ export function WorkoutSessionScreen() {
   };
 
   const handleConfirmFinish = async () => {
-    if (!session.workoutDayId) return;
+    const snapshot = useWorkoutSessionStore.getState();
+    if (!snapshot.workoutDayId) return;
 
-    const completedCount = workoutSelectors.completedSetCount(useWorkoutSessionStore.getState());
-    if (completedCount === 0) {
+    if (workoutSelectors.completedSetCount(snapshot) === 0) {
       Alert.alert('Nessuna serie completata', 'Segna almeno una serie prima di chiudere la sessione.');
       return;
     }
 
+    const sessionStats = buildSessionStats(snapshot, elapsedSec);
+
     const payload: CompleteWorkoutPayload = {
-      workoutDayId: session.workoutDayId,
+      workoutDayId: snapshot.workoutDayId,
       completedAt: new Date().toISOString(),
-      durationMinutes: Math.max(1, Math.round(elapsedSec / 60)),
-      ...(session.wellness.sessionRpe != null ? { sessionRpe: session.wellness.sessionRpe } : {}),
-      exerciseLogs: workoutSelectors.toExerciseLogs(useWorkoutSessionStore.getState()),
-      sleepQuality: session.wellness.sleepQuality,
-      soreness: session.wellness.soreness,
-      fatigueLevel: session.wellness.fatigueLevel,
-      adherenceScore: workoutSelectors.adherenceScore(useWorkoutSessionStore.getState()),
+      durationMinutes: sessionStats.durationMinutes,
+      ...(snapshot.wellness.sessionRpe != null ? { sessionRpe: snapshot.wellness.sessionRpe } : {}),
+      exerciseLogs: workoutSelectors.toExerciseLogs(snapshot),
+      sleepQuality: snapshot.wellness.sleepQuality,
+      soreness: snapshot.wellness.soreness,
+      fatigueLevel: snapshot.wellness.fatigueLevel,
+      adherenceScore: sessionStats.adherencePct,
       trainingGoal,
       experienceLevel,
       progressionModel: progressionForGoal(trainingGoal),
@@ -145,16 +166,39 @@ export function WorkoutSessionScreen() {
 
     try {
       const result = await completeWorkout.mutateAsync(payload);
-      session.finish();
-      session.cancel();
-      if (result.status === 'queued') {
-        Alert.alert('Salvato offline', 'La sessione verrà sincronizzata appena torni online.');
-      }
-      router.replace('/(tabs)');
+      snapshot.finish();
+      snapshot.cancel();
+
+      setCompletionStats({
+        durationMinutes: sessionStats.durationMinutes,
+        volumeKg: sessionStats.volumeKg,
+        completedSets: sessionStats.completedSets,
+        plannedSets: sessionStats.plannedSets,
+        completedExercises: sessionStats.completedExercises,
+        totalExercises: sessionStats.totalExercises,
+        adherencePct: sessionStats.adherencePct,
+        dayLabel: todaysWorkout.data?.dayLabel,
+        queued: result.status === 'queued',
+        personalRecords:
+          result.status === 'synced' ? result.result.adaptation.personalRecords : [],
+      });
+      setConfirming(false);
     } catch (error) {
       Alert.alert('Errore', (error as Error).message);
     }
   };
+
+  const finishSheetStats: FinishSheetStats = useMemo(
+    () => ({
+      durationMinutes: Math.max(1, Math.round(elapsedSec / 60)),
+      volumeKg: totalVolumeKg,
+      completedSets,
+      plannedSets,
+      completedExercises: exercises.filter((exercise) => exercise.sets.some((set) => set.completed)).length,
+      totalExercises: exercises.length,
+    }),
+    [elapsedSec, totalVolumeKg, completedSets, plannedSets, exercises],
+  );
 
   const bottomPad = Math.max(insets.bottom, Platform.OS === 'android' ? 20 : 12);
 
@@ -221,6 +265,23 @@ export function WorkoutSessionScreen() {
 
   const dayLabel = todaysWorkout.data.dayLabel;
 
+  if (completionStats) {
+    return (
+      <Screen edges={['top']}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingHorizontal: 20,
+            paddingTop: 12,
+            paddingBottom: bottomPad + 24,
+          }}
+        >
+          <WorkoutCompletionSummary stats={completionStats} />
+        </ScrollView>
+      </Screen>
+    );
+  }
+
   return (
     <Screen className="flex-1" edges={['top']}>
       <View className="flex-1 px-5 pt-2">
@@ -280,7 +341,11 @@ export function WorkoutSessionScreen() {
           {confirming ? (
             <FadeInSection delay={0}>
               <PremiumCard variant="elevated" className="p-4">
-                <FinishSheet onConfirm={handleConfirmFinish} loading={completeWorkout.isPending} />
+                <FinishSheet
+                  stats={finishSheetStats}
+                  onConfirm={handleConfirmFinish}
+                  loading={completeWorkout.isPending}
+                />
               </PremiumCard>
             </FadeInSection>
           ) : null}
