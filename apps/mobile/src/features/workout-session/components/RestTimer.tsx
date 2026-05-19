@@ -1,5 +1,8 @@
+import { useEffect, useRef } from 'react';
 import { View, Pressable } from 'react-native';
-import { Text } from '../../../design-system';
+import Svg, { Circle } from 'react-native-svg';
+import { PremiumCard, Text } from '../../../design-system';
+import { colors } from '../../../theme';
 import { useRestTimer } from '../../../hooks/use-rest-timer';
 
 interface RestTimerProps {
@@ -8,37 +11,97 @@ interface RestTimerProps {
   onSkip: () => void;
 }
 
+function RestRing({ progress }: { progress: number }) {
+  const size = 72;
+  const stroke = 4;
+  const radius = (size - stroke) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference * (1 - Math.max(0, Math.min(1, progress)));
+
+  return (
+    <Svg width={size} height={size}>
+      <Circle
+        cx={size / 2}
+        cy={size / 2}
+        r={radius}
+        stroke="rgba(255,255,255,0.08)"
+        strokeWidth={stroke}
+        fill="none"
+      />
+      <Circle
+        cx={size / 2}
+        cy={size / 2}
+        r={radius}
+        stroke={colors.primary}
+        strokeWidth={stroke}
+        fill="none"
+        strokeDasharray={`${circumference} ${circumference}`}
+        strokeDashoffset={offset}
+        strokeLinecap="round"
+        rotation={-90}
+        origin={`${size / 2}, ${size / 2}`}
+      />
+    </Svg>
+  );
+}
+
 export function RestTimer({ restEndsAt, onAdd, onSkip }: RestTimerProps) {
   const { remainingSeconds, isActive } = useRestTimer(restEndsAt);
+  const initialSecondsRef = useRef(0);
+
+  useEffect(() => {
+    if (isActive && remainingSeconds > initialSecondsRef.current) {
+      initialSecondsRef.current = remainingSeconds;
+    }
+    if (!isActive) {
+      initialSecondsRef.current = 0;
+    }
+  }, [isActive, remainingSeconds]);
+
   if (!isActive) return null;
 
   const minutes = Math.floor(remainingSeconds / 60);
   const seconds = remainingSeconds % 60;
   const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  const total = Math.max(initialSecondsRef.current, remainingSeconds, 1);
+  const progress = remainingSeconds / total;
 
   return (
-    <View className="rounded-card border border-accent/30 bg-accent-subtle/60 p-5">
+    <PremiumCard variant="ambient" className="mb-3 gap-4 p-4">
       <View className="flex-row items-center justify-between">
-        <View>
-          <Text variant="caption" tone="accent">
-            RECUPERO
-          </Text>
-          <Text variant="display" tone="primary">
-            {display}
-          </Text>
+        <View className="flex-row items-center gap-4">
+          <View style={{ width: 72, height: 72, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ position: 'absolute' }}>
+              <RestRing progress={progress} />
+            </View>
+            <Text variant="caption" tone="accent" className="font-semibold">
+              {display}
+            </Text>
+          </View>
+          <View className="gap-0.5">
+            <Text variant="tiny" tone="muted" className="tracking-widest">
+              RECUPERO
+            </Text>
+            <Text variant="subtitle">Respira e preparati</Text>
+          </View>
         </View>
         <View className="flex-row gap-2">
           <Pressable
             onPress={() => onAdd(15)}
-            className="rounded-pill border border-border-soft bg-bg-glass px-3 py-2"
+            className="rounded-pill border border-border-soft bg-bg-surface px-3 py-2"
           >
             <Text variant="caption">+15s</Text>
           </Pressable>
-          <Pressable onPress={onSkip} className="rounded-pill border border-border-soft bg-bg-glass px-3 py-2">
-            <Text variant="caption">Skip</Text>
+          <Pressable
+            onPress={onSkip}
+            className="rounded-pill border border-border-soft bg-bg-surface px-3 py-2"
+          >
+            <Text variant="caption" tone="accent">
+              Skip
+            </Text>
           </Pressable>
         </View>
       </View>
-    </View>
+    </PremiumCard>
   );
 }

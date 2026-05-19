@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { Text, Button, Stepper } from '../../../design-system';
+import { Text, PremiumButton, Stepper } from '../../../design-system';
 import {
   useWorkoutSessionStore,
   workoutSelectors,
@@ -20,8 +20,8 @@ export function FinishSheet({ onConfirm, loading }: FinishSheetProps) {
   return (
     <View className="gap-5">
       <Text variant="title">Chiudi sessione</Text>
-      <Text tone="muted">
-        Volume totale {Math.round(volume)} kg · Aderenza {(adherence * 100).toFixed(0)}%
+      <Text tone="secondary" variant="caption">
+        Volume {Math.round(volume)} kg · Aderenza {(adherence * 100).toFixed(0)}%
       </Text>
 
       <View className="gap-3">
@@ -54,7 +54,7 @@ export function FinishSheet({ onConfirm, loading }: FinishSheetProps) {
         </View>
       </View>
 
-      <Button label="Completa allenamento" loading={loading} onPress={onConfirm} />
+      <PremiumButton label="Termina allenamento" loading={loading} onPress={onConfirm} />
     </View>
   );
 }
