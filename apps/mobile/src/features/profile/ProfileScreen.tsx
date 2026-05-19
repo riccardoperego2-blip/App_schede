@@ -1,8 +1,20 @@
 import { useCallback, useEffect, useState } from 'react';
-import { View, Switch, TextInput, Pressable, ActivityIndicator, RefreshControl, Alert } from 'react-native';
+import { View, Switch, TextInput, Pressable, RefreshControl, Alert } from 'react-native';
 import { type Href, useRouter } from 'expo-router';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Screen, Text, Button, Card, Stepper } from '../../design-system';
+import {
+  Screen,
+  Text,
+  Button,
+  Stepper,
+  PremiumCard,
+  SectionHeader,
+  StatPill,
+  AnimatedProgressBar,
+  FadeInSection,
+  PulsePlaceholder,
+} from '../../design-system';
+import { colors } from '../../theme';
 import { useAuthStore } from '../../stores/auth.store';
 import { useSettingsStore } from '../../stores/settings.store';
 import { useOnboardingStore } from '../onboarding/onboarding.store';
@@ -41,6 +53,12 @@ function profileToPatch(form: UserProfile): Partial<UserProfile> {
 
 function formatReminderTime(hour: number, minute: number): string {
   return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+}
+
+function experienceProgress(level: ExperienceLevel): number {
+  if (level === 'advanced') return 100;
+  if (level === 'intermediate') return 62;
+  return 34;
 }
 
 export function ProfileScreen() {
@@ -185,9 +203,19 @@ export function ProfileScreen() {
   if (isLoading && !form) {
     return (
       <Screen>
-        <View className="flex-1 items-center justify-center gap-3">
-          <ActivityIndicator color="#5BE3A1" />
-          <Text tone="muted">Caricamento profilo…</Text>
+        <View className="gap-5 px-1 pt-2">
+          <PremiumCard variant="ambient" className="gap-4 p-6">
+            <PulsePlaceholder className="h-20 w-20 rounded-full" />
+            <PulsePlaceholder className="h-8 w-40" />
+            <PulsePlaceholder className="h-4 w-56" />
+          </PremiumCard>
+          <PremiumCard variant="glass" className="gap-3 p-5">
+            <PulsePlaceholder className="h-4 w-32" />
+            <PulsePlaceholder className="h-2.5 w-full" />
+          </PremiumCard>
+          <Text tone="muted" className="text-center">
+            Caricamento profilo…
+          </Text>
         </View>
       </Screen>
     );
@@ -206,6 +234,9 @@ export function ProfileScreen() {
   }
 
   if (!form) return null;
+  const displayName = form.displayName.trim() || 'Atleta';
+  const initial = displayName.charAt(0).toUpperCase();
+  const expPct = experienceProgress(form.experienceLevel);
 
   return (
     <Screen
@@ -217,16 +248,51 @@ export function ProfileScreen() {
       }}
     >
       <View className="gap-6 pb-12">
-        <Card elevated accent className="gap-2">
-          <Text variant="caption" tone="muted">
-            ACCOUNT
-          </Text>
-          <Text variant="display">Profilo</Text>
-          <Text tone="secondary">{user?.email}</Text>
-        </Card>
+        <FadeInSection delay={0}>
+        <PremiumCard variant="ambient" className="gap-5 p-6">
+          <View className="flex-row items-center gap-4">
+            <View
+              className="h-20 w-20 items-center justify-center rounded-full border"
+              style={{ borderColor: 'rgba(255,255,255,0.10)', backgroundColor: colors.surface }}
+            >
+              <Text variant="title" tone="accent">
+                {initial}
+              </Text>
+            </View>
+            <View className="flex-1">
+              <Text variant="tiny" tone="muted" className="tracking-widest">
+                ACCOUNT
+              </Text>
+              <Text variant="display">{displayName}</Text>
+              <Text tone="secondary" numberOfLines={1}>
+                {user?.email}
+              </Text>
+            </View>
+          </View>
+          <View className="flex-row gap-2">
+            <StatPill active label="giorni" value={form.trainingDaysPerWeek} />
+            <StatPill label="durata" value={`${form.sessionDurationMin}m`} />
+            <StatPill label="livello" value={form.experienceLevel.slice(0, 3).toUpperCase()} />
+          </View>
+        </PremiumCard>
+        </FadeInSection>
 
-        <Card elevated className="gap-4">
-          <Text variant="subtitle">Allenamento</Text>
+        <FadeInSection delay={60}>
+        <PremiumCard variant="elevated" className="gap-4">
+          <SectionHeader title="Esperienza" subtitle="Profilo atletico usato dal coach AI" />
+          <View className="flex-row items-end justify-between">
+            <Text variant="title">{EXPERIENCE_OPTIONS.find((x) => x.value === form.experienceLevel)?.label}</Text>
+            <Text tone="accent" variant="caption">
+              {expPct}%
+            </Text>
+          </View>
+          <AnimatedProgressBar value={expPct} max={100} />
+        </PremiumCard>
+        </FadeInSection>
+
+        <FadeInSection delay={120}>
+        <PremiumCard variant="elevated" className="gap-5">
+          <SectionHeader title="Allenamento" subtitle="Preferenze usate dal coach AI" />
 
           <View className="gap-2">
             <Text variant="caption" tone="muted">
@@ -237,7 +303,7 @@ export function ProfileScreen() {
               onChangeText={(displayName) => setForm((prev) => (prev ? { ...prev, displayName } : prev))}
               placeholder="Il tuo nome"
               placeholderTextColor="#6B7585"
-              className="h-11 rounded-card bg-bg-elevated px-3 text-text-primary"
+              className="h-12 rounded-card border border-border-soft bg-bg-glass px-4 text-text-primary"
             />
           </View>
 
@@ -349,9 +415,11 @@ export function ProfileScreen() {
               {saveMessage}
             </Text>
           ) : null}
-        </Card>
+        </PremiumCard>
+        </FadeInSection>
 
-        <Card className="gap-3">
+        <FadeInSection delay={180}>
+        <PremiumCard variant="glass" className="gap-3">
           <Text variant="subtitle">Programma</Text>
           <Text tone="muted">
             Rigenera il piano con le preferenze aggiornate. La generazione può richiedere circa 20–60
@@ -375,9 +443,11 @@ export function ProfileScreen() {
               );
             }}
           />
-        </Card>
+        </PremiumCard>
+        </FadeInSection>
 
-        <Card elevated className="gap-4">
+        <FadeInSection delay={240}>
+        <PremiumCard variant="glass" className="gap-4">
           <Text variant="subtitle">Impostazioni app</Text>
           <View className="flex-row items-center justify-between">
             <Text>Vibrazioni</Text>
@@ -394,9 +464,9 @@ export function ProfileScreen() {
               onValueChange={settings.setNotificationsEnabled}
             />
           </View>
-        </Card>
+        </PremiumCard>
 
-        <Card elevated className="gap-4">
+        <PremiumCard variant="glass" className="gap-4">
           <View className="flex-row items-center justify-between">
             <View className="flex-1 pr-4">
               <Text variant="subtitle">Promemoria allenamento</Text>
@@ -436,18 +506,19 @@ export function ProfileScreen() {
           </View>
 
           {reminderBusy ? <Text tone="muted" variant="caption">Aggiornamento promemoria…</Text> : null}
-        </Card>
+        </PremiumCard>
 
-        <Card>
+        <PremiumCard variant="glass">
           <Text variant="subtitle">Sincronizzazione</Text>
           <Text tone="muted">
             {pendingCount > 0
               ? `${pendingCount} operazione/i in coda offline`
               : 'Tutto sincronizzato'}
           </Text>
-        </Card>
+        </PremiumCard>
 
         <Button label="Esci" variant="danger" onPress={() => void signOut()} />
+        </FadeInSection>
       </View>
     </Screen>
   );

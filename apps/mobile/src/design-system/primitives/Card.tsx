@@ -9,9 +9,9 @@ export function Card({ elevated = false, accent = false, className = '', childre
   return (
     <View
       className={[
-        'rounded-card border p-5',
-        elevated ? 'border-border-soft bg-bg-elevated' : 'border-border-soft/70 bg-bg-surface',
-        accent ? 'border-accent/35 bg-accent-subtle/50' : '',
+        'rounded-card border border-border-soft p-5',
+        elevated ? 'bg-bg-elevated' : 'bg-bg-card',
+        accent ? 'bg-bg-card' : '',
         className,
       ].join(' ')}
       {...rest}

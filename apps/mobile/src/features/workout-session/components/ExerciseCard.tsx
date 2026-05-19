@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { View, Pressable } from 'react-native';
-import { Text, Card, Button } from '../../../design-system';
+import { Text, Button, PremiumCard, StatPill } from '../../../design-system';
 import { SetRow } from './SetRow';
 import type { ExerciseDraft, SetDraft } from '../../../stores/workout-session.store';
 
@@ -22,7 +22,7 @@ function ExerciseCardImpl({
   const totalCompleted = exercise.sets.filter((s) => s.completed).length;
 
   return (
-    <Card elevated className="gap-3">
+    <PremiumCard className="gap-4">
       <Pressable onPress={onToggle} className="flex-row items-center justify-between">
         <View className="flex-1 gap-1">
           <Text variant="subtitle">{exercise.name}</Text>
@@ -30,7 +30,7 @@ function ExerciseCardImpl({
             {exercise.primaryMuscle} · {totalCompleted}/{exercise.sets.length} set · rest {exercise.restSeconds}s
           </Text>
         </View>
-        <Text tone="muted">{exercise.expanded ? '▾' : '▸'}</Text>
+        <StatPill label="set" value={`${totalCompleted}/${exercise.sets.length}`} active={totalCompleted > 0} />
       </Pressable>
 
       {exercise.expanded ? (
@@ -46,7 +46,7 @@ function ExerciseCardImpl({
           <Button label="+ Aggiungi serie" variant="ghost" size="sm" onPress={onAddSet} />
         </View>
       ) : null}
-    </Card>
+    </PremiumCard>
   );
 }
 

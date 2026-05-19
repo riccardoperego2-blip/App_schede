@@ -1,3 +1,4 @@
+import 'react-native-reanimated';
 import '../src/design-system/global.css';
 import { Stack, usePathname, useRootNavigationState, useRouter, useSegments } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';

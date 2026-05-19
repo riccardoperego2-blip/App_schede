@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { Tabs } from 'expo-router';
 import { Platform, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Svg, { Circle, Path, Rect } from 'react-native-svg';
 
 const TAB_META = {
@@ -13,14 +15,14 @@ const TAB_META = {
 function TabGlyph({ name, color }: { name: (typeof TAB_META)[keyof typeof TAB_META]; color: string }) {
   const common = {
     stroke: color,
-    strokeWidth: 2.25,
+    strokeWidth: 2,
     strokeLinecap: 'round' as const,
     strokeLinejoin: 'round' as const,
     fill: 'none',
   };
 
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24">
+    <Svg width={23} height={23} viewBox="0 0 24 24">
       {name === 'home' ? (
         <>
           <Path d="M4 10.8 12 4l8 6.8" {...common} />
@@ -53,52 +55,66 @@ function TabGlyph({ name, color }: { name: (typeof TAB_META)[keyof typeof TAB_ME
 }
 
 function TabIcon({ route, focused }: { route: keyof typeof TAB_META; focused: boolean }) {
-  const color = focused ? '#7CFF6B' : '#8A94A6';
+  const emphasis = useSharedValue(focused ? 1 : 0);
+
+  useEffect(() => {
+    emphasis.value = withTiming(focused ? 1 : 0, { duration: 220 });
+  }, [emphasis, focused]);
+
+  const wrapperStyle = useAnimatedStyle(() => ({
+    opacity: 0.62 + emphasis.value * 0.38,
+  }));
+
+  const color = focused ? '#39FF88' : '#7A8494';
+
   return (
-    <View
-      className={[
-        'min-h-[54px] min-w-[68px] items-center justify-center rounded-2xl px-3',
-        focused ? 'bg-accent-subtle/90' : 'bg-transparent',
-      ].join(' ')}
-    >
+    <Animated.View style={wrapperStyle} className="min-h-[50px] min-w-[56px] items-center justify-center px-2">
       <TabGlyph name={TAB_META[route]} color={color} />
-      <View className={`mt-1 h-1 w-5 rounded-pill ${focused ? 'bg-[#7CFF6B]' : 'bg-transparent'}`} />
-    </View>
+      <View
+        className="mt-1.5 rounded-pill"
+        style={{
+          width: focused ? 4 : 0,
+          height: focused ? 4 : 0,
+          backgroundColor: focused ? '#39FF88' : 'transparent',
+          opacity: focused ? 0.85 : 0,
+        }}
+      />
+    </Animated.View>
   );
 }
 
 export default function TabsLayout() {
   const insets = useSafeAreaInsets();
   const bottomPadding = Platform.OS === 'android' ? Math.max(insets.bottom, 20) : insets.bottom;
-  const tabBarHeight = Platform.OS === 'android' ? 80 + bottomPadding : 74 + bottomPadding;
+  const tabBarHeight = Platform.OS === 'android' ? 76 + bottomPadding : 70 + bottomPadding;
 
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarActiveTintColor: '#7CFF6B',
-        tabBarInactiveTintColor: '#8A94A6',
+        tabBarActiveTintColor: '#39FF88',
+        tabBarInactiveTintColor: '#7A8494',
         tabBarStyle: {
-          backgroundColor: '#0B0F14',
+          backgroundColor: '#030507',
           borderTopWidth: 1,
-          borderTopColor: 'rgba(255,255,255,0.08)',
+          borderTopColor: 'rgba(255,255,255,0.06)',
           height: tabBarHeight,
-          paddingTop: 8,
+          paddingTop: 6,
           paddingBottom: bottomPadding,
           shadowColor: '#000',
-          shadowOpacity: 0.28,
-          shadowRadius: 18,
-          shadowOffset: { width: 0, height: -8 },
-          elevation: 18,
+          shadowOpacity: 0.2,
+          shadowRadius: 12,
+          shadowOffset: { width: 0, height: -4 },
+          elevation: 12,
         },
         tabBarIconStyle: {
-          width: 68,
-          height: 58,
+          width: 60,
+          height: 52,
         },
         tabBarItemStyle: {
-          minHeight: 56,
-          paddingTop: 8,
+          minHeight: 52,
+          paddingTop: 4,
         },
       }}
     >

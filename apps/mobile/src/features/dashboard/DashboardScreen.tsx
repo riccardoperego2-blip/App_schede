@@ -1,6 +1,16 @@
-import { View, RefreshControl, ScrollView } from 'react-native';
+import { Image, View, RefreshControl, ScrollView } from 'react-native';
 import { type Href, useRouter } from 'expo-router';
-import { Screen, Text, Button, Card, Section, MetricCard } from '../../design-system';
+import {
+  Screen,
+  Text,
+  Button,
+  PremiumButton,
+  PremiumCard,
+  SectionHeader,
+  AnimatedProgressBar,
+  FadeInSection,
+} from '../../design-system';
+import { colors } from '../../theme';
 import { useDashboard, useTodaysWorkout } from '../../hooks/use-dashboard';
 import { useAuthStore } from '../../stores/auth.store';
 import { useRealtimeNotifications } from '../../hooks/use-realtime-notifications';
@@ -28,6 +38,41 @@ function ReadinessPill({ band }: { band: 'ready' | 'caution' | 'rest' }) {
   );
 }
 
+function MiniWeekBars({ completed, planned }: { completed: number; planned: number }) {
+  const activeBars = Math.min(7, Math.max(1, Math.ceil((completed / Math.max(planned, 1)) * 7)));
+  return (
+    <View className="flex-row items-end gap-1">
+      {Array.from({ length: 7 }).map((_, index) => (
+        <View
+          // eslint-disable-next-line react/no-array-index-key
+          key={index}
+          className="w-2 rounded-pill"
+          style={{
+            height: 10 + index * 3,
+            backgroundColor: index < activeBars ? colors.primary : 'rgba(255,255,255,0.10)',
+          }}
+        />
+      ))}
+    </View>
+  );
+}
+
+function StatCard({ label, value, helper }: { label: string; value: string | number; helper: string }) {
+  return (
+    <PremiumCard variant="glass" className="flex-1 gap-1 p-3.5">
+      <Text variant="tiny" tone="muted" className="tracking-wide">
+        {label.toUpperCase()}
+      </Text>
+      <Text variant="subtitle" className="font-semibold">
+        {value}
+      </Text>
+      <Text variant="tiny" tone="muted">
+        {helper}
+      </Text>
+    </PremiumCard>
+  );
+}
+
 export function DashboardScreen() {
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -42,6 +87,11 @@ export function DashboardScreen() {
 
   const summary = dashboard.data;
   const today = todays.data;
+  const displayName = summary?.user.displayName || 'Pernycot';
+  const initial = displayName.trim().charAt(0).toUpperCase() || 'S';
+  const weeklyCompleted = summary?.weeklyVolume.completed ?? 0;
+  const weeklyPlanned = summary?.weeklyVolume.planned ?? 0;
+  const weeklyPct = weeklyPlanned > 0 ? Math.round((weeklyCompleted / weeklyPlanned) * 100) : 0;
 
   return (
     <Screen>
@@ -58,40 +108,109 @@ export function DashboardScreen() {
           />
         }
       >
-        <View className="gap-7 pb-12">
-          <Card elevated accent className="gap-5 overflow-hidden">
-            <View className="absolute right-[-40px] top-[-70px] h-48 w-48 rounded-full bg-accent/20" />
-            <View className="absolute bottom-[-80px] left-[-50px] h-44 w-44 rounded-full bg-accent-neon/10" />
+        <View className="gap-5 pb-12">
+          <FadeInSection delay={0}>
+          <PremiumCard variant="ambient" className="gap-5 p-6">
             <View className="flex-row items-start justify-between">
-              <View className="flex-1 pr-4">
-              <Text variant="caption" tone="muted">
-                SCHEDE FITNESS
-              </Text>
-                <Text variant="display">{summary?.user.displayName ?? '—'}</Text>
-                <Text tone="secondary">Il tuo coach AI per allenarti meglio oggi.</Text>
+              <View className="flex-1 pr-4 gap-1">
+                <Text variant="tiny" tone="muted" className="tracking-widest">
+                  SCHEDE FITNESS
+                </Text>
+                <Text variant="display">Ciao, {displayName}</Text>
+                <Text tone="secondary" variant="caption">
+                  Spingi il prossimo set. Il piano si adatta, tu alza il livello.
+                </Text>
               </View>
-              {summary ? <ReadinessPill band={summary.readinessHint} /> : null}
+              <View
+                className="h-14 w-14 items-center justify-center overflow-hidden rounded-full border"
+                style={{ borderColor: 'rgba(255,255,255,0.10)', backgroundColor: colors.surface }}
+              >
+                {summary?.user.avatarUrl ? (
+                  <Image source={{ uri: summary.user.avatarUrl }} className="h-full w-full" />
+                ) : (
+                  <Text variant="subtitle" tone="accent">
+                    {initial}
+                  </Text>
+                )}
+              </View>
             </View>
-          </Card>
+            <View className="rounded-card border border-border-soft bg-bg-surface/80 p-4">
+              <View className="flex-row items-center justify-between">
+                <View className="gap-1">
+                  <Text variant="tiny" tone="muted" className="tracking-wide">
+                    STREAK MODE
+                  </Text>
+                  <Text variant="subtitle" className="font-semibold">
+                    🔥 {summary?.streakDays ?? 0} giorni attivi
+                  </Text>
+                </View>
+                {summary ? <ReadinessPill band={summary.readinessHint} /> : null}
+              </View>
+              <View className="mt-4 flex-row items-center justify-between">
+                <MiniWeekBars completed={weeklyCompleted} planned={weeklyPlanned} />
+                <Text variant="caption" tone="secondary">
+                  {weeklyPct}% settimana
+                </Text>
+              </View>
+            </View>
+          </PremiumCard>
+          </FadeInSection>
 
           {!isOnline ? (
-            <Card className="border border-warning/30 bg-warning/10">
+            <FadeInSection delay={40}>
+            <PremiumCard className="border border-warning/30 bg-warning/10">
               <Text tone="primary" variant="caption">
                 Sei offline. I dati mostrati sono cache. Le sessioni completate verranno sincronizzate appena
                 torni online.
               </Text>
-            </Card>
+            </PremiumCard>
+            </FadeInSection>
           ) : null}
 
-          <Section title="Oggi" subtitle={today ? `Settimana ${today.weekNumber}` : 'Sessione del giorno'}>
-            <Card elevated className="gap-4">
+          <FadeInSection delay={80}>
+          <View className="flex-row gap-3">
+            <StatCard label="Workout" value={today ? 'Oggi' : '—'} helper={today ? `${today.exercises.length} esercizi` : 'nessuna sessione'} />
+            <StatCard label="Volume" value={`${weeklyCompleted}/${weeklyPlanned || '—'}`} helper="set settimana" />
+            <StatCard label="Streak" value={summary?.streakDays ?? 0} helper="giorni" />
+          </View>
+          </FadeInSection>
+
+          <FadeInSection delay={120}>
+          <PremiumCard variant="elevated" className="gap-4">
+            <SectionHeader title="Obiettivo settimanale" subtitle="Completa i set programmati e mantieni ritmo." />
+            <View className="flex-row items-end justify-between">
+              <Text variant="title">{Math.min(100, weeklyPct)}%</Text>
+              <Text tone="secondary" variant="caption">
+                {weeklyCompleted}/{weeklyPlanned || 0} set
+              </Text>
+            </View>
+            <AnimatedProgressBar value={weeklyCompleted} max={weeklyPlanned} />
+          </PremiumCard>
+          </FadeInSection>
+
+          <FadeInSection delay={160}>
+          <View className="gap-4">
+            <SectionHeader
+              title="Prossimo workout"
+              subtitle={today ? `Settimana ${today.weekNumber} · sessione guidata` : 'Il piano e pronto appena vuoi partire'}
+            />
+            <PremiumCard
+              variant="ambient"
+              className="gap-4 p-5"
+              pressable={!!today}
+              onPress={today ? () => router.push('/workout/session') : undefined}
+              accessibilityLabel={
+                today ? `Apri workout di oggi, ${today.dayLabel}` : undefined
+              }
+              accessibilityHint={today ? 'Apre la sessione di allenamento' : undefined}
+            >
               {today ? (
                 <>
-                  <View className="flex-row items-center justify-between">
-                    <View>
-                      <Text variant="subtitle">{today.dayLabel}</Text>
-                      <Text tone="muted">
-                        {today.exercises.length} esercizi · ~{summary?.nextWorkout?.estimatedDurationMin ?? 45}{'\''}
+                  <View className="flex-row items-start justify-between">
+                    <View className="flex-1 pr-4">
+                      <Text variant="title">{today.dayLabel}</Text>
+                      <Text tone="secondary">
+                        {today.exercises.length} esercizi · ~{summary?.nextWorkout?.estimatedDurationMin ?? 45}'
                       </Text>
                     </View>
                     {today.isDeload ? (
@@ -100,49 +219,34 @@ export function DashboardScreen() {
                           DELOAD
                         </Text>
                       </View>
-                    ) : null}
+                    ) : (
+                      <Text variant="title" tone="accent">
+                        →
+                      </Text>
+                    )}
                   </View>
-                  <Button
-                    label="Inizia sessione"
-                    size="lg"
-                    onPress={() => router.push('/workout/session')}
-                  />
+                  <View accessible={false} importantForAccessibility="no-hide-descendants">
+                    <PremiumButton label="Inizia workout" onPress={() => router.push('/workout/session')} />
+                  </View>
                 </>
               ) : (
                 <View className="gap-3">
-                  <Text>Nessun allenamento programmato per oggi.</Text>
-                  <Button
-                    label="Vedi storico"
-                    variant="secondary"
-                    onPress={() => router.push('/(tabs)/history')}
-                  />
+                  <Text variant="subtitle">Nessun allenamento programmato oggi.</Text>
+                  <Text tone="muted">Controlla il piano completo o usa lo storico per riprendere il ritmo.</Text>
+                  <Button label="Vedi storico" variant="secondary" onPress={() => router.push('/(tabs)/history')} />
                 </View>
               )}
-            </Card>
-          </Section>
+            </PremiumCard>
+          </View>
+          </FadeInSection>
 
-          <Section title="Programma" subtitle="Piano di allenamento attivo">
-            <Card elevated className="gap-3">
-              <Text tone="muted">Visualizza tutte le settimane e i giorni del tuo programma.</Text>
-              <Button
-                label="Vedi piano completo"
-                variant="secondary"
-                onPress={() => router.push('/plan' as Href)}
-              />
-            </Card>
-          </Section>
-
-          <Section title="Settimana" subtitle="Focus e consistenza">
-            <View className="flex-row gap-3">
-              <MetricCard
-                accent
-                label="Volume"
-                value={summary ? `${summary.weeklyVolume.completed}/${summary.weeklyVolume.planned}` : '—'}
-                helper="set completati"
-              />
-              <MetricCard label="Streak" value={`${summary?.streakDays ?? 0}`} helper="giorni attivi" />
-            </View>
-          </Section>
+          <FadeInSection delay={200}>
+          <PremiumCard variant="glass" className="gap-3">
+            <SectionHeader title="Programma" subtitle="Piano di allenamento attivo" />
+            <Text tone="muted">Visualizza settimane, giorni e progressione del programma.</Text>
+            <Button label="Vedi piano completo" variant="secondary" onPress={() => router.push('/plan' as Href)} />
+          </PremiumCard>
+          </FadeInSection>
         </View>
       </ScrollView>
     </Screen>
