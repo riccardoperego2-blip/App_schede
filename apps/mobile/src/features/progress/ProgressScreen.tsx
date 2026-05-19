@@ -21,6 +21,7 @@ import {
   formatAnalyticsVolume,
   formatWeekLabel,
 } from '../../lib/api/mappers/analytics-overview';
+import { SmartInsightsSection, useSmartInsights } from '../insights';
 
 const RANGES = ['4w', '12w', '6m', '1y'] as const;
 type UiRange = (typeof RANGES)[number];
@@ -115,6 +116,7 @@ export function ProgressScreen() {
   const [range, setRange] = useState<UiRange>('4w');
   const apiRange: ApiRange = range === '1y' ? '6m' : range;
   const { data, isLoading, isError, error, isRefetching, refetch } = useAnalyticsOverview(apiRange);
+  const insights = useSmartInsights(apiRange);
 
   useFocusEffect(
     useCallback(() => {
@@ -199,6 +201,8 @@ export function ProgressScreen() {
           </View>
         </PremiumCard>
         </FadeInSection>
+
+        <SmartInsightsSection insights={insights} delay={40} />
 
         <FadeInSection delay={50}>
         <View className="flex-row gap-2 rounded-pill border border-border-soft bg-bg-glass p-1">
