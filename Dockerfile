@@ -13,7 +13,10 @@ COPY packages/workout-generation/package.json packages/workout-generation/packag
 
 RUN pnpm install --frozen-lockfile
 
-COPY . .
+COPY tsconfig.json ./
+COPY shared shared
+COPY apps/backend apps/backend
+COPY packages packages
 
 RUN pnpm run build:backend
 

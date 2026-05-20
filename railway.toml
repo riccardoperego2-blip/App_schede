@@ -1,0 +1,22 @@
+# Backend service — monorepo root (pnpm workspace).
+# Forces Docker build so Railpack does not scan/install the Expo mobile app.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+watchPatterns = [
+  "apps/backend/**",
+  "packages/**",
+  "shared/**",
+  "package.json",
+  "pnpm-lock.yaml",
+  "pnpm-workspace.yaml",
+  "Dockerfile",
+  ".dockerignore",
+  "railway.toml",
+]
+
+[deploy]
+healthcheckPath = "/v1/health"
+healthcheckTimeout = 120
+restartPolicyType = "ON_FAILURE"

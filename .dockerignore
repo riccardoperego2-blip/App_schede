@@ -1,0 +1,64 @@
+# Keep Docker/Railway build context small (backend-only image).
+# Without this, local node_modules (~500MB+) can be sent and cause snapshot/build timeouts.
+
+# Dependencies & caches (reinstalled in the image)
+**/node_modules
+**/.pnpm-store
+**/.pnpm-debug.log*
+**/.turbo
+**/.cache
+**/*.tsbuildinfo
+
+# Git / CI / editor
+.git
+.github
+.gitignore
+.gitattributes
+.vscode
+.idea
+**/.DS_Store
+**/Thumbs.db
+
+# Env & secrets
+.env
+.env.*
+**/.env
+**/.env.*
+PASSWORD_CONNECTION_STRING.txt
+**/*.pem
+**/*.key
+
+# Mobile app (not needed for backend container)
+apps/mobile/android
+apps/mobile/ios
+apps/mobile/.expo
+apps/mobile/.expo-shared
+apps/mobile/.eas
+apps/mobile/assets
+apps/mobile/src
+apps/mobile/app
+apps/mobile/dist
+apps/mobile/web-build
+**/*.apk
+**/*.aab
+**/*.ipa
+**/*.jks
+**/*.keystore
+
+# Docs & research artefacts
+docs
+**/*.md
+!apps/backend/.env.example
+
+# Test / coverage output
+**/coverage
+**/.nyc_output
+**/junit.xml
+
+# Local build artefacts
+**/dist
+**/build
+**/out
+
+# Railway / deploy scratch
+railpack-plan.json

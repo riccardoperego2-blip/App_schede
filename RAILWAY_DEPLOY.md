@@ -14,7 +14,9 @@ Il processo ascolta su **`process.env.PORT`** (Railway lo imposta automaticament
 
 ## Dockerfile
 
-Il repo contiene un `Dockerfile` nella root per il deploy backend. Se Railway/Railpack fallisce con errori tipo `secret postgresql not found`, configura Railway per usare il **Dockerfile** invece del rilevamento Railpack/Nixpacks.
+Il repo contiene un `Dockerfile` nella root per il deploy backend. Se Railway/Railpack fallisce con errori tipo `secret postgresql not found` o timeout in **Snapshot code**, configura Railway per usare il **Dockerfile** (o il `railway.toml` incluso nel repo) invece del rilevamento Railpack/Nixpacks.
+
+Aggiungi anche un `.dockerignore` nella root: senza di esso, un deploy locale con `railway up` può includere `node_modules` (~500MB+) e far scadere lo snapshot.
 
 Il Dockerfile:
 
