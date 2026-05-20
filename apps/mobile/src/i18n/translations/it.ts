@@ -155,8 +155,8 @@ export const it: TranslationDictionary = {
     regenerateConfirmBody:
       'Vuoi sostituire il programma attuale? Prima salva le modifiche al profilo se non l\'hai già fatto.',
     regenerateAction: 'Rigenera',
-    regenerateSuccessTitle: 'Piano aggiornato',
-    regenerateSuccessBody: 'Il nuovo programma è pronto.',
+    regenerateSuccessTitle: 'Piano rigenerato',
+    regenerateSuccessBody: 'Piano rigenerato con le nuove preferenze.',
     regenerateTimeout:
       'La generazione sta richiedendo più tempo del previsto. Riprova tra poco.',
     regenerateError: 'Impossibile rigenerare il piano. Riprova.',
@@ -295,6 +295,25 @@ export const it: TranslationDictionary = {
     streakSubDefault: 'Mantieni il ritmo quotidiano.',
     topMuscle: '{{muscle}}: gruppo più allenato',
     topMuscleSub: '{{count}} serie nel periodo',
+  },
+  plan: {
+    yourPlan: 'Il tuo piano',
+    goal: {
+      strength: 'Piano forza',
+      hypertrophy: 'Piano ipertrofia',
+      fat_loss: 'Dimagrimento',
+      general: 'Piano generale',
+      rehab: 'Recupero',
+    },
+    split: {
+      full_body: 'Full body',
+      upper_lower: 'Upper / Lower',
+      push_pull_legs: 'Push / Pull / Legs',
+      bro_split: 'Bro split',
+      powerlifting_focus: 'Focus powerlifting',
+      athlete_hybrid: 'Ibrido atleta',
+      custom: 'Personalizzato',
+    },
   },
   exerciseGuide: {
     title: 'GUIDA ESERCIZIO',

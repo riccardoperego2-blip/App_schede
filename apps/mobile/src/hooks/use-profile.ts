@@ -21,13 +21,38 @@ export function useUpdateProfile() {
   });
 }
 
-export async function invalidateWorkoutDataCaches(queryClient: ReturnType<typeof useQueryClient>): Promise<void> {
+export async function invalidateWorkoutDataCaches(
+  queryClient: ReturnType<typeof useQueryClient>,
+  activePlan?: { planId: string; versionId: string },
+): Promise<void> {
+  if (activePlan) {
+    queryClient.setQueryData(qk.plans.active(), activePlan);
+  }
+
+  const invalidateTargets = [
+    qk.profile(),
+    qk.dashboard(),
+    qk.workouts.todays(),
+    qk.workouts.history(),
+    qk.plans.active(),
+    qk.plans.activeFull(),
+    qk.analytics.overview('4w'),
+    qk.analytics.overview('12w'),
+    qk.analytics.overview('6m'),
+    ['workouts', 'day'] as const,
+  ];
+
+  await Promise.all(
+    invalidateTargets.map((queryKey) => queryClient.invalidateQueries({ queryKey })),
+  );
+
   await Promise.all([
-    queryClient.invalidateQueries({ queryKey: qk.dashboard() }),
-    queryClient.invalidateQueries({ queryKey: qk.workouts.todays() }),
-    queryClient.invalidateQueries({ queryKey: qk.workouts.history() }),
-    queryClient.invalidateQueries({ queryKey: qk.plans.active() }),
-    queryClient.invalidateQueries({ queryKey: qk.plans.activeFull() }),
-    queryClient.invalidateQueries({ queryKey: ['analytics'] }),
+    queryClient.refetchQueries({ queryKey: qk.profile(), type: 'active' }),
+    queryClient.refetchQueries({ queryKey: qk.dashboard(), type: 'active' }),
+    queryClient.refetchQueries({ queryKey: qk.workouts.todays(), type: 'active' }),
+    queryClient.refetchQueries({ queryKey: qk.plans.active(), type: 'active' }),
+    queryClient.refetchQueries({ queryKey: qk.plans.activeFull(), type: 'active' }),
+    queryClient.refetchQueries({ queryKey: qk.workouts.history(), type: 'active' }),
+    queryClient.refetchQueries({ queryKey: qk.analytics.overview('4w'), type: 'active' }),
   ]);
 }

@@ -61,6 +61,8 @@ export interface ActivePlanFull {
   readonly planId: string;
   readonly versionId: string;
   readonly name: string;
+  readonly trainingGoal?: string;
+  readonly split?: string;
   readonly weeks: ActivePlanWeekSummary[];
 }
 

@@ -21,6 +21,8 @@ export interface ActivePlanFull {
   readonly planId: string;
   readonly versionId: string;
   readonly name: string;
+  readonly trainingGoal?: string;
+  readonly split?: string;
   readonly weeks: ActivePlanWeekSummary[];
 }
 
@@ -51,7 +53,21 @@ export class PlanRepository {
     userId: string,
     plan: GeneratedWorkoutPlan,
   ): Promise<{ planId: string; versionId: string }> {
+    await tx.query(
+      `update public.workout_plans
+          set status = 'archived', updated_at = timezone('utc', now())
+        where owner_user_id = $1 and status = 'active'`,
+      [userId],
+    );
+
     this.log.log('[PlanRepository] insert plan start');
+    const planMetadata = {
+      engineVersion: plan.version,
+      trainingGoal: plan.trainingGoal,
+      split: plan.split,
+      fatigueReport: plan.fatigueReport,
+      recoveryReport: plan.recoveryReport,
+    };
     const planId = await insertReturningId(
       tx,
       `insert into public.workout_plans
@@ -62,7 +78,7 @@ export class PlanRepository {
         userId,
         `${plan.trainingGoal} ${plan.split}`,
         `Generated ${plan.trainingGoal} plan`,
-        JSON.stringify({ engineVersion: plan.version, fatigueReport: plan.fatigueReport, recoveryReport: plan.recoveryReport }),
+        JSON.stringify(planMetadata),
       ],
     );
     this.log.log(`[PlanRepository] insert plan end id=${planId}`);
@@ -119,6 +135,7 @@ export class PlanRepository {
          from public.workout_plans p
          join public.workout_plan_versions v on v.plan_id = p.id and v.is_current = true
         where p.owner_user_id = $1 and p.status = 'active'
+        order by p.created_at desc
         limit 1`,
       [userId],
     );
@@ -130,11 +147,16 @@ export class PlanRepository {
     const active = await this.findActivePlanForUser(tx, userId);
     if (!active) return null;
 
-    const planRow = await tx.query<{ name: string }>(
-      `select name from public.workout_plans where id = $1 and owner_user_id = $2`,
+    const planRow = await tx.query<{ name: string; metadata: Record<string, unknown> | null }>(
+      `select name, metadata from public.workout_plans where id = $1 and owner_user_id = $2`,
       [active.planId, userId],
     );
-    const planName = planRow.rows[0]?.name ?? 'Programma';
+    const row = planRow.rows[0];
+    const planName = row?.name ?? 'Programma';
+    const meta = row?.metadata ?? {};
+    const trainingGoal =
+      typeof meta.trainingGoal === 'string' ? meta.trainingGoal : undefined;
+    const split = typeof meta.split === 'string' ? meta.split : undefined;
 
     const rows = await tx.query<{
       week_index: number;
@@ -192,6 +214,8 @@ export class PlanRepository {
       planId: active.planId,
       versionId: active.versionId,
       name: planName,
+      ...(trainingGoal ? { trainingGoal } : {}),
+      ...(split ? { split } : {}),
       weeks: [...weeksMap.values()],
     };
   }

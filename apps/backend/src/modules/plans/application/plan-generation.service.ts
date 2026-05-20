@@ -30,7 +30,7 @@ export class PlanGenerationService {
   async generate(user: User, dto: GeneratePlanDto): Promise<GeneratePlanResult> {
     const ownerUserId = dto.clientUserId ?? user.id;
     this.log.log(
-      `[plans.generate] DTO ok owner=${ownerUserId} goal=${dto.trainingGoal} days=${dto.trainingDays} sessionMin=${dto.sessionDurationMinutes} recovery=${dto.recoveryCapacity}`,
+      `[plans.generate] DTO ok owner=${ownerUserId} goal=${dto.trainingGoal} days=${dto.trainingDays} sessionMin=${dto.sessionDurationMinutes} recovery=${dto.recoveryCapacity} equipment=${dto.availableEquipment.join(',')}`,
     );
 
     if (dto.clientUserId && dto.clientUserId !== user.id) {

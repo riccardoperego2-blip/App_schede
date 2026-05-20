@@ -3,9 +3,12 @@ import { ScrollView, View, Pressable, ActivityIndicator, RefreshControl } from '
 import { type Href, useRouter } from 'expo-router';
 import { Screen, Text, Card, Button } from '../../design-system';
 import { useActivePlanFull } from '../../hooks/use-active-plan-full';
+import { useI18n } from '../../i18n/use-i18n';
+import { formatPlanTitle } from './format-plan-title';
 
 export function PlanOverviewScreen() {
   const router = useRouter();
+  const { t } = useI18n();
   const { data, isLoading, isError, error, isRefetching, refetch } = useActivePlanFull();
 
   const openDay = useCallback(
@@ -72,8 +75,8 @@ export function PlanOverviewScreen() {
           <Text variant="caption" tone="muted">
             COACH AI
           </Text>
-          <Text variant="display">Il tuo piano</Text>
-          <Text tone="secondary">{data.name}</Text>
+          <Text variant="display">{t('plan.yourPlan')}</Text>
+          <Text tone="secondary">{formatPlanTitle(data, t)}</Text>
         </Card>
 
         {data.weeks.map((week) => (

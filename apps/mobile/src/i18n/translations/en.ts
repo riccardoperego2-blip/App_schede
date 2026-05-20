@@ -155,8 +155,8 @@ export const en: TranslationDictionary = {
     regenerateConfirmBody:
       'Replace the current program? Save profile changes first if you have not already.',
     regenerateAction: 'Regenerate',
-    regenerateSuccessTitle: 'Plan updated',
-    regenerateSuccessBody: 'Your new program is ready.',
+    regenerateSuccessTitle: 'Plan regenerated',
+    regenerateSuccessBody: 'Plan regenerated with your updated preferences.',
     regenerateTimeout: 'Generation is taking longer than expected. Try again shortly.',
     regenerateError: 'Unable to regenerate plan. Try again.',
     profileNotLoaded: 'Profile not loaded',
@@ -294,6 +294,25 @@ export const en: TranslationDictionary = {
     streakSubDefault: 'Keep the daily rhythm.',
     topMuscle: '{{muscle}}: most trained group',
     topMuscleSub: '{{count}} sets in period',
+  },
+  plan: {
+    yourPlan: 'Your plan',
+    goal: {
+      strength: 'Strength plan',
+      hypertrophy: 'Hypertrophy plan',
+      fat_loss: 'Weight loss',
+      general: 'General plan',
+      rehab: 'Recovery',
+    },
+    split: {
+      full_body: 'Full body',
+      upper_lower: 'Upper / Lower',
+      push_pull_legs: 'Push / Pull / Legs',
+      bro_split: 'Bro split',
+      powerlifting_focus: 'Powerlifting focus',
+      athlete_hybrid: 'Athlete hybrid',
+      custom: 'Custom',
+    },
   },
   exerciseGuide: {
     title: 'EXERCISE GUIDE',

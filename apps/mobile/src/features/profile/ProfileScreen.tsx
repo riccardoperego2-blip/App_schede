@@ -21,9 +21,11 @@ import { useSettingsStore } from '../../stores/settings.store';
 import { useOnboardingStore } from '../onboarding/onboarding.store';
 import { offlineQueue } from '../../lib/offline/queue';
 import { api } from '../../lib/api/sdk';
+import { qk } from '../../lib/api/query-keys';
 import { ApiError } from '../../lib/api/errors';
 import { cancelWorkoutReminder, scheduleDailyWorkoutReminder } from '../../lib/notifications/workout-reminders';
 import { invalidateWorkoutDataCaches, useProfile, useUpdateProfile } from '../../hooks/use-profile';
+import { profileToGeneratePlanPayload } from './profile-plan-payload';
 import { useI18n } from '../../i18n/use-i18n';
 import type { ExperienceLevel, TrainingGoal, UserProfile } from '../../lib/api/contracts';
 import {
@@ -126,15 +128,37 @@ export function ProfileScreen() {
   const regeneratePlan = useMutation({
     mutationFn: async () => {
       if (!form) throw new Error(t('profile.profileNotLoaded'));
-      syncProfileToOnboarding(form);
-      const payload = useOnboardingStore.getState().asPlanInput();
-      return api.plans.generate(payload, `regenerate:${Date.now()}`);
+      const previousActive = queryClient.getQueryData<{ planId: string; versionId: string }>(
+        qk.plans.active(),
+      );
+      const patch = profileToPatch(form);
+      if (__DEV__) {
+        console.log('[profile] save preferences before regenerate', patch);
+      }
+      const saved = await updateProfile.mutateAsync(patch);
+      setForm(saved);
+      syncProfileToOnboarding(saved);
+      if (__DEV__) {
+        console.log('[profile] profile after save', {
+          equipment: saved.availableEquipment,
+          sessionDurationMin: saved.sessionDurationMin,
+        });
+      }
+      const payload = profileToGeneratePlanPayload(saved);
+      if (__DEV__) {
+        console.log('[profile] generate plan payload', payload);
+      }
+      const result = await api.plans.generate(payload, `regenerate:${Date.now()}`);
+      if (__DEV__ && previousActive?.planId === result.planId) {
+        console.warn('[profile] regenerated planId unchanged — check backend active plan selection');
+      }
+      return result;
     },
     onMutate: () => {
       setRegenerateError(null);
     },
-    onSuccess: async () => {
-      await invalidateWorkoutDataCaches(queryClient);
+    onSuccess: async (result) => {
+      await invalidateWorkoutDataCaches(queryClient, result);
       Alert.alert(t('profile.regenerateSuccessTitle'), t('profile.regenerateSuccessBody'), [
         { text: 'OK', onPress: () => router.replace('/(tabs)' as Href) },
       ]);
