@@ -13,6 +13,7 @@ import {
   AnimatedProgressBar,
   FadeInSection,
   PulsePlaceholder,
+  PremiumButton,
 } from '../../design-system';
 import { colors } from '../../theme';
 import { useAuthStore } from '../../stores/auth.store';
@@ -20,6 +21,7 @@ import { useSettingsStore } from '../../stores/settings.store';
 import { useOnboardingStore } from '../onboarding/onboarding.store';
 import { offlineQueue } from '../../lib/offline/queue';
 import { api } from '../../lib/api/sdk';
+import { ApiError } from '../../lib/api/errors';
 import { cancelWorkoutReminder, scheduleDailyWorkoutReminder } from '../../lib/notifications/workout-reminders';
 import { invalidateWorkoutDataCaches, useProfile, useUpdateProfile } from '../../hooks/use-profile';
 import type { ExperienceLevel, TrainingGoal, UserProfile } from '../../lib/api/contracts';
@@ -61,6 +63,16 @@ function experienceProgress(level: ExperienceLevel): number {
   return 34;
 }
 
+function formatRegeneratePlanError(err: unknown): string {
+  if (err instanceof ApiError && err.kind === 'timeout') {
+    return 'La generazione sta richiedendo più tempo del previsto. Riprova tra poco.';
+  }
+  if (err instanceof Error && err.message && err.message !== 'Request timed out') {
+    return err.message;
+  }
+  return 'Impossibile rigenerare il piano. Riprova.';
+}
+
 export function ProfileScreen() {
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -72,6 +84,7 @@ export function ProfileScreen() {
   const [form, setForm] = useState<UserProfile | null>(null);
   const [pendingCount, setPendingCount] = useState(offlineQueue.list().length);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  const [regenerateError, setRegenerateError] = useState<string | null>(null);
   const [reminderBusy, setReminderBusy] = useState(false);
 
   useEffect(() => offlineQueue.subscribe((q) => setPendingCount(q.length)), []);
@@ -115,13 +128,18 @@ export function ProfileScreen() {
       const payload = useOnboardingStore.getState().asPlanInput();
       return api.plans.generate(payload, `regenerate:${Date.now()}`);
     },
+    onMutate: () => {
+      setRegenerateError(null);
+    },
     onSuccess: async () => {
       await invalidateWorkoutDataCaches(queryClient);
       Alert.alert('Piano aggiornato', 'Il nuovo programma è pronto.', [
         { text: 'OK', onPress: () => router.replace('/(tabs)' as Href) },
       ]);
     },
-    onError: (err) => Alert.alert('Errore', (err as Error).message),
+    onError: (err) => {
+      setRegenerateError(formatRegeneratePlanError(err));
+    },
   });
 
   const toggleWorkoutReminder = useCallback(
@@ -422,14 +440,34 @@ export function ProfileScreen() {
         <PremiumCard variant="glass" className="gap-3">
           <Text variant="subtitle">Programma</Text>
           <Text tone="muted">
-            Rigenera il piano con le preferenze aggiornate. La generazione può richiedere circa 20–60
+            Rigenera il piano con le preferenze aggiornate. La generazione può richiedere circa 20–90
             secondi.
           </Text>
-          <Button
-            label="Rigenera piano"
+          {regeneratePlan.isPending ? (
+            <View className="gap-2 rounded-card border border-accent/20 bg-accent/5 px-3 py-2.5">
+              <Text tone="accent" variant="caption" className="font-semibold">
+                Rigenerazione in corso…
+              </Text>
+              <Text tone="muted" variant="tiny">
+                Stiamo costruendo il nuovo programma. Non chiudere l&apos;app.
+              </Text>
+              <PulsePlaceholder className="mt-1 h-1.5 w-full rounded-pill" />
+            </View>
+          ) : null}
+          {regenerateError ? (
+            <View className="rounded-card border border-danger/30 bg-danger/10 px-3 py-2.5">
+              <Text tone="primary" variant="caption">
+                {regenerateError}
+              </Text>
+            </View>
+          ) : null}
+          <PremiumButton
+            label={regeneratePlan.isPending ? 'Rigenerazione in corso…' : 'Rigenera piano'}
             variant="secondary"
             loading={regeneratePlan.isPending}
+            disabled={regeneratePlan.isPending}
             onPress={() => {
+              if (regeneratePlan.isPending) return;
               Alert.alert(
                 'Rigenera piano',
                 'Vuoi sostituire il programma attuale? Prima salva le modifiche al profilo se non l\'hai già fatto.',

@@ -10,6 +10,9 @@ import type {
   UserProfile,
 } from './contracts';
 
+/** Plan generation can take 20–90s+; keep other requests on the default 15s timeout. */
+const PLAN_GENERATE_TIMEOUT_MS = 120_000;
+
 export const api = {
   dashboard: {
     summary: () => http.get<DashboardSummary>('/dashboard/summary'),
@@ -18,7 +21,7 @@ export const api = {
     generate: (input: unknown, idempotencyKey: string) =>
       http.post<{ planId: string; versionId: string }>('/plans/generate', input, {
         idempotencyKey,
-        timeoutMs: 60_000,
+        timeoutMs: PLAN_GENERATE_TIMEOUT_MS,
       }),
     active: () => http.get<{ planId: string; versionId: string }>('/plans/active'),
     activeFull: () => http.get<ActivePlanFull>('/plans/active/full'),
