@@ -296,4 +296,15 @@ export const it: TranslationDictionary = {
     topMuscle: '{{muscle}}: gruppo più allenato',
     topMuscleSub: '{{count}} serie nel periodo',
   },
+  exerciseGuide: {
+    title: 'GUIDA ESERCIZIO',
+    muscles: 'Muscoli coinvolti',
+    howTo: 'Come eseguirlo',
+    commonMistakes: 'Errori comuni',
+    quickTip: 'Consiglio rapido',
+    gotIt: 'Ho capito',
+    notAvailable: 'Guida non ancora disponibile per questo esercizio. Stiamo ampliando il catalogo.',
+    open: 'Guida',
+    openHint: 'Apri la guida tecnica dell\'esercizio',
+  },
 };

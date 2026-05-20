@@ -295,4 +295,15 @@ export const en: TranslationDictionary = {
     topMuscle: '{{muscle}}: most trained group',
     topMuscleSub: '{{count}} sets in period',
   },
+  exerciseGuide: {
+    title: 'EXERCISE GUIDE',
+    muscles: 'Muscles worked',
+    howTo: 'How to perform',
+    commonMistakes: 'Common mistakes',
+    quickTip: 'Quick tip',
+    gotIt: 'Got it',
+    notAvailable: 'Guide not yet available for this exercise. We are expanding the catalog.',
+    open: 'Guide',
+    openHint: 'Open exercise technique guide',
+  },
 };
