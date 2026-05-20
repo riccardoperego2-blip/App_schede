@@ -12,6 +12,7 @@ import {
 } from '../../design-system';
 import { colors } from '../../theme';
 import { useWorkoutHistory } from '../../hooks/use-history';
+import { useI18n } from '../../i18n/use-i18n';
 import {
   computeHistorySummary,
   formatHistoryDate,
@@ -21,6 +22,7 @@ import {
 } from '../../lib/api/mappers/workout-history';
 
 function HistorySkeleton() {
+  const { t } = useI18n();
   return (
     <Screen>
       <View className="gap-5">
@@ -48,7 +50,7 @@ function HistorySkeleton() {
           </View>
         ))}
         <Text tone="muted" className="text-center">
-          Caricamento cronologia…
+          {t('history.loading')}
         </Text>
       </View>
     </Screen>
@@ -80,8 +82,11 @@ function HistorySummaryHeader({
   summary: ReturnType<typeof computeHistorySummary>;
   hasMore: boolean;
 }) {
+  const { t, locale } = useI18n();
   const volumeLabel =
-    summary.totalVolumeKg > 0 ? `${Math.round(summary.totalVolumeKg).toLocaleString('it-IT')} kg` : '—';
+    summary.totalVolumeKg > 0
+      ? `${Math.round(summary.totalVolumeKg).toLocaleString(locale)} kg`
+      : t('common.emDash');
   const countLabel = hasMore ? `${summary.workoutCount}+` : String(summary.workoutCount);
 
   return (
@@ -89,25 +94,25 @@ function HistorySummaryHeader({
       <PremiumCard variant="ambient" className="gap-4 p-5">
         <View className="gap-1">
           <Text variant="tiny" tone="accent" className="tracking-widest">
-            IL TUO PERCORSO
+            {t('history.eyebrow')}
           </Text>
-          <Text variant="display">Cronologia</Text>
+          <Text variant="display">{t('history.title')}</Text>
           <Text tone="secondary" variant="caption">
-            Ogni sessione conta. La costanza costruisce i risultati.
+            {t('history.subtitle')}
           </Text>
         </View>
         <View className="flex-row flex-wrap gap-2">
-          <SummaryStat label="Allenamenti" value={countLabel} helper={hasMore ? 'caricati' : undefined} />
-          <SummaryStat label="Volume" value={volumeLabel} />
+          <SummaryStat label={t('history.workouts')} value={countLabel} helper={hasMore ? t('history.loaded') : undefined} />
+          <SummaryStat label={t('stat.volume')} value={volumeLabel} />
           <SummaryStat
-            label="Streak"
-            value={summary.streakDays != null ? `${summary.streakDays}g` : '—'}
-            helper={summary.streakDays != null ? 'giorni attivi' : 'completa una sessione'}
+            label={t('stat.streak')}
+            value={summary.streakDays != null ? `${summary.streakDays}g` : t('common.emDash')}
+            helper={summary.streakDays != null ? t('history.activeDays') : t('history.completeSession')}
           />
         </View>
         {summary.lastSessionLabel ? (
           <Text variant="tiny" tone="muted">
-            Ultima sessione · {summary.lastSessionLabel}
+            {t('history.lastSession', { label: summary.lastSessionLabel })}
           </Text>
         ) : null}
       </PremiumCard>
@@ -116,17 +121,18 @@ function HistorySummaryHeader({
 }
 
 function CompletedBadge({ prCount }: { prCount: number }) {
+  const { t } = useI18n();
   return (
     <View className="flex-row flex-wrap items-center justify-end gap-1.5">
       <View className="rounded-pill border border-accent/30 bg-accent/10 px-2.5 py-1">
         <Text variant="tiny" tone="accent" className="font-semibold tracking-wide">
-          COMPLETATO
+          {t('history.completed')}
         </Text>
       </View>
       {prCount > 0 ? (
         <View className="rounded-pill border border-border-soft bg-bg-surface px-2.5 py-1">
           <Text variant="tiny" tone="accent" className="font-semibold">
-            {prCount} PR
+            {prCount} {t('common.pr')}
           </Text>
         </View>
       ) : null}
@@ -143,13 +149,16 @@ function HistoryTimelineItem({
   index: number;
   isLast: boolean;
 }) {
-  const dateLabel = formatHistoryDate(item.completedAt);
+  const { t, locale } = useI18n();
+  const dateLabel = formatHistoryDate(item.completedAt, locale);
   const durationLabel = formatHistoryDuration(item.durationMinutes);
   const volumeLabel = formatHistoryVolume(item.volumeKg);
   const exerciseLabel =
     item.exerciseCount > 0
-      ? `${item.exerciseCount} ${item.exerciseCount === 1 ? 'esercizio' : 'esercizi'}`
-      : '—';
+      ? t(item.exerciseCount === 1 ? 'history.exerciseCount' : 'history.exercisesCount', {
+          count: item.exerciseCount,
+        })
+      : t('common.emDash');
 
   return (
     <FadeInSection delay={Math.min(40 + index * 50, 220)} className="flex-row gap-3">
@@ -186,7 +195,7 @@ function HistoryTimelineItem({
                 </Text>
               ) : (
                 <Text variant="caption" tone="muted">
-                  Data non disponibile
+                  {t('history.dateUnavailable')}
                 </Text>
               )}
             </View>
@@ -194,9 +203,9 @@ function HistoryTimelineItem({
           </View>
 
           <View className="flex-row flex-wrap gap-2">
-            <StatPill label="durata" value={durationLabel} active={item.durationMinutes > 0} />
-            <StatPill label="volume" value={volumeLabel} active={(item.volumeKg ?? 0) > 0} />
-            <StatPill label="esercizi" value={exerciseLabel} active={item.exerciseCount > 0} />
+            <StatPill label={t('stat.duration')} value={durationLabel} active={item.durationMinutes > 0} />
+            <StatPill label={t('stat.volume')} value={volumeLabel} active={(item.volumeKg ?? 0) > 0} />
+            <StatPill label={t('stat.exercises')} value={exerciseLabel} active={item.exerciseCount > 0} />
           </View>
         </PremiumCard>
       </View>
@@ -205,6 +214,7 @@ function HistoryTimelineItem({
 }
 
 function HistoryEmptyState({ onStartWorkout, onRefresh }: { onStartWorkout: () => void; onRefresh: () => void }) {
+  const { t } = useI18n();
   return (
     <View className="flex-1 justify-center gap-5">
       <FadeInSection delay={60}>
@@ -214,17 +224,17 @@ function HistoryEmptyState({ onStartWorkout, onRefresh }: { onStartWorkout: () =
           </View>
           <View className="gap-2">
             <Text variant="tiny" tone="accent" className="text-center tracking-widest">
-              CRONOLOGIA VUOTA
+              {t('history.emptyEyebrow')}
             </Text>
             <Text variant="title" className="text-center">
-              Completa il tuo primo workout per costruire la tua cronologia
+              {t('history.emptyTitle')}
             </Text>
             <Text tone="secondary" variant="caption" className="text-center">
-              Qui troverai durata, volume ed esercizi di ogni sessione completata.
+              {t('history.emptyBody')}
             </Text>
           </View>
-          <PremiumButton label="Vai al workout" onPress={onStartWorkout} />
-          <PremiumButton label="Aggiorna" variant="secondary" onPress={onRefresh} />
+          <PremiumButton label={t('progress.goWorkout')} onPress={onStartWorkout} />
+          <PremiumButton label={t('common.refresh')} variant="secondary" onPress={onRefresh} />
         </PremiumCard>
       </FadeInSection>
     </View>
@@ -232,16 +242,17 @@ function HistoryEmptyState({ onStartWorkout, onRefresh }: { onStartWorkout: () =
 }
 
 function HistoryErrorState({ message, onRetry }: { message: string; onRetry: () => void }) {
+  const { t } = useI18n();
   return (
     <View className="flex-1 justify-center gap-4">
       <PremiumCard variant="glass" className="gap-3 p-5">
         <Text variant="subtitle" className="font-semibold">
-          Impossibile caricare la cronologia
+          {t('history.loadError')}
         </Text>
         <Text tone="muted" variant="caption">
           {message}
         </Text>
-        <PremiumButton label="Riprova" onPress={onRetry} />
+        <PremiumButton label={t('common.retry')} onPress={onRetry} />
       </PremiumCard>
     </View>
   );
@@ -249,6 +260,7 @@ function HistoryErrorState({ message, onRetry }: { message: string; onRetry: () 
 
 export function HistoryScreen() {
   const router = useRouter();
+  const { t, locale } = useI18n();
   const { data, isLoading, isError, error, isRefetching, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useWorkoutHistory();
 
@@ -259,7 +271,7 @@ export function HistoryScreen() {
   );
 
   const items = useMemo(() => data?.pages.flatMap((p) => p.items) ?? [], [data?.pages]);
-  const summary = useMemo(() => computeHistorySummary(items), [items]);
+  const summary = useMemo(() => computeHistorySummary(items, t, locale), [items, t, locale]);
   const goHome = useCallback(() => router.push('/(tabs)' as Href), [router]);
 
   if (isLoading && items.length === 0) {

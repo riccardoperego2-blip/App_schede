@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { View, Pressable } from 'react-native';
 import { Text, Button, PremiumCard, StatPill } from '../../../design-system';
+import { useI18n } from '../../../i18n/use-i18n';
 import { SetRow } from './SetRow';
 import type { ExerciseDraft, SetDraft } from '../../../stores/workout-session.store';
 
@@ -19,27 +20,30 @@ function ExerciseCardImpl({
   onUpdateSet,
   onCompleteSet,
 }: ExerciseCardProps) {
+  const { t, te, tm } = useI18n();
   const totalCompleted = exercise.sets.filter((s) => s.completed).length;
   const allDone = totalCompleted > 0 && totalCompleted === exercise.sets.length;
+  const exerciseName = te(exercise.slug, exercise.name);
+  const muscleLabel = tm(exercise.primaryMuscle);
 
   return (
     <PremiumCard variant={allDone ? 'glass' : 'default'} className="gap-3 p-4">
       <Pressable
         onPress={onToggle}
         accessibilityRole="button"
-        accessibilityLabel={`${exercise.name}, ${totalCompleted} su ${exercise.sets.length} serie completate`}
+        accessibilityLabel={t('workout.setsProgress', { done: totalCompleted, total: exercise.sets.length })}
         className="flex-row items-center justify-between"
       >
         <View className="flex-1 gap-0.5 pr-3">
           <Text variant="subtitle" className="font-semibold">
-            {exercise.name}
+            {exerciseName}
           </Text>
           <Text tone="muted" variant="caption">
-            {exercise.primaryMuscle} · rest {exercise.restSeconds}s
+            {muscleLabel} · {t('workout.restSec', { sec: exercise.restSeconds })}
           </Text>
         </View>
         <StatPill
-          label="set"
+          label={t('stat.sets')}
           value={`${totalCompleted}/${exercise.sets.length}`}
           active={totalCompleted > 0}
         />
@@ -65,7 +69,7 @@ function ExerciseCardImpl({
               onComplete={() => onCompleteSet(set.setIndex)}
             />
           ))}
-          <Button label="+ Aggiungi serie" variant="ghost" size="sm" onPress={onAddSet} />
+          <Button label={t('workout.addSet')} variant="ghost" size="sm" onPress={onAddSet} />
         </View>
       ) : null}
     </PremiumCard>

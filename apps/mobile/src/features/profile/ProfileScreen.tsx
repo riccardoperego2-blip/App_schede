@@ -24,6 +24,7 @@ import { api } from '../../lib/api/sdk';
 import { ApiError } from '../../lib/api/errors';
 import { cancelWorkoutReminder, scheduleDailyWorkoutReminder } from '../../lib/notifications/workout-reminders';
 import { invalidateWorkoutDataCaches, useProfile, useUpdateProfile } from '../../hooks/use-profile';
+import { useI18n } from '../../i18n/use-i18n';
 import type { ExperienceLevel, TrainingGoal, UserProfile } from '../../lib/api/contracts';
 import {
   EQUIPMENT_OPTIONS,
@@ -63,19 +64,20 @@ function experienceProgress(level: ExperienceLevel): number {
   return 34;
 }
 
-function formatRegeneratePlanError(err: unknown): string {
+function formatRegeneratePlanError(err: unknown, t: (key: string) => string): string {
   if (err instanceof ApiError && err.kind === 'timeout') {
-    return 'La generazione sta richiedendo più tempo del previsto. Riprova tra poco.';
+    return t('profile.regenerateTimeout');
   }
   if (err instanceof Error && err.message && err.message !== 'Request timed out') {
     return err.message;
   }
-  return 'Impossibile rigenerare il piano. Riprova.';
+  return t('profile.regenerateError');
 }
 
 export function ProfileScreen() {
   const router = useRouter();
   const queryClient = useQueryClient();
+  const { t, language, setLanguage } = useI18n();
   const user = useAuthStore((s) => s.user);
   const signOut = useAuthStore((s) => s.signOut);
   const settings = useSettingsStore();
@@ -115,15 +117,15 @@ export function ProfileScreen() {
       const updated = await updateProfile.mutateAsync(profileToPatch(form));
       setForm(updated);
       syncProfileToOnboarding(updated);
-      setSaveMessage('Profilo salvato.');
+      setSaveMessage(t('profile.saved'));
     } catch (err) {
-      Alert.alert('Errore', (err as Error).message);
+      Alert.alert(t('common.error'), (err as Error).message);
     }
-  }, [form, updateProfile]);
+  }, [form, updateProfile, t]);
 
   const regeneratePlan = useMutation({
     mutationFn: async () => {
-      if (!form) throw new Error('Profilo non caricato');
+      if (!form) throw new Error(t('profile.profileNotLoaded'));
       syncProfileToOnboarding(form);
       const payload = useOnboardingStore.getState().asPlanInput();
       return api.plans.generate(payload, `regenerate:${Date.now()}`);
@@ -133,12 +135,12 @@ export function ProfileScreen() {
     },
     onSuccess: async () => {
       await invalidateWorkoutDataCaches(queryClient);
-      Alert.alert('Piano aggiornato', 'Il nuovo programma è pronto.', [
+      Alert.alert(t('profile.regenerateSuccessTitle'), t('profile.regenerateSuccessBody'), [
         { text: 'OK', onPress: () => router.replace('/(tabs)' as Href) },
       ]);
     },
     onError: (err) => {
-      setRegenerateError(formatRegeneratePlanError(err));
+      setRegenerateError(formatRegeneratePlanError(err, t));
     },
   });
 
@@ -232,7 +234,7 @@ export function ProfileScreen() {
             <PulsePlaceholder className="h-2.5 w-full" />
           </PremiumCard>
           <Text tone="muted" className="text-center">
-            Caricamento profilo…
+            {t('profile.loading')}
           </Text>
         </View>
       </Screen>
@@ -243,16 +245,16 @@ export function ProfileScreen() {
     return (
       <Screen>
         <View className="gap-4 px-1 pt-2">
-          <Text variant="subtitle">Impossibile caricare il profilo</Text>
+          <Text variant="subtitle">{t('profile.loadError')}</Text>
           <Text tone="muted">{(error as Error).message}</Text>
-          <Button label="Riprova" onPress={() => void refetch()} />
+          <Button label={t('common.retry')} onPress={() => void refetch()} />
         </View>
       </Screen>
     );
   }
 
   if (!form) return null;
-  const displayName = form.displayName.trim() || 'Atleta';
+  const displayName = form.displayName.trim() || t('profile.athlete');
   const initial = displayName.charAt(0).toUpperCase();
   const expPct = experienceProgress(form.experienceLevel);
 
@@ -279,7 +281,7 @@ export function ProfileScreen() {
             </View>
             <View className="flex-1">
               <Text variant="tiny" tone="muted" className="tracking-widest">
-                ACCOUNT
+                {t('profile.account')}
               </Text>
               <Text variant="display">{displayName}</Text>
               <Text tone="secondary" numberOfLines={1}>
@@ -288,18 +290,18 @@ export function ProfileScreen() {
             </View>
           </View>
           <View className="flex-row gap-2">
-            <StatPill active label="giorni" value={form.trainingDaysPerWeek} />
-            <StatPill label="durata" value={`${form.sessionDurationMin}m`} />
-            <StatPill label="livello" value={form.experienceLevel.slice(0, 3).toUpperCase()} />
+            <StatPill active label={t('common.days')} value={form.trainingDaysPerWeek} />
+            <StatPill label={t('stat.duration')} value={`${form.sessionDurationMin}m`} />
+            <StatPill label={t('profile.level')} value={form.experienceLevel.slice(0, 3).toUpperCase()} />
           </View>
         </PremiumCard>
         </FadeInSection>
 
         <FadeInSection delay={60}>
         <PremiumCard variant="elevated" className="gap-4">
-          <SectionHeader title="Esperienza" subtitle="Profilo atletico usato dal coach AI" />
+          <SectionHeader title={t('profile.experienceTitle')} subtitle={t('profile.experienceSub')} />
           <View className="flex-row items-end justify-between">
-            <Text variant="title">{EXPERIENCE_OPTIONS.find((x) => x.value === form.experienceLevel)?.label}</Text>
+            <Text variant="title">{t(`profile.experience.${form.experienceLevel}`)}</Text>
             <Text tone="accent" variant="caption">
               {expPct}%
             </Text>
@@ -310,16 +312,16 @@ export function ProfileScreen() {
 
         <FadeInSection delay={120}>
         <PremiumCard variant="elevated" className="gap-5">
-          <SectionHeader title="Allenamento" subtitle="Preferenze usate dal coach AI" />
+          <SectionHeader title={t('profile.trainingTitle')} subtitle={t('profile.trainingSub')} />
 
           <View className="gap-2">
             <Text variant="caption" tone="muted">
-              NOME
+              {t('profile.nameLabel')}
             </Text>
             <TextInput
               value={form.displayName}
               onChangeText={(displayName) => setForm((prev) => (prev ? { ...prev, displayName } : prev))}
-              placeholder="Il tuo nome"
+              placeholder={t('profile.namePlaceholder')}
               placeholderTextColor="#6B7585"
               className="h-12 rounded-card border border-border-soft bg-bg-glass px-4 text-text-primary"
             />
@@ -327,7 +329,7 @@ export function ProfileScreen() {
 
           <View className="gap-2">
             <Text variant="caption" tone="muted">
-              OBIETTIVO
+              {t('profile.goalLabel')}
             </Text>
             <View className="flex-row flex-wrap gap-2">
               {TRAINING_GOAL_OPTIONS.map((opt) => {
@@ -341,7 +343,7 @@ export function ProfileScreen() {
                     className={`rounded-pill px-3 py-2 ${active ? 'bg-accent' : 'bg-bg-elevated'}`}
                   >
                     <Text tone={active ? 'inverse' : 'secondary'} variant="caption">
-                      {opt.label}
+                      {t(`profile.goals.${opt.value}`)}
                     </Text>
                   </Pressable>
                 );
@@ -351,7 +353,7 @@ export function ProfileScreen() {
 
           <View className="gap-2">
             <Text variant="caption" tone="muted">
-              ESPERIENZA
+              {t('profile.experienceLabel')}
             </Text>
             <View className="flex-row flex-wrap gap-2">
               {EXPERIENCE_OPTIONS.map((opt) => {
@@ -367,7 +369,7 @@ export function ProfileScreen() {
                     className={`rounded-pill px-3 py-2 ${active ? 'bg-accent' : 'bg-bg-elevated'}`}
                   >
                     <Text tone={active ? 'inverse' : 'secondary'} variant="caption">
-                      {opt.label}
+                      {t(`profile.experience.${opt.value}`)}
                     </Text>
                   </Pressable>
                 );
@@ -376,7 +378,7 @@ export function ProfileScreen() {
           </View>
 
           <View className="flex-row items-center justify-between">
-            <Text>Giorni a settimana</Text>
+            <Text>{t('profile.daysPerWeek')}</Text>
             <Stepper
               value={form.trainingDaysPerWeek}
               min={1}
@@ -388,7 +390,7 @@ export function ProfileScreen() {
           </View>
 
           <View className="flex-row items-center justify-between">
-            <Text>Durata sessione</Text>
+            <Text>{t('profile.sessionDuration')}</Text>
             <Stepper
               value={form.sessionDurationMin}
               min={30}
@@ -403,7 +405,7 @@ export function ProfileScreen() {
 
           <View className="gap-2">
             <Text variant="caption" tone="muted">
-              ATTREZZATURA
+              {t('profile.equipmentLabel')}
             </Text>
             <View className="flex-row flex-wrap gap-2">
               {EQUIPMENT_OPTIONS.map((opt) => {
@@ -415,7 +417,7 @@ export function ProfileScreen() {
                     className={`rounded-pill px-3 py-2 ${active ? 'bg-accent' : 'bg-bg-elevated'}`}
                   >
                     <Text tone={active ? 'inverse' : 'secondary'} variant="caption">
-                      {opt.label}
+                      {t(`profile.equipment.${opt.value}`)}
                     </Text>
                   </Pressable>
                 );
@@ -424,13 +426,13 @@ export function ProfileScreen() {
           </View>
 
           <Button
-            label="Salva modifiche"
+            label={t('profile.saveChanges')}
             loading={updateProfile.isPending}
             onPress={() => void saveProfile()}
           />
           {saveMessage ? (
             <Text tone="accent" variant="caption">
-              {saveMessage}
+              {t('profile.saved')}
             </Text>
           ) : null}
         </PremiumCard>
@@ -438,18 +440,15 @@ export function ProfileScreen() {
 
         <FadeInSection delay={180}>
         <PremiumCard variant="glass" className="gap-3">
-          <Text variant="subtitle">Programma</Text>
-          <Text tone="muted">
-            Rigenera il piano con le preferenze aggiornate. La generazione può richiedere circa 20–90
-            secondi.
-          </Text>
+          <Text variant="subtitle">{t('profile.program')}</Text>
+          <Text tone="muted">{t('profile.regenerateHint')}</Text>
           {regeneratePlan.isPending ? (
             <View className="gap-2 rounded-card border border-accent/20 bg-accent/5 px-3 py-2.5">
               <Text tone="accent" variant="caption" className="font-semibold">
-                Rigenerazione in corso…
+                {t('profile.regenerating')}
               </Text>
               <Text tone="muted" variant="tiny">
-                Stiamo costruendo il nuovo programma. Non chiudere l&apos;app.
+                {t('profile.regeneratingHint')}
               </Text>
               <PulsePlaceholder className="mt-1 h-1.5 w-full rounded-pill" />
             </View>
@@ -462,19 +461,19 @@ export function ProfileScreen() {
             </View>
           ) : null}
           <PremiumButton
-            label={regeneratePlan.isPending ? 'Rigenerazione in corso…' : 'Rigenera piano'}
+            label={regeneratePlan.isPending ? t('profile.regenerating') : t('profile.regeneratePlan')}
             variant="secondary"
             loading={regeneratePlan.isPending}
             disabled={regeneratePlan.isPending}
             onPress={() => {
               if (regeneratePlan.isPending) return;
               Alert.alert(
-                'Rigenera piano',
-                'Vuoi sostituire il programma attuale? Prima salva le modifiche al profilo se non l\'hai già fatto.',
+                t('profile.regenerateConfirmTitle'),
+                t('profile.regenerateConfirmBody'),
                 [
-                  { text: 'Annulla' },
+                  { text: t('common.cancel') },
                   {
-                    text: 'Rigenera',
+                    text: t('profile.regenerateAction'),
                     onPress: () => void regeneratePlan.mutateAsync(),
                   },
                 ],
@@ -486,17 +485,38 @@ export function ProfileScreen() {
 
         <FadeInSection delay={240}>
         <PremiumCard variant="glass" className="gap-4">
-          <Text variant="subtitle">Impostazioni app</Text>
+          <Text variant="subtitle">{t('profile.appSettings')}</Text>
+          <View className="gap-2">
+            <Text variant="caption" tone="muted">
+              {t('profile.language')}
+            </Text>
+            <View className="flex-row gap-2">
+              {(['it', 'en'] as const).map((code) => {
+                const active = language === code;
+                return (
+                  <Pressable
+                    key={code}
+                    onPress={() => setLanguage(code)}
+                    className={`flex-1 rounded-pill px-3 py-2.5 ${active ? 'bg-accent' : 'bg-bg-elevated'}`}
+                  >
+                    <Text tone={active ? 'inverse' : 'secondary'} variant="caption" className="text-center">
+                      {code === 'it' ? t('profile.languageIt') : t('profile.languageEn')}
+                    </Text>
+                  </Pressable>
+                );
+              })}
+            </View>
+          </View>
           <View className="flex-row items-center justify-between">
-            <Text>Vibrazioni</Text>
+            <Text>{t('profile.haptics')}</Text>
             <Switch value={settings.hapticsEnabled} onValueChange={settings.setHapticsEnabled} />
           </View>
           <View className="flex-row items-center justify-between">
-            <Text>Schermo sempre acceso</Text>
+            <Text>{t('profile.keepAwake')}</Text>
             <Switch value={settings.keepScreenOn} onValueChange={settings.setKeepScreenOn} />
           </View>
           <View className="flex-row items-center justify-between">
-            <Text>Notifiche</Text>
+            <Text>{t('profile.notifications')}</Text>
             <Switch
               value={settings.notificationsEnabled}
               onValueChange={settings.setNotificationsEnabled}
@@ -507,10 +527,11 @@ export function ProfileScreen() {
         <PremiumCard variant="glass" className="gap-4">
           <View className="flex-row items-center justify-between">
             <View className="flex-1 pr-4">
-              <Text variant="subtitle">Promemoria allenamento</Text>
+              <Text variant="subtitle">{t('profile.workoutReminder')}</Text>
               <Text tone="muted" variant="caption">
-                Ricevi un promemoria locale ogni giorno alle{' '}
-                {formatReminderTime(settings.workoutReminderHour, settings.workoutReminderMinute)}.
+                {t('profile.reminderHint', {
+                  time: formatReminderTime(settings.workoutReminderHour, settings.workoutReminderMinute),
+                })}
               </Text>
             </View>
             <Switch
@@ -521,7 +542,7 @@ export function ProfileScreen() {
           </View>
 
           <View className="flex-row items-center justify-between">
-            <Text>Ora</Text>
+            <Text>{t('profile.reminderHour')}</Text>
             <Stepper
               value={settings.workoutReminderHour}
               min={0}
@@ -532,7 +553,7 @@ export function ProfileScreen() {
           </View>
 
           <View className="flex-row items-center justify-between">
-            <Text>Minuti</Text>
+            <Text>{t('profile.reminderMinute')}</Text>
             <Stepper
               value={settings.workoutReminderMinute}
               min={0}
@@ -543,19 +564,19 @@ export function ProfileScreen() {
             />
           </View>
 
-          {reminderBusy ? <Text tone="muted" variant="caption">Aggiornamento promemoria…</Text> : null}
+          {reminderBusy ? <Text tone="muted" variant="caption">{t('profile.reminderUpdating')}</Text> : null}
         </PremiumCard>
 
         <PremiumCard variant="glass">
-          <Text variant="subtitle">Sincronizzazione</Text>
+          <Text variant="subtitle">{t('profile.sync')}</Text>
           <Text tone="muted">
             {pendingCount > 0
-              ? `${pendingCount} operazione/i in coda offline`
-              : 'Tutto sincronizzato'}
+              ? t('profile.syncPending', { count: pendingCount })
+              : t('profile.syncOk')}
           </Text>
         </PremiumCard>
 
-        <Button label="Esci" variant="danger" onPress={() => void signOut()} />
+        <Button label={t('profile.signOut')} variant="danger" onPress={() => void signOut()} />
         </FadeInSection>
       </View>
     </Screen>

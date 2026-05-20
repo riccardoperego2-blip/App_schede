@@ -136,9 +136,9 @@ export function formatAnalyticsVolume(volumeKg: number | null | undefined): stri
   return `${Math.round(volumeKg)} kg`;
 }
 
-export function formatWeekLabel(weekStart: string): string {
+export function formatWeekLabel(weekStart: string, locale = 'it-IT'): string {
   if (!weekStart) return '—';
   const d = new Date(weekStart.includes('T') ? weekStart : `${weekStart}T00:00:00Z`);
   if (!Number.isFinite(d.getTime())) return weekStart;
-  return d.toLocaleDateString('it-IT', { day: 'numeric', month: 'short' });
+  return d.toLocaleDateString(locale, { day: 'numeric', month: 'short' });
 }

@@ -5,6 +5,7 @@ import {
   StatPill,
   AnimatedProgressBar,
 } from '../../../design-system';
+import { useI18n } from '../../../i18n/use-i18n';
 import { formatElapsed } from '../hooks/use-session-elapsed';
 
 interface SessionHeaderProps {
@@ -30,6 +31,7 @@ export function SessionHeader({
   onTogglePause,
   onCancel,
 }: SessionHeaderProps) {
+  const { t } = useI18n();
   const progressPct = plannedSets > 0 ? Math.round((completedSets / plannedSets) * 100) : 0;
 
   return (
@@ -37,7 +39,7 @@ export function SessionHeader({
       <View className="flex-row items-start justify-between gap-3">
         <View className="flex-1 gap-1">
           <Text variant="tiny" tone="muted" className="tracking-widest">
-            {dayLabel.toUpperCase()} · SETT. {weekNumber}
+            {dayLabel.toUpperCase()} · {t('workout.weekLabel', { week: weekNumber })}
           </Text>
           <Text variant="title">{dayLabel}</Text>
           <Text variant="subtitle" tone="accent" className="font-semibold">
@@ -48,7 +50,7 @@ export function SessionHeader({
           <Pressable
             onPress={onTogglePause}
             accessibilityRole="button"
-            accessibilityLabel={isPaused ? 'Riprendi sessione' : 'Metti in pausa'}
+            accessibilityLabel={isPaused ? t('workout.resume') : t('workout.pause')}
             className="rounded-pill border border-border-soft bg-bg-surface px-4 py-2.5"
           >
             <Text variant="caption">{isPaused ? '▶' : '❚❚'}</Text>
@@ -56,7 +58,7 @@ export function SessionHeader({
           <Pressable
             onPress={onCancel}
             accessibilityRole="button"
-            accessibilityLabel="Annulla sessione"
+            accessibilityLabel={t('workout.cancelSession')}
             className="rounded-pill border border-border-soft bg-bg-surface px-4 py-2.5"
           >
             <Text tone="danger" variant="caption">
@@ -67,18 +69,18 @@ export function SessionHeader({
       </View>
 
       <View className="flex-row gap-2">
-        <StatPill label="volume" value={`${Math.round(totalVolumeKg)} kg`} active={totalVolumeKg > 0} />
-        <StatPill label="set" value={`${completedSets}/${plannedSets}`} active={completedSets > 0} />
-        <StatPill label="prog" value={`${progressPct}%`} />
+        <StatPill label={t('stat.volume')} value={`${Math.round(totalVolumeKg)} kg`} active={totalVolumeKg > 0} />
+        <StatPill label={t('stat.sets')} value={`${completedSets}/${plannedSets}`} active={completedSets > 0} />
+        <StatPill label={t('stat.progress')} value={`${progressPct}%`} />
       </View>
 
       <View className="gap-2">
         <View className="flex-row items-center justify-between">
           <Text variant="caption" tone="muted">
-            Completamento sessione
+            {t('workout.sessionCompletion')}
           </Text>
           <Text variant="caption" tone="secondary">
-            {completedSets}/{plannedSets} set
+            {t('workout.setsCount', { done: completedSets, total: plannedSets })}
           </Text>
         </View>
         <AnimatedProgressBar value={completedSets} max={plannedSets || 1} />

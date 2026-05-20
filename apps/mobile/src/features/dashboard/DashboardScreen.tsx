@@ -18,20 +18,22 @@ import { useQueryClient } from '@tanstack/react-query';
 import { qk } from '../../lib/api/query-keys';
 import { useOnlineStatus } from '../../hooks/use-online-status';
 import { CompactSmartInsightsBar, useCompactSmartInsights } from '../insights';
+import { useI18n } from '../../i18n/use-i18n';
 
-function ReadinessPill({ band }: { band: 'ready' | 'caution' | 'rest' }) {
-  const colors = {
-    ready: 'bg-accent/20 text-accent',
-    caution: 'bg-warning/20 text-warning',
-    rest: 'bg-danger/20 text-danger',
-  } as const;
-  const label = { ready: 'Pronto', caution: 'Attenzione', rest: 'Riposo' }[band];
+function ReadinessPill({
+  band,
+  label,
+}: {
+  band: 'ready' | 'caution' | 'rest';
+  label: string;
+}) {
   const tone = { ready: 'accent', caution: 'primary', rest: 'danger' }[band] as
     | 'accent'
     | 'primary'
     | 'danger';
+  const bg = { ready: 'bg-accent/20', caution: 'bg-warning/20', rest: 'bg-danger/20' }[band];
   return (
-    <View className={`rounded-pill px-3 py-1 ${colors[band].split(' ')[0]}`}>
+    <View className={`rounded-pill px-3 py-1 ${bg}`}>
       <Text variant="tiny" tone={tone}>
         {label.toUpperCase()}
       </Text>
@@ -77,6 +79,7 @@ function StatCard({ label, value, helper }: { label: string; value: string | num
 export function DashboardScreen() {
   const router = useRouter();
   const queryClient = useQueryClient();
+  const { t } = useI18n();
   const dashboard = useDashboard();
   const todays = useTodaysWorkout();
   const userId = useAuthStore((s) => s.user?.id);
@@ -88,12 +91,18 @@ export function DashboardScreen() {
 
   const summary = dashboard.data;
   const today = todays.data;
-  const displayName = summary?.user.displayName || 'Pernycot';
+  const displayName = summary?.user.displayName || t('profile.athlete');
   const initial = displayName.trim().charAt(0).toUpperCase() || 'S';
   const weeklyCompleted = summary?.weeklyVolume.completed ?? 0;
   const weeklyPlanned = summary?.weeklyVolume.planned ?? 0;
   const weeklyPct = weeklyPlanned > 0 ? Math.round((weeklyCompleted / weeklyPlanned) * 100) : 0;
   const compactInsights = useCompactSmartInsights('4w');
+
+  const readinessLabels = {
+    ready: t('readiness.ready'),
+    caution: t('readiness.caution'),
+    rest: t('readiness.rest'),
+  };
 
   return (
     <Screen>
@@ -118,11 +127,11 @@ export function DashboardScreen() {
             <View className="flex-row items-start justify-between">
               <View className="flex-1 pr-4 gap-1">
                 <Text variant="tiny" tone="muted" className="tracking-widest">
-                  SCHEDE FITNESS
+                  {t('dashboard.brand')}
                 </Text>
-                <Text variant="display">Ciao, {displayName}</Text>
+                <Text variant="display">{t('dashboard.greeting', { name: displayName })}</Text>
                 <Text tone="secondary" variant="caption">
-                  Spingi il prossimo set. Il piano si adatta, tu alza il livello.
+                  {t('dashboard.tagline')}
                 </Text>
               </View>
               <View
@@ -142,18 +151,20 @@ export function DashboardScreen() {
               <View className="flex-row items-center justify-between">
                 <View className="gap-1">
                   <Text variant="tiny" tone="muted" className="tracking-wide">
-                    STREAK MODE
+                    {t('dashboard.streakMode')}
                   </Text>
                   <Text variant="subtitle" className="font-semibold">
-                    🔥 {summary?.streakDays ?? 0} giorni attivi
+                    {t('dashboard.activeDays', { count: summary?.streakDays ?? 0 })}
                   </Text>
                 </View>
-                {summary ? <ReadinessPill band={summary.readinessHint} /> : null}
+                {summary ? (
+                  <ReadinessPill band={summary.readinessHint} label={readinessLabels[summary.readinessHint]} />
+                ) : null}
               </View>
               <View className="mt-4 flex-row items-center justify-between">
                 <MiniWeekBars completed={weeklyCompleted} planned={weeklyPlanned} />
                 <Text variant="caption" tone="secondary">
-                  {weeklyPct}% settimana
+                  {t('dashboard.weekPct', { pct: weeklyPct })}
                 </Text>
               </View>
             </View>
@@ -166,8 +177,7 @@ export function DashboardScreen() {
             <FadeInSection delay={40}>
             <PremiumCard className="border border-warning/30 bg-warning/10">
               <Text tone="primary" variant="caption">
-                Sei offline. I dati mostrati sono cache. Le sessioni completate verranno sincronizzate appena
-                torni online.
+                {t('dashboard.offlineBanner')}
               </Text>
             </PremiumCard>
             </FadeInSection>
@@ -175,19 +185,35 @@ export function DashboardScreen() {
 
           <FadeInSection delay={80}>
           <View className="flex-row gap-3">
-            <StatCard label="Workout" value={today ? 'Oggi' : '—'} helper={today ? `${today.exercises.length} esercizi` : 'nessuna sessione'} />
-            <StatCard label="Volume" value={`${weeklyCompleted}/${weeklyPlanned || '—'}`} helper="set settimana" />
-            <StatCard label="Streak" value={summary?.streakDays ?? 0} helper="giorni" />
+            <StatCard
+              label={t('stat.workout')}
+              value={today ? t('dashboard.statToday') : t('common.emDash')}
+              helper={
+                today
+                  ? `${today.exercises.length} ${t('common.exercises')}`
+                  : t('dashboard.statNoSession')
+              }
+            />
+            <StatCard
+              label={t('stat.volume')}
+              value={`${weeklyCompleted}/${weeklyPlanned || t('common.emDash')}`}
+              helper={t('dashboard.statWeekSets')}
+            />
+            <StatCard
+              label={t('stat.streak')}
+              value={summary?.streakDays ?? 0}
+              helper={t('common.days')}
+            />
           </View>
           </FadeInSection>
 
           <FadeInSection delay={120}>
           <PremiumCard variant="elevated" className="gap-4">
-            <SectionHeader title="Obiettivo settimanale" subtitle="Completa i set programmati e mantieni ritmo." />
+            <SectionHeader title={t('dashboard.weeklyGoal')} subtitle={t('dashboard.weeklyGoalSub')} />
             <View className="flex-row items-end justify-between">
               <Text variant="title">{Math.min(100, weeklyPct)}%</Text>
               <Text tone="secondary" variant="caption">
-                {weeklyCompleted}/{weeklyPlanned || 0} set
+                {weeklyCompleted}/{weeklyPlanned || 0} {t('common.sets')}
               </Text>
             </View>
             <AnimatedProgressBar value={weeklyCompleted} max={weeklyPlanned} />
@@ -197,8 +223,12 @@ export function DashboardScreen() {
           <FadeInSection delay={160}>
           <View className="gap-4">
             <SectionHeader
-              title="Prossimo workout"
-              subtitle={today ? `Settimana ${today.weekNumber} · sessione guidata` : 'Il piano e pronto appena vuoi partire'}
+              title={t('dashboard.nextWorkout')}
+              subtitle={
+                today
+                  ? t('dashboard.nextWorkoutSub', { week: today.weekNumber })
+                  : t('dashboard.nextWorkoutReady')
+              }
             />
             <PremiumCard
               variant="ambient"
@@ -206,9 +236,9 @@ export function DashboardScreen() {
               pressable={!!today}
               onPress={today ? () => router.push('/workout/session') : undefined}
               accessibilityLabel={
-                today ? `Apri workout di oggi, ${today.dayLabel}` : undefined
+                today ? t('dashboard.openTodayWorkout', { label: today.dayLabel }) : undefined
               }
-              accessibilityHint={today ? 'Apre la sessione di allenamento' : undefined}
+              accessibilityHint={today ? t('dashboard.openSessionHint') : undefined}
             >
               {today ? (
                 <>
@@ -216,13 +246,16 @@ export function DashboardScreen() {
                     <View className="flex-1 pr-4">
                       <Text variant="title">{today.dayLabel}</Text>
                       <Text tone="secondary">
-                        {today.exercises.length} esercizi · ~{summary?.nextWorkout?.estimatedDurationMin ?? 45}'
+                        {t('dashboard.exercisesDuration', {
+                          count: today.exercises.length,
+                          min: summary?.nextWorkout?.estimatedDurationMin ?? 45,
+                        })}
                       </Text>
                     </View>
                     {today.isDeload ? (
                       <View className="rounded-pill bg-warning/20 px-3 py-1">
                         <Text variant="tiny" tone="primary">
-                          DELOAD
+                          {t('common.deload')}
                         </Text>
                       </View>
                     ) : (
@@ -232,14 +265,14 @@ export function DashboardScreen() {
                     )}
                   </View>
                   <View accessible={false} importantForAccessibility="no-hide-descendants">
-                    <PremiumButton label="Inizia workout" onPress={() => router.push('/workout/session')} />
+                    <PremiumButton label={t('dashboard.startWorkout')} onPress={() => router.push('/workout/session')} />
                   </View>
                 </>
               ) : (
                 <View className="gap-3">
-                  <Text variant="subtitle">Nessun allenamento programmato oggi.</Text>
-                  <Text tone="muted">Controlla il piano completo o usa lo storico per riprendere il ritmo.</Text>
-                  <Button label="Vedi storico" variant="secondary" onPress={() => router.push('/(tabs)/history')} />
+                  <Text variant="subtitle">{t('dashboard.noWorkoutToday')}</Text>
+                  <Text tone="muted">{t('dashboard.noWorkoutHint')}</Text>
+                  <Button label={t('dashboard.viewHistory')} variant="secondary" onPress={() => router.push('/(tabs)/history')} />
                 </View>
               )}
             </PremiumCard>
@@ -248,9 +281,9 @@ export function DashboardScreen() {
 
           <FadeInSection delay={200}>
           <PremiumCard variant="glass" className="gap-3">
-            <SectionHeader title="Programma" subtitle="Piano di allenamento attivo" />
-            <Text tone="muted">Visualizza settimane, giorni e progressione del programma.</Text>
-            <Button label="Vedi piano completo" variant="secondary" onPress={() => router.push('/plan' as Href)} />
+            <SectionHeader title={t('dashboard.program')} subtitle={t('dashboard.programSub')} />
+            <Text tone="muted">{t('dashboard.programHint')}</Text>
+            <Button label={t('dashboard.viewFullPlan')} variant="secondary" onPress={() => router.push('/plan' as Href)} />
           </PremiumCard>
           </FadeInSection>
         </View>

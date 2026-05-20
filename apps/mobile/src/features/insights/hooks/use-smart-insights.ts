@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useAnalyticsOverview } from '../../../hooks/use-analytics';
 import { useWorkoutHistory } from '../../../hooks/use-history';
+import { useSettingsStore } from '../../../stores/settings.store';
 import {
   generateInsights,
   pickCompactInsights,
@@ -9,6 +10,7 @@ import {
 } from '../lib/generate-insights';
 
 function useInsightsContext(range: '4w' | '12w' | '6m'): InsightsContext {
+  const language = useSettingsStore((s) => s.language);
   const { data: analytics } = useAnalyticsOverview(range);
   const { data: historyData } = useWorkoutHistory();
 
@@ -21,8 +23,9 @@ function useInsightsContext(range: '4w' | '12w' | '6m'): InsightsContext {
     () => ({
       analytics: analytics ?? null,
       historyItems,
+      language,
     }),
-    [analytics, historyItems],
+    [analytics, historyItems, language],
   );
 }
 

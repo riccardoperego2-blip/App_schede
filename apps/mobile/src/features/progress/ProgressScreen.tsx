@@ -22,6 +22,7 @@ import {
   formatWeekLabel,
 } from '../../lib/api/mappers/analytics-overview';
 import { SmartInsightsSection, useSmartInsights } from '../insights';
+import { useI18n } from '../../i18n/use-i18n';
 
 const RANGES = ['4w', '12w', '6m', '1y'] as const;
 type UiRange = (typeof RANGES)[number];
@@ -60,6 +61,7 @@ function MockTrendBars() {
 }
 
 function AnalyticsSkeleton() {
+  const { t } = useI18n();
   return (
     <Screen>
       <View className="gap-5 px-1 pt-2">
@@ -77,7 +79,7 @@ function AnalyticsSkeleton() {
           <MockTrendBars />
         </PremiumCard>
         <Text tone="muted" className="text-center">
-          Caricamento analytics…
+          {t('progress.loading')}
         </Text>
       </View>
     </Screen>
@@ -94,25 +96,25 @@ function formatVolumeValue(volumeKg: number): string {
 }
 
 function EmptyAnalyticsCard({ onStartWorkout }: { onStartWorkout: () => void }) {
+  const { t } = useI18n();
   return (
     <PremiumCard variant="ambient" className="gap-5 p-5">
       <View className="gap-2">
         <Text variant="tiny" tone="accent" className="font-extrabold tracking-widest">
-          ANALYTICS AVANZATE
+          {t('progress.emptyEyebrow')}
         </Text>
-        <Text variant="title">Completa il tuo primo workout per sbloccare analytics avanzate</Text>
-        <Text tone="secondary">
-          Dopo le prime sessioni vedrai trend volume, PR personali, esercizi top e muscoli più allenati.
-        </Text>
+        <Text variant="title">{t('progress.emptyTitle')}</Text>
+        <Text tone="secondary">{t('progress.emptyBody')}</Text>
       </View>
       <MockTrendBars />
-      <Button label="Vai al workout" onPress={onStartWorkout} />
+      <Button label={t('progress.goWorkout')} onPress={onStartWorkout} />
     </PremiumCard>
   );
 }
 
 export function ProgressScreen() {
   const router = useRouter();
+  const { t, te, tm, locale } = useI18n();
   const [range, setRange] = useState<UiRange>('4w');
   const apiRange: ApiRange = range === '1y' ? '6m' : range;
   const { data, isLoading, isError, error, isRefetching, refetch } = useAnalyticsOverview(apiRange);
@@ -162,18 +164,16 @@ export function ProgressScreen() {
         <View className="gap-5 px-1 pt-2">
           <PremiumCard variant="ambient" className="gap-3 p-5">
             <Text variant="tiny" tone="accent" className="font-extrabold tracking-widest">
-              PERFORMANCE
+              {t('progress.eyebrow')}
             </Text>
-            <Text variant="display">Panoramica</Text>
-            <Text variant="subtitle">Impossibile caricare i dati</Text>
-            <Text tone="muted">
-              Potrebbe essere un problema di rete, token scaduto o risposta API non disponibile.
-            </Text>
+            <Text variant="display">{t('progress.title')}</Text>
+            <Text variant="subtitle">{t('progress.loadError')}</Text>
+            <Text tone="muted">{t('progress.loadErrorHint')}</Text>
           </PremiumCard>
           <PremiumCard variant="glass" className="gap-3">
             <Text tone="muted">{(error as Error).message}</Text>
           </PremiumCard>
-          <Button label="Riprova" onPress={() => void refetch()} />
+          <Button label={t('common.retry')} onPress={() => void refetch()} />
         </View>
       </Screen>
     );
@@ -191,13 +191,13 @@ export function ProgressScreen() {
         <FadeInSection delay={0}>
         <PremiumCard variant="ambient" className="gap-4 p-6">
           <Text variant="tiny" tone="muted" className="tracking-widest">
-            PERFORMANCE
+            {t('progress.eyebrow')}
           </Text>
-          <Text variant="display">Panoramica</Text>
-          <Text tone="secondary">Volume, PR personali e consistenza del tuo percorso.</Text>
+          <Text variant="display">{t('progress.title')}</Text>
+          <Text tone="secondary">{t('progress.subtitle')}</Text>
           <View className="flex-row gap-2">
-            <StatPill active label="Sessioni" value={data?.totalSessions ?? data?.completedSessions ?? 0} />
-            <StatPill label="PR" value={data?.personalRecords.length ?? 0} />
+            <StatPill active label={t('stat.sessions')} value={data?.totalSessions ?? data?.completedSessions ?? 0} />
+            <StatPill label={t('common.pr')} value={data?.personalRecords.length ?? 0} />
           </View>
         </PremiumCard>
         </FadeInSection>
@@ -218,11 +218,11 @@ export function ProgressScreen() {
 
         <FadeInSection delay={100}>
         <View className="flex-row gap-3">
-          <MetricCard label="Sessioni" value={data?.totalSessions ?? data?.completedSessions ?? 0} helper="totali" accent />
+          <MetricCard label={t('stat.sessions')} value={data?.totalSessions ?? data?.completedSessions ?? 0} helper={t('progress.totalSessions')} accent />
           <MetricCard
-            label="Ultime 4 sett."
+            label={t('progress.last4Weeks')}
             value={formatVolumeValue(last4WeeksVolumeKg)}
-            helper="volume"
+            helper={t('stat.volume')}
           />
         </View>
 
@@ -230,11 +230,11 @@ export function ProgressScreen() {
           <View className="flex-row items-start justify-between">
             <View className="flex-1 gap-0.5 pr-4">
               <Text variant="caption" tone="muted">
-                TREND VOLUME
+                {t('progress.volumeTrend')}
               </Text>
               <Text variant="title">{formatVolumeValue(periodVolume || last4WeeksVolumeKg || totalVolumeKg)}</Text>
               <Text variant="tiny" tone="secondary">
-                Volume stimato nel periodo selezionato
+                {t('progress.volumePeriodHint')}
               </Text>
             </View>
             <View className="rounded-pill border border-border-soft bg-bg-surface px-3 py-1.5">
@@ -249,9 +249,7 @@ export function ProgressScreen() {
             <>
               <MockTrendBars />
               <Text tone="muted">
-                {hasAnyAnalyticsData
-                  ? 'Hai dati parziali, ma non ancora volume nel periodo selezionato.'
-                  : 'Completa sessioni per generare il trend.'}
+                {hasAnyAnalyticsData ? t('progress.partialTrend') : t('progress.noTrend')}
               </Text>
             </>
           )}
@@ -260,22 +258,22 @@ export function ProgressScreen() {
 
         <FadeInSection delay={150}>
         <View className="flex-row gap-3">
-          <MetricCard label="Aderenza" value={data ? formatAdherencePercent(data.adherencePct) : '—'} helper={range.toUpperCase()} />
-          <MetricCard label="Streak" value={`${data?.streakDays ?? 0}`} helper={`Questa sett. ${data?.sessionsThisWeek ?? 0}`} />
+          <MetricCard label={t('progress.adherence')} value={data ? formatAdherencePercent(data.adherencePct) : '—'} helper={range.toUpperCase()} />
+          <MetricCard label={t('stat.streak')} value={`${data?.streakDays ?? 0}`} helper={t('progress.thisWeek', { count: data?.sessionsThisWeek ?? 0 })} />
         </View>
 
         <View className="flex-row gap-3">
-          <MetricCard label="Volume totale" value={formatVolumeValue(allTimeVolumeKg || totalVolumeKg)} helper="all time" />
-          <MetricCard label="Periodo" value={formatVolumeValue(periodVolume || totalVolumeKg)} helper={range.toUpperCase()} />
+          <MetricCard label={t('progress.totalVolume')} value={formatVolumeValue(allTimeVolumeKg || totalVolumeKg)} helper={t('progress.allTime')} />
+          <MetricCard label={t('progress.period')} value={formatVolumeValue(periodVolume || totalVolumeKg)} helper={range.toUpperCase()} />
         </View>
 
         <PremiumCard variant="glass" className="gap-3">
-          <Text variant="subtitle">Dettaglio settimanale</Text>
+          <Text variant="subtitle">{t('progress.weeklyDetail')}</Text>
           {data?.weeklyVolumeSeries.length ? (
             data.weeklyVolumeSeries.map((week) => (
               <StatRow
                 key={week.weekStart}
-                label={formatWeekLabel(week.weekStart)}
+                label={formatWeekLabel(week.weekStart, locale)}
                 value={week.volumeKg}
                 max={maxWeeklyVolume}
                 detail={week.volumeKg > 0 ? `${Math.round(week.volumeKg)} kg` : '—'}
@@ -283,9 +281,7 @@ export function ProgressScreen() {
             ))
           ) : (
             <Text tone="muted">
-              {hasAnyAnalyticsData
-                ? 'Nessun volume settimanale in questo periodo, ma le altre metriche sono disponibili.'
-                : 'Il dettaglio settimanale apparira dopo le prime sessioni.'}
+              {hasAnyAnalyticsData ? t('progress.weeklyPartial') : t('progress.weeklyEmpty')}
             </Text>
           )}
         </PremiumCard>
@@ -293,48 +289,46 @@ export function ProgressScreen() {
 
         <FadeInSection delay={200}>
         <PremiumCard variant="elevated" className="gap-4">
-          <SectionHeader title="PR personali" subtitle="Peso, volume e reps migliori per esercizio" />
+          <SectionHeader title={t('progress.prTitle')} subtitle={t('progress.prSub')} />
           {hasPersonalRecords ? (
             (data?.personalRecords ?? []).slice(0, 6).map((pr) => (
               <View key={pr.exerciseSlug} className="gap-3 rounded-card border border-border-soft bg-bg-glass p-4">
                 <View className="flex-row items-start justify-between gap-4">
                   <View className="flex-1">
                     <Text numberOfLines={1} variant="subtitle">
-                      {pr.exerciseName || pr.exerciseSlug}
+                      {te(pr.exerciseSlug, pr.exerciseName)}
                     </Text>
                     <Text tone="muted" variant="caption">
-                      1RM stimato {estimateOneRepMax(pr.bestWeightKg, pr.bestReps)}
+                      {t('progress.est1rm', { value: estimateOneRepMax(pr.bestWeightKg, pr.bestReps) })}
                     </Text>
                   </View>
                   <View className="rounded-pill border border-border-soft bg-bg-glass px-2.5 py-1">
                     <Text variant="tiny" tone="accent">
-                      PR
+                      {t('common.pr')}
                     </Text>
                   </View>
                 </View>
                 <View className="flex-row flex-wrap gap-2">
-                  <StatPill label="peso" value={pr.bestWeightKg ? `${Math.round(pr.bestWeightKg)} kg` : '—'} active />
-                  <StatPill label="reps" value={pr.bestReps ?? '—'} />
-                  <StatPill label="volume" value={pr.bestVolumeKg ? `${Math.round(pr.bestVolumeKg)} kg` : '—'} />
+                  <StatPill label={t('stat.weight')} value={pr.bestWeightKg ? `${Math.round(pr.bestWeightKg)} kg` : '—'} active />
+                  <StatPill label={t('stat.reps')} value={pr.bestReps ?? '—'} />
+                  <StatPill label={t('stat.volume')} value={pr.bestVolumeKg ? `${Math.round(pr.bestVolumeKg)} kg` : '—'} />
                 </View>
               </View>
             ))
           ) : (
             <Text tone="muted">
-              {hasAnyAnalyticsData
-                ? 'Non ci sono ancora PR con carico/reps sufficienti da mostrare.'
-                : 'Completa qualche set con carico e reps per vedere i tuoi PR.'}
+              {hasAnyAnalyticsData ? t('progress.prEmptyPartial') : t('progress.prEmpty')}
             </Text>
           )}
         </PremiumCard>
 
         <PremiumCard variant="elevated" className="gap-4">
-          <SectionHeader title="Top 5 esercizi" subtitle="Classifica per volume nel periodo" />
+          <SectionHeader title={t('progress.topExercises')} subtitle={t('progress.topExercisesSub')} />
           {hasTopExercises ? (
             (data?.topExercisesByVolume ?? []).map((exercise) => (
               <StatRow
                 key={exercise.exerciseSlug}
-                label={exercise.exerciseName || exercise.exerciseSlug}
+                label={te(exercise.exerciseSlug, exercise.exerciseName)}
                 value={exercise.volumeKg}
                 max={maxExerciseVolume}
                 detail={`${Math.round(exercise.volumeKg)} kg`}
@@ -342,45 +336,43 @@ export function ProgressScreen() {
             ))
           ) : (
             <Text tone="muted">
-              {hasAnyAnalyticsData
-                ? 'Nessun esercizio con volume nel periodo selezionato.'
-                : 'I top esercizi appariranno dopo i primi workout completati.'}
+              {hasAnyAnalyticsData ? t('progress.topExercisesEmptyPartial') : t('progress.topExercisesEmpty')}
             </Text>
           )}
         </PremiumCard>
 
         <PremiumCard variant="glass" className="gap-3">
-          <Text variant="subtitle">Esercizi più allenati</Text>
+          <Text variant="subtitle">{t('progress.mostTrained')}</Text>
           {hasMostTrainedExercises ? (
             (data?.mostTrainedExercises ?? []).map((exercise) => (
               <View key={exercise.exerciseSlug} className="flex-row items-center justify-between">
                 <Text className="flex-1 pr-3" numberOfLines={1}>
-                  {exercise.exerciseName || exercise.exerciseSlug}
+                  {te(exercise.exerciseSlug, exercise.exerciseName)}
                 </Text>
                 <Text tone="secondary" variant="caption">
-                  {exercise.sets} serie · {exercise.sessions} sessioni
+                  {t('progress.setsSessions', { sets: exercise.sets, sessions: exercise.sessions })}
                 </Text>
               </View>
             ))
           ) : (
-            <Text tone="muted">Nessun esercizio registrato nel periodo.</Text>
+            <Text tone="muted">{t('progress.mostTrainedEmpty')}</Text>
           )}
         </PremiumCard>
 
         <PremiumCard variant="glass" className="gap-3">
-          <Text variant="subtitle">Top muscoli per serie</Text>
+          <Text variant="subtitle">{t('progress.topMuscles')}</Text>
           {hasMuscleDistribution ? (
             (data?.muscleDistribution ?? []).map((row) => (
               <StatRow
                 key={row.muscleGroup}
-                label={row.muscleGroup}
+                label={tm(row.muscleGroup)}
                 value={row.sets}
                 max={maxMuscleSets}
-                detail={`${row.sets} ${row.sets === 1 ? 'serie' : 'serie'}`}
+                detail={t('progress.setsCount', { count: row.sets })}
               />
             ))
           ) : (
-            <Text tone="muted">Dati muscolari non disponibili.</Text>
+            <Text tone="muted">{t('progress.musclesEmpty')}</Text>
           )}
         </PremiumCard>
         </FadeInSection>

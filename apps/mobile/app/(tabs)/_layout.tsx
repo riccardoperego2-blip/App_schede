@@ -4,6 +4,7 @@ import { Platform, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Svg, { Circle, Path, Rect } from 'react-native-svg';
+import { useI18n } from '../../src/i18n/use-i18n';
 
 const TAB_META = {
   index: 'home',
@@ -85,6 +86,7 @@ function TabIcon({ route, focused }: { route: keyof typeof TAB_META; focused: bo
 
 export default function TabsLayout() {
   const insets = useSafeAreaInsets();
+  const { t } = useI18n();
   const bottomPadding = Platform.OS === 'android' ? Math.max(insets.bottom, 20) : insets.bottom;
   const tabBarHeight = Platform.OS === 'android' ? 76 + bottomPadding : 70 + bottomPadding;
 
@@ -122,24 +124,28 @@ export default function TabsLayout() {
         name="index"
         options={{
           tabBarIcon: ({ focused }) => <TabIcon route="index" focused={focused} />,
+          tabBarAccessibilityLabel: t('tabs.home'),
         }}
       />
       <Tabs.Screen
         name="history"
         options={{
           tabBarIcon: ({ focused }) => <TabIcon route="history" focused={focused} />,
+          tabBarAccessibilityLabel: t('tabs.history'),
         }}
       />
       <Tabs.Screen
         name="progress"
         options={{
           tabBarIcon: ({ focused }) => <TabIcon route="progress" focused={focused} />,
+          tabBarAccessibilityLabel: t('tabs.progress'),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           tabBarIcon: ({ focused }) => <TabIcon route="profile" focused={focused} />,
+          tabBarAccessibilityLabel: t('tabs.profile'),
         }}
       />
     </Tabs>

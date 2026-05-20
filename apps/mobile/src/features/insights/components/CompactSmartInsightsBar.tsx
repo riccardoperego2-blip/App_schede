@@ -1,6 +1,7 @@
 import { ScrollView, View } from 'react-native';
 import { FadeInSection, Text } from '../../../design-system';
 import { colors } from '../../../theme';
+import { useI18n } from '../../../i18n/use-i18n';
 import type { SmartInsight } from '../lib/generate-insights';
 import { CompactInsightChip } from './CompactInsightChip';
 
@@ -10,6 +11,7 @@ interface CompactSmartInsightsBarProps {
 }
 
 export function CompactSmartInsightsBar({ insights, delay = 50 }: CompactSmartInsightsBarProps) {
+  const { t } = useI18n();
   if (insights.length === 0) return null;
 
   return (
@@ -26,7 +28,7 @@ export function CompactSmartInsightsBar({ insights, delay = 50 }: CompactSmartIn
           }}
         />
         <Text variant="tiny" tone="muted" className="tracking-widest">
-          LIVE FITNESS INTELLIGENCE
+          {t('dashboard.liveIntelligence')}
         </Text>
       </View>
       <ScrollView

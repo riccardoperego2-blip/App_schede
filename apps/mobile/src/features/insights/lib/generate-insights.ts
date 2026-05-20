@@ -1,6 +1,9 @@
 import type { AnalyticsOverview } from '../../../lib/api/contracts';
 import type { HistorySessionItem } from '../../../lib/api/mappers/workout-history';
 import { computeHistorySummary } from '../../../lib/api/mappers/workout-history';
+import { translate, type AppLanguage } from '../../../i18n';
+import { translateExerciseName } from '../../../i18n/exercise-names';
+import { translateMuscleName } from '../../../i18n/muscle-names';
 
 export type InsightType =
   | 'pr'
@@ -22,6 +25,7 @@ export interface SmartInsight {
 export interface InsightsContext {
   readonly analytics?: AnalyticsOverview | null;
   readonly historyItems?: readonly HistorySessionItem[];
+  readonly language: AppLanguage;
 }
 
 const ACCENT = {
@@ -31,35 +35,6 @@ const ACCENT = {
   bolt: '#9B5CFF',
   muscle: '#1EA7FF',
 } as const;
-
-const MUSCLE_LABELS: Record<string, string> = {
-  chest: 'Petto',
-  back: 'Schiena',
-  legs: 'Gambe',
-  shoulders: 'Spalle',
-  arms: 'Braccia',
-  biceps: 'Bicipiti',
-  triceps: 'Tricipiti',
-  core: 'Core',
-  abs: 'Addominali',
-  glutes: 'Glutei',
-  calves: 'Polpacci',
-  hamstrings: 'Femorali',
-  quads: 'Quadricipiti',
-  lats: 'Dorsali',
-  traps: 'Trapezi',
-  other: 'Altro',
-};
-
-function formatMuscleLabel(slug: string): string {
-  const key = slug.toLowerCase().trim();
-  if (MUSCLE_LABELS[key]) return MUSCLE_LABELS[key];
-  return key
-    .split(/[-_]/)
-    .filter(Boolean)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(' ');
-}
 
 function startOfLocalWeek(date: Date): Date {
   const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -93,7 +68,10 @@ function resolveStreakDays(ctx: InsightsContext): number {
   return Math.max(fromApi, fromHistory ?? 0);
 }
 
-function buildVolumeTrendInsight(series: AnalyticsOverview['weeklyVolumeSeries']): SmartInsight | null {
+function buildVolumeTrendInsight(
+  series: AnalyticsOverview['weeklyVolumeSeries'],
+  lang: AppLanguage,
+): SmartInsight | null {
   const sorted = [...series]
     .filter((w) => w.weekStart)
     .sort((a, b) => new Date(a.weekStart).getTime() - new Date(b.weekStart).getTime());
@@ -112,41 +90,50 @@ function buildVolumeTrendInsight(series: AnalyticsOverview['weeklyVolumeSeries']
   if (pct === 0) return null;
 
   const sign = pct > 0 ? '+' : '';
-  const direction = pct > 0 ? 'in crescita' : 'in calo';
+  const directionKey = pct > 0 ? 'insights.volumeUp' : 'insights.volumeDown';
 
   return {
     id: 'volume-trend',
     type: 'volume_trend',
     icon: pct > 0 ? '🔥' : '📉',
-    title: `Volume ${sign}${pct}% vs settimana scorsa`,
-    compactTitle: `Volume ${sign}${pct}%`,
-    subtitle: `${Math.round(curr.volumeKg)} kg questa settimana · ${direction}`,
+    title: translate(lang, 'insights.volumeTrend', { sign, pct: Math.abs(pct) }),
+    compactTitle: translate(lang, 'insights.volumeTrendCompact', { sign, pct: Math.abs(pct) }),
+    subtitle: translate(lang, 'insights.volumeTrendSub', {
+      kg: Math.round(curr.volumeKg),
+      direction: translate(lang, directionKey),
+    }),
     accentColor: pct > 0 ? ACCENT.fire : ACCENT.chart,
   };
 }
 
-function buildPrInsight(records: AnalyticsOverview['personalRecords']): SmartInsight | null {
+function buildPrInsight(
+  records: AnalyticsOverview['personalRecords'],
+  lang: AppLanguage,
+): SmartInsight | null {
   if (records.length === 0) return null;
   const top = records[0]!;
-  const name = top.exerciseName || top.exerciseSlug.replace(/-/g, ' ');
+  const name = translateExerciseName(top.exerciseSlug, lang, top.exerciseName);
   return {
     id: 'pr-records',
     type: 'pr',
     icon: '🏆',
     title:
       records.length === 1
-        ? `PR su ${name}`
-        : `${records.length} PR nel periodo`,
-    compactTitle: records.length === 1 ? 'Nuovo PR' : `${records.length} PR`,
+        ? translate(lang, 'insights.prSingle', { name })
+        : translate(lang, 'insights.prMultiple', { count: records.length }),
+    compactTitle:
+      records.length === 1
+        ? translate(lang, 'insights.prCompactSingle')
+        : translate(lang, 'insights.prCompactMultiple', { count: records.length }),
     subtitle:
       records.length === 1
-        ? 'Record personale registrato'
-        : `In evidenza: ${name}`,
+        ? translate(lang, 'insights.prSubSingle')
+        : translate(lang, 'insights.prSubMultiple', { name }),
     accentColor: ACCENT.trophy,
   };
 }
 
-function buildWeeklyWorkoutsInsight(count: number): SmartInsight | null {
+function buildWeeklyWorkoutsInsight(count: number, lang: AppLanguage): SmartInsight | null {
   if (count <= 0) return null;
   return {
     id: 'weekly-workouts',
@@ -154,39 +141,45 @@ function buildWeeklyWorkoutsInsight(count: number): SmartInsight | null {
     icon: '📈',
     title:
       count === 1
-        ? '1 workout completato questa settimana'
-        : `${count} workout completati questa settimana`,
-    compactTitle: count === 1 ? '1 workout sett.' : `${count} workout sett.`,
-    subtitle: count >= 3 ? 'Ritmo solido, continua così.' : 'Ogni sessione conta.',
+        ? translate(lang, 'insights.weeklyOne')
+        : translate(lang, 'insights.weeklyMany', { count }),
+    compactTitle:
+      count === 1
+        ? translate(lang, 'insights.weeklyCompactOne')
+        : translate(lang, 'insights.weeklyCompactMany', { count }),
+    subtitle: translate(lang, count >= 3 ? 'insights.weeklySubSolid' : 'insights.weeklySubDefault'),
     accentColor: ACCENT.chart,
   };
 }
 
-function buildStreakInsight(days: number): SmartInsight | null {
+function buildStreakInsight(days: number, lang: AppLanguage): SmartInsight | null {
   if (days <= 1) return null;
   return {
     id: 'streak',
     type: 'streak',
     icon: '⚡',
-    title: `Streak attiva da ${days} giorni`,
-    compactTitle: `Streak ${days} giorni`,
-    subtitle: days >= 7 ? 'Consistenza sopra la media.' : 'Mantieni il ritmo quotidiano.',
+    title: translate(lang, 'insights.streak', { days }),
+    compactTitle: translate(lang, 'insights.streakCompact', { days }),
+    subtitle: translate(lang, days >= 7 ? 'insights.streakSubStrong' : 'insights.streakSubDefault'),
     accentColor: ACCENT.bolt,
   };
 }
 
-function buildTopMuscleInsight(distribution: AnalyticsOverview['muscleDistribution']): SmartInsight | null {
+function buildTopMuscleInsight(
+  distribution: AnalyticsOverview['muscleDistribution'],
+  lang: AppLanguage,
+): SmartInsight | null {
   if (distribution.length === 0) return null;
   const top = [...distribution].sort((a, b) => b.sets - a.sets)[0];
   if (!top || top.sets <= 0) return null;
 
-  const label = formatMuscleLabel(top.muscleGroup);
+  const label = translateMuscleName(top.muscleGroup, lang);
   return {
     id: `top-muscle-${top.muscleGroup}`,
     type: 'top_muscle',
     icon: '💪',
-    title: `${label}: gruppo più allenato`,
-    subtitle: `${top.sets} ${top.sets === 1 ? 'serie' : 'serie'} nel periodo`,
+    title: translate(lang, 'insights.topMuscle', { muscle: label }),
+    subtitle: translate(lang, 'insights.topMuscleSub', { count: top.sets }),
     accentColor: ACCENT.muscle,
   };
 }
@@ -203,23 +196,24 @@ const MAX_INSIGHTS = 5;
 
 export function generateInsights(ctx: InsightsContext): SmartInsight[] {
   const analytics = ctx.analytics;
+  const lang = ctx.language;
   if (!analytics) return [];
 
   const candidates: SmartInsight[] = [];
 
-  const volumeTrend = buildVolumeTrendInsight(analytics.weeklyVolumeSeries);
+  const volumeTrend = buildVolumeTrendInsight(analytics.weeklyVolumeSeries, lang);
   if (volumeTrend) candidates.push(volumeTrend);
 
-  const pr = buildPrInsight(analytics.personalRecords);
+  const pr = buildPrInsight(analytics.personalRecords, lang);
   if (pr) candidates.push(pr);
 
-  const streak = buildStreakInsight(resolveStreakDays(ctx));
+  const streak = buildStreakInsight(resolveStreakDays(ctx), lang);
   if (streak) candidates.push(streak);
 
-  const weekly = buildWeeklyWorkoutsInsight(resolveSessionsThisWeek(ctx));
+  const weekly = buildWeeklyWorkoutsInsight(resolveSessionsThisWeek(ctx), lang);
   if (weekly) candidates.push(weekly);
 
-  const muscle = buildTopMuscleInsight(analytics.muscleDistribution);
+  const muscle = buildTopMuscleInsight(analytics.muscleDistribution, lang);
   if (muscle) candidates.push(muscle);
 
   return candidates

@@ -97,11 +97,11 @@ export function mapHistoryResponse(raw: HistoryListResponse | Record<string, unk
   };
 }
 
-export function formatHistoryDate(iso: string | null): string | null {
+export function formatHistoryDate(iso: string | null, locale = 'it-IT'): string | null {
   if (!iso) return null;
   const d = new Date(iso);
   if (!Number.isFinite(d.getTime())) return null;
-  return d.toLocaleDateString('it-IT', {
+  return d.toLocaleDateString(locale, {
     weekday: 'short',
     day: 'numeric',
     month: 'short',
@@ -146,17 +146,21 @@ function startOfLocalDay(date: Date): Date {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
-export function formatRelativeSessionDate(iso: string | null): string | null {
+export function formatRelativeSessionDate(
+  iso: string | null,
+  t: (key: string, params?: Record<string, string | number>) => string,
+  locale = 'it-IT',
+): string | null {
   if (!iso) return null;
   const d = new Date(iso);
   if (!Number.isFinite(d.getTime())) return null;
   const diffDays = Math.floor(
     (startOfLocalDay(new Date()).getTime() - startOfLocalDay(d).getTime()) / 86_400_000,
   );
-  if (diffDays === 0) return 'Oggi';
-  if (diffDays === 1) return 'Ieri';
-  if (diffDays > 1 && diffDays < 7) return `${diffDays} giorni fa`;
-  return formatHistoryDate(iso);
+  if (diffDays === 0) return t('history.relativeToday');
+  if (diffDays === 1) return t('history.relativeYesterday');
+  if (diffDays > 1 && diffDays < 7) return t('history.relativeDaysAgo', { count: diffDays });
+  return formatHistoryDate(iso, locale);
 }
 
 function computeStreakDays(items: HistorySessionItem[]): number | null {
@@ -195,17 +199,27 @@ function computeStreakDays(items: HistorySessionItem[]): number | null {
   return streak > 0 ? streak : null;
 }
 
-export function computeHistorySummary(items: HistorySessionItem[]): HistorySummaryStats {
+export function computeHistorySummary(
+  items: HistorySessionItem[],
+  t?: (key: string, params?: Record<string, string | number>) => string,
+  locale = 'it-IT',
+): HistorySummaryStats {
   const workoutCount = items.length;
   const totalVolumeKg = items.reduce((sum, item) => sum + (item.volumeKg ?? 0), 0);
   const latest = [...items]
     .filter((item) => item.completedAt)
     .sort((a, b) => new Date(b.completedAt!).getTime() - new Date(a.completedAt!).getTime())[0];
 
+  const lastSessionLabel = latest?.completedAt
+    ? t
+      ? formatRelativeSessionDate(latest.completedAt, t, locale)
+      : formatHistoryDate(latest.completedAt, locale)
+    : null;
+
   return {
     workoutCount,
     totalVolumeKg,
-    lastSessionLabel: latest?.completedAt ? formatRelativeSessionDate(latest.completedAt) : null,
+    lastSessionLabel,
     streakDays: computeStreakDays(items),
   };
 }

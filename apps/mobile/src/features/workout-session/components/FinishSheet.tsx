@@ -8,6 +8,7 @@ import {
   Text,
   AnimatedProgressBar,
 } from '../../../design-system';
+import { useI18n } from '../../../i18n/use-i18n';
 import {
   useWorkoutSessionStore,
   workoutSelectors,
@@ -28,17 +29,17 @@ interface FinishSheetProps {
   loading: boolean;
 }
 
-function formatDuration(minutes: number): string {
-  if (minutes < 1) return '<1 min';
-  return `${minutes} min`;
-}
-
 export function FinishSheet({ stats, onConfirm, loading }: FinishSheetProps) {
+  const { t } = useI18n();
   const wellness = useWorkoutSessionStore((s) => s.wellness);
   const setWellness = useWorkoutSessionStore((s) => s.setWellness);
   const adherence = workoutSelectors.adherenceScore(useWorkoutSessionStore.getState());
   const adherencePct = Math.round(adherence * 100);
-  const volumeLabel = stats.volumeKg > 0 ? `${Math.round(stats.volumeKg)} kg` : '—';
+  const volumeLabel = stats.volumeKg > 0 ? `${Math.round(stats.volumeKg)} kg` : t('common.emDash');
+  const durationLabel =
+    stats.durationMinutes < 1
+      ? t('workout.durationUnderMin')
+      : t('workout.durationMin', { min: stats.durationMinutes });
 
   return (
     <View className="gap-5">
@@ -50,27 +51,27 @@ export function FinishSheet({ stats, onConfirm, loading }: FinishSheetProps) {
             </View>
             <View className="flex-1 gap-1">
               <Text variant="tiny" tone="muted" className="tracking-widest">
-                ULTIMO PASSO
+                {t('workout.finishEyebrow')}
               </Text>
-              <Text variant="title">Chiudi la sessione</Text>
+              <Text variant="title">{t('workout.finishTitle')}</Text>
               <Text tone="secondary" variant="caption">
-                Conferma come ti senti. Poi vedrai il riepilogo completo.
+                {t('workout.finishHint')}
               </Text>
             </View>
           </View>
           <View className="flex-row flex-wrap gap-2">
-            <StatPill label="durata" value={formatDuration(stats.durationMinutes)} />
-            <StatPill label="volume" value={volumeLabel} active={stats.volumeKg > 0} />
-            <StatPill label="set" value={`${stats.completedSets}/${stats.plannedSets || '—'}`} active />
+            <StatPill label={t('stat.duration')} value={durationLabel} />
+            <StatPill label={t('stat.volume')} value={volumeLabel} active={stats.volumeKg > 0} />
+            <StatPill label={t('stat.sets')} value={`${stats.completedSets}/${stats.plannedSets || t('common.emDash')}`} active />
             <StatPill
-              label="esercizi"
-              value={`${stats.completedExercises}/${stats.totalExercises || '—'}`}
+              label={t('stat.exercises')}
+              value={`${stats.completedExercises}/${stats.totalExercises || t('common.emDash')}`}
             />
           </View>
           <View className="gap-2">
             <View className="flex-row items-center justify-between">
               <Text variant="caption" tone="muted">
-                Completamento
+                {t('workout.completion')}
               </Text>
               <Text variant="caption" tone="secondary">
                 {adherencePct}%
@@ -84,11 +85,11 @@ export function FinishSheet({ stats, onConfirm, loading }: FinishSheetProps) {
       <FadeInSection delay={50}>
         <PremiumCard variant="glass" className="gap-4 p-4">
           <Text variant="subtitle" className="font-semibold">
-            Come ti senti?
+            {t('workout.howFeel')}
           </Text>
           <View className="gap-3">
             <View className="flex-row items-center justify-between">
-              <Text>Qualità sonno</Text>
+              <Text>{t('workout.sleepQuality')}</Text>
               <Stepper
                 value={wellness.sleepQuality}
                 min={1}
@@ -97,7 +98,7 @@ export function FinishSheet({ stats, onConfirm, loading }: FinishSheetProps) {
               />
             </View>
             <View className="flex-row items-center justify-between">
-              <Text>Indolenzimento</Text>
+              <Text>{t('workout.soreness')}</Text>
               <Stepper
                 value={wellness.soreness}
                 min={1}
@@ -106,7 +107,7 @@ export function FinishSheet({ stats, onConfirm, loading }: FinishSheetProps) {
               />
             </View>
             <View className="flex-row items-center justify-between">
-              <Text>Fatica percepita</Text>
+              <Text>{t('workout.fatigue')}</Text>
               <Stepper
                 value={wellness.fatigueLevel}
                 min={1}
@@ -118,7 +119,7 @@ export function FinishSheet({ stats, onConfirm, loading }: FinishSheetProps) {
         </PremiumCard>
       </FadeInSection>
 
-      <PremiumButton label="Termina allenamento" loading={loading} haptic onPress={onConfirm} />
+      <PremiumButton label={t('workout.finishWorkout')} loading={loading} haptic onPress={onConfirm} />
     </View>
   );
 }

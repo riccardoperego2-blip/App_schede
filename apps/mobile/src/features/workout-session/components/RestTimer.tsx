@@ -4,6 +4,7 @@ import Svg, { Circle } from 'react-native-svg';
 import { PremiumCard, Text } from '../../../design-system';
 import { colors } from '../../../theme';
 import { useRestTimer } from '../../../hooks/use-rest-timer';
+import { useI18n } from '../../../i18n/use-i18n';
 
 interface RestTimerProps {
   restEndsAt: string | null;
@@ -46,6 +47,7 @@ function RestRing({ progress }: { progress: number }) {
 }
 
 export function RestTimer({ restEndsAt, onAdd, onSkip }: RestTimerProps) {
+  const { t } = useI18n();
   const { remainingSeconds, isActive } = useRestTimer(restEndsAt);
   const initialSecondsRef = useRef(0);
 
@@ -80,9 +82,9 @@ export function RestTimer({ restEndsAt, onAdd, onSkip }: RestTimerProps) {
           </View>
           <View className="gap-0.5">
             <Text variant="tiny" tone="muted" className="tracking-widest">
-              RECUPERO
+              {t('workout.rest')}
             </Text>
-            <Text variant="subtitle">Respira e preparati</Text>
+            <Text variant="subtitle">{t('workout.restHint')}</Text>
           </View>
         </View>
         <View className="flex-row gap-2">
@@ -97,7 +99,7 @@ export function RestTimer({ restEndsAt, onAdd, onSkip }: RestTimerProps) {
             className="rounded-pill border border-border-soft bg-bg-surface px-3 py-2"
           >
             <Text variant="caption" tone="accent">
-              Skip
+              {t('workout.skipRest')}
             </Text>
           </Pressable>
         </View>

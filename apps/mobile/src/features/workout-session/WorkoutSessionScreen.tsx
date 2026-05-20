@@ -32,6 +32,7 @@ import { SessionHeader } from './components/SessionHeader';
 import { useSessionElapsed } from './hooks/use-session-elapsed';
 import { useCompleteWorkout } from '../../hooks/use-complete-workout';
 import type { CompleteWorkoutPayload, ProgressionModel } from '../../lib/api/contracts';
+import { useI18n } from '../../i18n/use-i18n';
 
 type SessionSnapshot = ReturnType<typeof useWorkoutSessionStore.getState>;
 
@@ -62,6 +63,7 @@ function progressionForGoal(goal: CompleteWorkoutPayload['trainingGoal']): Progr
 
 export function WorkoutSessionScreen() {
   const router = useRouter();
+  const { t } = useI18n();
   const insets = useSafeAreaInsets();
   const keepAwake = useSettingsStore((s) => s.keepScreenOn);
   useKeepAwake(keepAwake ? 'workout-session' : undefined);
@@ -143,7 +145,7 @@ export function WorkoutSessionScreen() {
     if (!snapshot.workoutDayId) return;
 
     if (workoutSelectors.completedSetCount(snapshot) === 0) {
-      Alert.alert('Nessuna serie completata', 'Segna almeno una serie prima di chiudere la sessione.');
+      Alert.alert(t('workout.noSetsTitle'), t('workout.noSetsBody'));
       return;
     }
 
@@ -211,7 +213,7 @@ export function WorkoutSessionScreen() {
             <PulsePlaceholder className="h-10 w-28" />
           </PremiumCard>
           <Text tone="muted" className="text-center">
-            Preparo la sessione…
+            {t('workout.preparing')}
           </Text>
         </View>
       </Screen>
@@ -222,12 +224,12 @@ export function WorkoutSessionScreen() {
     return (
       <Screen>
         <View className="flex-1 items-center justify-center gap-4 px-6">
-          <Text variant="title">Errore di caricamento</Text>
+          <Text variant="title">{t('workout.loadError')}</Text>
           <Text tone="muted" className="text-center">
             {(todaysWorkout.error as Error).message}
           </Text>
-          <Button label="Riprova" onPress={() => void todaysWorkout.refetch()} />
-          <Button label="Torna alla Home" variant="secondary" onPress={() => router.replace('/(tabs)')} />
+          <Button label={t('common.retry')} onPress={() => void todaysWorkout.refetch()} />
+          <Button label={t('workout.backHome')} variant="secondary" onPress={() => router.replace('/(tabs)')} />
         </View>
       </Screen>
     );
@@ -237,11 +239,11 @@ export function WorkoutSessionScreen() {
     return (
       <Screen>
         <View className="flex-1 items-center justify-center gap-4 px-6">
-          <Text variant="title">Nessun allenamento oggi</Text>
+          <Text variant="title">{t('workout.noWorkoutToday')}</Text>
           <Text tone="muted" className="text-center">
-            Non c&apos;è un workout programmato per oggi nel piano attivo.
+            {t('workout.noWorkoutTodayHint')}
           </Text>
-          <Button label="Torna alla Home" onPress={() => router.replace('/(tabs)')} />
+          <Button label={t('workout.backHome')} onPress={() => router.replace('/(tabs)')} />
         </View>
       </Screen>
     );
@@ -256,7 +258,7 @@ export function WorkoutSessionScreen() {
             <PulsePlaceholder className="h-24 w-full" />
           </PremiumCard>
           <Text tone="muted" className="text-center">
-            Caricamento esercizi…
+            {t('workout.loadingExercises')}
           </Text>
         </View>
       </Screen>
@@ -296,10 +298,10 @@ export function WorkoutSessionScreen() {
             isPaused={session.status === 'paused'}
             onTogglePause={() => (session.status === 'paused' ? session.resume() : session.pause())}
             onCancel={() =>
-              Alert.alert('Annulla sessione', 'Le serie inserite verranno perse.', [
-                { text: 'No' },
+              Alert.alert(t('workout.cancelTitle'), t('workout.cancelBody'), [
+                { text: t('workout.cancelNo') },
                 {
-                  text: 'Sì',
+                  text: t('workout.cancelYes'),
                   style: 'destructive',
                   onPress: () => {
                     session.cancel();
@@ -356,7 +358,7 @@ export function WorkoutSessionScreen() {
           style={{ bottom: 0, paddingBottom: bottomPad }}
         >
           <PremiumButton
-            label={confirming ? 'Chiudi pannello' : 'Completa workout'}
+            label={confirming ? t('workout.closePanel') : t('workout.completeWorkout')}
             variant={confirming ? 'secondary' : 'primary'}
             haptic
             onPress={() => setConfirming((prev) => !prev)}

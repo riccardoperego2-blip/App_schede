@@ -9,6 +9,7 @@ import {
   AnimatedProgressBar,
 } from '../../../design-system';
 import type { CompleteWorkoutResponse } from '../../../lib/api/contracts';
+import { useI18n } from '../../../i18n/use-i18n';
 
 export interface WorkoutCompletionStats {
   readonly durationMinutes: number;
@@ -27,25 +28,32 @@ interface WorkoutCompletionSummaryProps {
   stats: WorkoutCompletionStats;
 }
 
-function formatDuration(minutes: number): string {
-  if (minutes < 1) return '<1 min';
-  if (minutes < 60) return `${minutes} min`;
+function formatDuration(
+  minutes: number,
+  t: (key: string, params?: Record<string, string | number>) => string,
+): string {
+  if (minutes < 1) return t('workout.durationUnderMin');
+  if (minutes < 60) return t('workout.durationMin', { min: minutes });
   const h = Math.floor(minutes / 60);
   const m = minutes % 60;
   return m > 0 ? `${h}h ${m}m` : `${h}h`;
 }
 
-function prTypeLabel(type: WorkoutCompletionStats['personalRecords'][number]['type']): string {
-  if (type === 'estimated_1rm') return '1RM stimato';
-  if (type === 'max_weight_single') return 'Peso max';
-  return 'Volume sessione';
+function prTypeLabel(
+  type: WorkoutCompletionStats['personalRecords'][number]['type'],
+  t: (key: string) => string,
+): string {
+  if (type === 'estimated_1rm') return t('completion.prEst1rm');
+  if (type === 'max_weight_single') return t('completion.prMaxWeight');
+  return t('completion.prSessionVolume');
 }
 
 export function WorkoutCompletionSummary({ stats }: WorkoutCompletionSummaryProps) {
   const router = useRouter();
+  const { t, te } = useI18n();
   const adherencePct = Math.round(stats.adherencePct * 100);
   const prCount = stats.personalRecords.length;
-  const volumeLabel = stats.volumeKg > 0 ? `${Math.round(stats.volumeKg)} kg` : '—';
+  const volumeLabel = stats.volumeKg > 0 ? `${Math.round(stats.volumeKg)} kg` : t('common.emDash');
 
   return (
     <View className="gap-5">
@@ -58,15 +66,13 @@ export function WorkoutCompletionSummary({ stats }: WorkoutCompletionSummaryProp
           </View>
           <View className="items-center gap-1">
             <Text variant="tiny" tone="accent" className="tracking-widest">
-              SESSIONE CHIUSA
+              {t('completion.sessionClosed')}
             </Text>
             <Text variant="display" className="text-center">
-              {prCount > 0 ? 'Ottimo lavoro' : 'Workout completato'}
+              {prCount > 0 ? t('completion.greatJob') : t('completion.workoutDone')}
             </Text>
             <Text tone="secondary" variant="caption" className="text-center">
-              {stats.queued
-                ? 'Salvato in locale. Si sincronizza appena torni online.'
-                : 'Hai fatto il lavoro che conta. Consistenza batte la perfezione.'}
+              {stats.queued ? t('completion.queued') : t('completion.message')}
             </Text>
           </View>
         </PremiumCard>
@@ -75,26 +81,26 @@ export function WorkoutCompletionSummary({ stats }: WorkoutCompletionSummaryProp
       <FadeInSection delay={60}>
         <PremiumCard variant="glass" className="gap-4 p-4">
           <Text variant="subtitle" className="font-semibold">
-            Riepilogo
+            {t('completion.summary')}
           </Text>
           <View className="flex-row flex-wrap gap-2">
-            <StatPill label="durata" value={formatDuration(stats.durationMinutes)} active />
-            <StatPill label="volume" value={volumeLabel} active={stats.volumeKg > 0} />
+            <StatPill label={t('stat.duration')} value={formatDuration(stats.durationMinutes, t)} active />
+            <StatPill label={t('stat.volume')} value={volumeLabel} active={stats.volumeKg > 0} />
             <StatPill
-              label="set"
-              value={`${stats.completedSets}/${stats.plannedSets || '—'}`}
+              label={t('stat.sets')}
+              value={`${stats.completedSets}/${stats.plannedSets || t('common.emDash')}`}
               active={stats.completedSets > 0}
             />
             <StatPill
-              label="esercizi"
-              value={`${stats.completedExercises}/${stats.totalExercises || '—'}`}
+              label={t('stat.exercises')}
+              value={`${stats.completedExercises}/${stats.totalExercises || t('common.emDash')}`}
             />
-            {prCount > 0 ? <StatPill label="PR" value={prCount} active /> : null}
+            {prCount > 0 ? <StatPill label={t('common.pr')} value={prCount} active /> : null}
           </View>
           <View className="gap-2">
             <View className="flex-row items-center justify-between">
               <Text variant="caption" tone="muted">
-                Aderenza sessione
+                {t('completion.adherence')}
               </Text>
               <Text variant="caption" tone="secondary">
                 {adherencePct}%
@@ -109,7 +115,7 @@ export function WorkoutCompletionSummary({ stats }: WorkoutCompletionSummaryProp
         <FadeInSection delay={120}>
           <PremiumCard variant="elevated" className="gap-3 p-4">
             <Text variant="subtitle" className="font-semibold">
-              Record personali
+              {t('completion.personalRecords')}
             </Text>
             {stats.personalRecords.slice(0, 4).map((pr) => (
               <View
@@ -118,10 +124,10 @@ export function WorkoutCompletionSummary({ stats }: WorkoutCompletionSummaryProp
               >
                 <View className="flex-1 pr-3">
                   <Text variant="caption" className="font-semibold">
-                    {pr.exerciseSlug.replace(/-/g, ' ')}
+                    {te(pr.exerciseSlug)}
                   </Text>
                   <Text variant="tiny" tone="muted">
-                    {prTypeLabel(pr.type)}
+                    {prTypeLabel(pr.type, t)}
                   </Text>
                 </View>
                 <Text tone="accent" variant="caption" className="font-semibold">
@@ -135,14 +141,14 @@ export function WorkoutCompletionSummary({ stats }: WorkoutCompletionSummaryProp
 
       <FadeInSection delay={prCount > 0 ? 180 : 120}>
         <View className="gap-3">
-          <PremiumButton label="Torna alla home" onPress={() => router.replace('/(tabs)' as Href)} />
+          <PremiumButton label={t('completion.backHome')} onPress={() => router.replace('/(tabs)' as Href)} />
           <PremiumButton
-            label="Vedi progressi"
+            label={t('completion.viewProgress')}
             variant="secondary"
             onPress={() => router.replace('/(tabs)/progress' as Href)}
           />
           <PremiumButton
-            label="Chiudi"
+            label={t('common.close')}
             variant="ghost"
             onPress={() => router.replace('/(tabs)' as Href)}
           />
